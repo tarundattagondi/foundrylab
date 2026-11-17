@@ -73,7 +73,7 @@ export default function TemperatureViz({ activity }) {
       </div>
 
       <label className="block text-sm font-bold">
-        Temperature: <span className="font-mono">{T.toFixed(2)}</span> <span className="muted font-semibold">— {mood}</span>
+        Temperature: <span className="font-mono">{T.toFixed(2)}</span> <span className="muted font-semibold">({mood})</span>
         <input type="range" min={0.1} max={3} step={0.05} value={T} onChange={(e) => setT(+e.target.value)} className="mt-1 w-full accent-[#fb5b14]" />
         <span className="muted flex justify-between text-[10px] font-bold"><span>0.1 sharp</span><span>1.0 as trained</span><span>3.0 flat</span></span>
       </label>

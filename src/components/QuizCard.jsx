@@ -4,7 +4,7 @@ import { completeActivity, recordQuiz, useProgress, markDailyDone, today } from 
 import { XP } from '../data/curriculum'
 
 const WRONG = [
-  'Not quite — have another look. 🔍',
+  'Not quite. Have another look. 🔍',
   'Good guess! Try a different one.',
   'Almost. Think about what the code actually does.',
 ]
@@ -52,7 +52,7 @@ export default function QuizCard({ quiz, daily = false }) {
     completeActivity(quiz.id, {
       badges,
       bonusXp: dailyBonus ? XP.daily : 0,
-      message: perfect ? 'Perfect score! Every answer right first try. 💯' : `Quiz done — ${firstTry}/${total} on the first try. Great effort! 🧠`,
+      message: perfect ? 'Perfect score! Every answer right first try. 💯' : `Quiz done! ${firstTry}/${total} on the first try. Great effort! 🧠`,
     })
   }
 
@@ -70,7 +70,7 @@ export default function QuizCard({ quiz, daily = false }) {
       <div className="space-y-3 text-center">
         <div className="text-5xl" aria-hidden>{perfect ? '💯' : '🧠'}</div>
         <p className="text-xl font-black">{firstTry}/{total} right on the first try</p>
-        <p className="muted">{perfect ? 'Flawless. You clearly get this.' : 'And you found every right answer in the end — that counts.'}</p>
+        <p className="muted">{perfect ? 'Flawless. You clearly get this.' : 'And you found every right answer in the end, and that counts.'}</p>
         <button className="btn-ghost" onClick={restart}>Take it again</button>
       </div>
     )

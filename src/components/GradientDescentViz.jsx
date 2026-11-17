@@ -20,12 +20,12 @@ const curve = Array.from({ length: 101 }, (_, i) => {
 }).join(' ')
 
 function describe(lr) {
-  if (lr < 0.1) return 'Tiny steps — safe, but slooow.'
-  if (lr < 0.45) return 'Nice and steady — smooth roll to the bottom.'
-  if (lr <= 0.55) return 'Sweet spot — almost one jump to the minimum!'
-  if (lr < 1) return 'Big steps — it zig-zags across the valley but settles.'
-  if (lr === 1) return 'Exactly too big — it bounces back and forth forever.'
-  return 'Way too big — every step overshoots further. Divergence!'
+  if (lr < 0.1) return 'Tiny steps: safe, but slooow.'
+  if (lr < 0.45) return 'Nice and steady: smooth roll to the bottom.'
+  if (lr <= 0.55) return 'Sweet spot: almost one jump to the minimum!'
+  if (lr < 1) return 'Big steps: it zig-zags across the valley but settles.'
+  if (lr === 1) return 'Exactly too big: it bounces back and forth forever.'
+  return 'Way too big: every step overshoots further. Divergence!'
 }
 
 export default function GradientDescentViz({ activity }) {

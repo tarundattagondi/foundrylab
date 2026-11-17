@@ -29,7 +29,7 @@ print(doubled)`, note: 'The short way: 1 line, same answer!' },
         title: 'Reading a comprehension',
         blocks: [
           { code: '[ n * 2   for n in nums ]\n  ↑what      ↑where from' },
-          { steps: ['Read the middle first: `for n in nums` — "take each n from nums".', 'Then the front: `n * 2` — "what to put in the new list".', 'The square brackets mean "make a list of all of them".'] },
+          { steps: ['Read the middle first: `for n in nums`: "take each n from nums".', 'Then the front: `n * 2`: "what to put in the new list".', 'The square brackets mean "make a list of all of them".'] },
           { analogy: 'It is like a cookie machine: cookies (n) come in on a belt (nums), get stamped (n * 2), and drop into a new box ([ ]).', emoji: '🍪' },
           { quick: { q: 'What is `[x + 1 for x in [10, 20]]`?', options: ['[10, 20]', '[11, 21]', '[1, 1]', '31'], answer: 1, explain: 'Each x gets +1: 10 → 11, 20 → 21.' } },
         ],
@@ -73,7 +73,7 @@ print(backwards)`, note: 'Index 2, then 1, then 0.' },
         title: 'Reverse with a comprehension',
         xp: XP.code,
         task: 'Write `reverse_list(xs)` using a **list comprehension**, and `squares_of_evens(nums)` that gives the squares of only the even numbers.',
-        steps: ['In `reverse_list`, use `[xs[i] for i in range(len(xs) - 1, -1, -1)]`.', 'In `squares_of_evens`, use `[n * n for n in nums if n % 2 == 0]`.', 'Don\'t use `.reverse()` or `[::-1]` — practice the comprehension!'],
+        steps: ['In `reverse_list`, use `[xs[i] for i in range(len(xs) - 1, -1, -1)]`.', 'In `squares_of_evens`, use `[n * n for n in nums if n % 2 == 0]`.', 'Don\'t use `.reverse()` or `[::-1]`: practice the comprehension!'],
         starter: py`
 def reverse_list(xs):
     # Use a list comprehension to return xs reversed.
@@ -135,7 +135,7 @@ assert _r == [4, 16], f"expected [4, 16], got {_r!r}"
       {
         title: 'Default values',
         blocks: [
-          'You can give a parameter a **default** — a value it uses if you don\'t pass one.',
+          'You can give a parameter a **default**, a value it uses if you don\'t pass one.',
           { tryit: py`def order(drink, size="medium"):
     print("One", size, drink)
 
@@ -153,7 +153,7 @@ order("milk", "large")`, note: 'The first call uses the default size.' },
     return sum(args)
 
 print(add_all(1, 2))
-print(add_all(5, 10, 15, 20))`, note: 'Two inputs or four — both work.' },
+print(add_all(5, 10, 15, 20))`, note: 'Two inputs or four, both work.' },
           { tip: 'The name `args` is just a habit. The `*` is what does the magic.' },
         ],
       },
@@ -182,7 +182,7 @@ print(make_config(dropout=0.1))`, note: '`.update` copies kwargs into config: ch
         blocks: [
           'For very small functions, Python has a shortcut called `lambda`:',
           { code: 'def triple(x):\n    return x * 3\n\n# is the same as:\ntriple = lambda x: x * 3' },
-          { steps: ['`lambda` means "a tiny function".', 'Before the colon: the inputs (`x`).', 'After the colon: what it returns (`x * 3`) — no `return` word needed.'] },
+          { steps: ['`lambda` means "a tiny function".', 'Before the colon: the inputs (`x`).', 'After the colon: what it returns (`x * 3`), no `return` word needed.'] },
           { tryit: py`triple = lambda x: x * 3
 print(triple(4))
 print(sorted(["banana", "kiwi", "apple"], key=lambda w: len(w)))`, note: 'The second line sorts words by length using a lambda.' },
@@ -192,7 +192,7 @@ print(sorted(["banana", "kiwi", "apple"], key=lambda w: len(w)))`, note: 'The se
         title: 'Recap',
         blocks: [
           { list: ['Defaults: `def f(size="medium")`.', '`*args` collects extra inputs into a tuple.', '`**kwargs` collects named inputs into a dict.', '`lambda x: x * 2` is a tiny function.'] },
-          { tip: 'AI connection: training code passes settings like `train(model, lr=0.001, epochs=5)` — that\'s **kwargs at work.' },
+          { tip: 'AI connection: training code passes settings like `train(model, lr=0.001, epochs=5)`. That\'s **kwargs at work.' },
         ],
       },
     ],
@@ -262,7 +262,7 @@ assert callable(square) and square.__name__ == "<lambda>"
 assert square(4) == 16, f"square(4) gave {square(4)!r}"
 ` },
         ],
-        hints: ['Inside the function, `kwargs` is just a dict. `config.update(kwargs)` copies it in.', '`args` is a tuple — `return sum(args)`.', '`square = lambda x: x * x`'],
+        hints: ['Inside the function, `kwargs` is just a dict. `config.update(kwargs)` copies it in.', '`args` is a tuple: `return sum(args)`.', '`square = lambda x: x * x`'],
       },
     ],
   },
@@ -285,7 +285,7 @@ assert square(4) == 16, f"square(4) gave {square(4)!r}"
         title: 'Your first class',
         blocks: [
           { code: 'class Pet:\n    def __init__(self, name):\n        self.name = name\n\n    def speak(self):\n        print(self.name + " says hi!")' },
-          { steps: ['`class Pet:` starts the blueprint (class names start with a Capital letter).', '`__init__` is the **setup** function. It runs automatically when a new pet is made.', '`self` means "this particular pet".', '`self.name = name` stores the name ON this pet.', '`speak` is a method — an action the pet can do.'] },
+          { steps: ['`class Pet:` starts the blueprint (class names start with a Capital letter).', '`__init__` is the **setup** function. It runs automatically when a new pet is made.', '`self` means "this particular pet".', '`self.name = name` stores the name ON this pet.', '`speak` is a method, an action the pet can do.'] },
         ],
       },
       {
@@ -424,14 +424,14 @@ class Dog(Animal):
 
 d = Dog("Rex")
 d.describe()
-d.speak()`, note: 'Dog never wrote describe() — it inherited it from Animal!' },
-          { analogy: 'You inherit things from your family, like eye colour. A child class inherits methods from its parent class — and can add its own.', emoji: '👨‍👧' },
+d.speak()`, note: 'Dog never wrote describe(): it inherited it from Animal!' },
+          { analogy: 'You inherit things from your family, like eye colour. A child class inherits methods from its parent class, and can add its own.', emoji: '👨‍👧' },
         ],
       },
       {
         title: 'The magic method __call__',
         blocks: [
-          'A method named `__call__` lets you use an object **like a function** — with brackets.',
+          'A method named `__call__` lets you use an object **like a function**, with brackets.',
           { tryit: py`class Doubler:
     def __call__(self, x):
         return x * 2
@@ -454,7 +454,7 @@ class AddTen(Module):
 
 layer = AddTen()
 print(layer(5))`, note: 'layer(5) → __call__ → forward(5) → 15.' },
-          { steps: ['`Module` is the parent. Its `__call__` runs `forward`.', 'Each AI **layer** inherits from Module and writes its own `forward` — the math it does.', 'You use the layer like a function: `layer(x)`.'] },
+          { steps: ['`Module` is the parent. Its `__call__` runs `forward`.', 'Each AI **layer** inherits from Module and writes its own `forward`, the math it does.', 'You use the layer like a function: `layer(x)`.'] },
           { words: [['layer', 'one step of math in an AI model'], ['forward', 'the method that does a layer\'s math'], ['PyTorch', 'a popular Python library for building AI']] },
         ],
       },
@@ -481,7 +481,7 @@ print(layer(5))`, note: 'layer(5) → __call__ → forward(5) → 15.' },
         title: 'Your first AI layer',
         xp: XP.code,
         task: 'Finish `Linear(Module)`: `__init__` stores `weight` and `bias`, and `forward(x)` returns `weight * x + bias`.',
-        steps: ['In `__init__`, write `self.weight = weight` and `self.bias = bias`.', 'In `forward`, return `self.weight * x + self.bias`.', 'Run it — `layer(3)` should print 7.'],
+        steps: ['In `__init__`, write `self.weight = weight` and `self.bias = bias`.', 'In `forward`, return `self.weight * x + self.bias`.', 'Run it. `layer(3)` should print 7.'],
         starter: py`
 class Module:
     """A tiny stand-in for torch.nn.Module."""
@@ -552,8 +552,8 @@ assert issubclass(Linear, Module)
       {
         title: 'Why save to files?',
         blocks: [
-          'When a program ends, all its variables disappear. To keep things — like settings or a high score — we save them in a **file**.',
-          { analogy: 'Variables are like writing on a whiteboard — wiped clean at the end of the day. A file is like writing in a notebook you keep.', emoji: '📓' },
+          'When a program ends, all its variables disappear. To keep things, like settings or a high score, we save them in a **file**.',
+          { analogy: 'Variables are like writing on a whiteboard, wiped clean at the end of the day. A file is like writing in a notebook you keep.', emoji: '📓' },
         ],
       },
       {
@@ -571,7 +571,7 @@ with open("note.txt") as f:
       {
         title: 'JSON: saving dicts and lists',
         blocks: [
-          'Files store text. But what about a dict? We use **JSON** — a standard text format that looks almost exactly like Python dicts and lists.',
+          'Files store text. But what about a dict? We use **JSON**, a standard text format that looks almost exactly like Python dicts and lists.',
           { tryit: py`import json
 
 player = {"name": "Ava", "level": 3, "items": ["sword", "map"]}
@@ -601,7 +601,7 @@ print(game["score"])`, note: 'A save-game system in 6 lines!' },
         title: 'Packages, pip & virtual environments',
         blocks: [
           'People share Python tools called **packages** (like NumPy for math). You install them with a program called **pip**: `pip install numpy`.',
-          'But different projects may need different versions. So each project gets its own **virtual environment** — a private box of packages.',
+          'But different projects may need different versions. So each project gets its own **virtual environment**, a private box of packages.',
           { analogy: 'A virtual environment is like a separate pencil case for each school subject. Your art pencils don\'t get mixed up with your math pencils.', emoji: '✏️' },
           { code: 'python -m venv .venv          # make the private box\nsource .venv/bin/activate      # step inside it (Mac/Linux)\npip install numpy              # install into it\npip freeze > requirements.txt  # write down what you installed' },
           'Someone else can then rebuild your exact setup with `pip install -r requirements.txt`.',
@@ -720,7 +720,7 @@ print(f"loss: {loss:.4f}")`, note: 'Try :.1f too.' },
       {
         title: 'When things go wrong',
         blocks: [
-          'Some code can fail even when it is written correctly — for example, turning the word "banana" into a number:',
+          'Some code can fail even when it is written correctly, for example, turning the word "banana" into a number:',
           { tryit: py`x = float("banana")`, note: 'This crashes with a ValueError.', expectError: true },
           'A crash stops the whole program. Imagine an AI training for 10 hours and crashing because of one weird line of data! 😱',
         ],
@@ -743,7 +743,7 @@ except ValueError:
         title: 'Recap',
         blocks: [
           { list: ['f-strings: `f"Hi {name}"` fills in values.', '`{value:.2f}` shows 2 decimals.', '`try:` risky code, `except SomeError:` what to do instead of crashing.'] },
-          { words: [['f-string', 'text with {blanks} filled in automatically'], ['exception', 'an error that happens while running'], ['ValueError', 'right type, bad value — like float("banana")']] },
+          { words: [['f-string', 'text with {blanks} filled in automatically'], ['exception', 'an error that happens while running'], ['ValueError', 'right type, bad value, like float("banana")']] },
         ],
       },
     ],
@@ -818,7 +818,7 @@ assert _r == "acc: 1.00", f"expected 'acc: 1.00', got {_r!r}"
         title: 'Look how far you\'ve come!',
         blocks: [
           'You started with `print("Hello")`. Now you know variables, types, if/else, loops, functions, lists, dicts, sets, tuples, comprehensions, classes, inheritance, files and errors. 🏆',
-          { big: 'Time to read real AI code — and understand it.' },
+          { big: 'Time to read real AI code, and understand it.' },
         ],
       },
       {
@@ -843,7 +843,7 @@ class Child(Parent):
         print("Child setup done")
 
 Child()`, note: 'The parent\'s setup runs first.' },
-          { tip: 'You\'re ready for the checkpoint: a quiz about this model, then you\'ll build your own `Sequential` — a container that runs layers one after another, just like PyTorch\'s.' },
+          { tip: 'You\'re ready for the checkpoint: a quiz about this model, then you\'ll build your own `Sequential`, a container that runs layers one after another, just like PyTorch\'s.' },
         ],
       },
     ],
@@ -855,9 +855,9 @@ Child()`, note: 'The parent\'s setup runs first.' },
         xp: XP.quiz,
         questions: [
           { q: 'What does `class TinyNet(nn.Module):` mean?', code: 'import torch.nn as nn\n\nclass TinyNet(nn.Module):\n    def __init__(self):\n        super().__init__()\n        self.fc = nn.Linear(4, 2)\n        self.act = nn.ReLU()\n\n    def forward(self, x):\n        return self.act(self.fc(x))\n\nnet = TinyNet()\nout = net(x)', options: ['TinyNet is a function that returns nn.Module', "TinyNet inherits from nn.Module, so it gets all of Module's behaviour", 'TinyNet replaces nn.Module everywhere', 'It imports TinyNet from PyTorch'], answer: 1, explain: 'Brackets in a class line name the parent class. TinyNet *is a* Module.' },
-          { q: 'Why call `super().__init__()` first?', options: ['To delete the parent class', "It's just decoration", "It runs nn.Module's own setup so PyTorch can track the layers", 'It calls forward()'], answer: 2, explain: 'Skip it and PyTorch complains — its bookkeeping was never set up.' },
+          { q: 'Why call `super().__init__()` first?', options: ['To delete the parent class', "It's just decoration", "It runs nn.Module's own setup so PyTorch can track the layers", 'It calls forward()'], answer: 2, explain: 'Skip it and PyTorch complains, its bookkeeping was never set up.' },
           { q: 'What does `self.fc = nn.Linear(4, 2)` do?', options: ['Runs the layer on 4 and 2', 'Makes a layer (4 inputs → 2 outputs) and stores it on the object', 'Makes a list of 4 and 2', 'Sets the learning rate'], answer: 1, explain: 'It builds the layer once, in __init__, and keeps it as an attribute.' },
-          { q: 'What happens on `out = net(x)`?', options: ["nn.Module's __call__ runs forward(x)", '__init__ runs again', 'An error — objects can\'t be called', 'x is saved to a file'], answer: 0, explain: 'Calling the object goes through __call__, which calls forward.' },
+          { q: 'What happens on `out = net(x)`?', options: ["nn.Module's __call__ runs forward(x)", '__init__ runs again', 'An error, because objects can\'t be called', 'x is saved to a file'], answer: 0, explain: 'Calling the object goes through __call__, which calls forward.' },
           { q: 'In `forward`, which layer runs first?', options: ['ReLU, then Linear', 'Linear (fc), then ReLU (act)', 'Both at once', 'Neither'], answer: 1, explain: 'Read inside-out: self.fc(x) first, then self.act(...) on the result.' },
         ],
       },

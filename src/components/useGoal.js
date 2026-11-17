@@ -1,7 +1,7 @@
 import { useCallback, useRef } from 'react'
 import { completeActivity, useProgress } from '../lib/progress'
 
-/** For playground challenges: [alreadyDone, achieve()] — achieve fires once. */
+/** For playground challenges: [alreadyDone, achieve()]; achieve fires once. */
 export default function useGoal(activity, message) {
   const progress = useProgress()
   const done = Boolean(progress.completed[activity.id])

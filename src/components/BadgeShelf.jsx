@@ -11,7 +11,7 @@ export default function BadgeShelf({ earned }) {
           return (
             <div
               key={b.id}
-              title={`${b.name} — ${b.desc}`}
+              title={`${b.name}: ${b.desc}`}
               className={`flex flex-col items-center rounded-xl border p-2 text-center transition ${
                 got
                   ? 'border-amber-300 bg-amber-50 dark:border-amber-700 dark:bg-amber-900/20'

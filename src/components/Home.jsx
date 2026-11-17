@@ -55,7 +55,7 @@ export default function Home() {
           <p className="muted text-xs font-extrabold uppercase tracking-wider">Streak</p>
           <div className="mt-2"><StreakFlame count={streak} /></div>
           <p className="muted mt-2 text-sm">
-            {streak === 0 ? 'Complete any activity today to light the flame.' : progress.streak.lastActive === today() ? 'Done for today — see you tomorrow! 🌙' : 'Keep it alive — do one thing today.'}
+            {streak === 0 ? 'Complete any activity today to light the flame.' : progress.streak.lastActive === today() ? 'Done for today. See you tomorrow! 🌙' : 'Keep it alive: do one thing today.'}
           </p>
         </div>
         <div className="card p-5">

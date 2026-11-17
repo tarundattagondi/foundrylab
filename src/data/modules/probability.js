@@ -4,7 +4,7 @@ export default {
   id: 'probability',
   title: 'Probability & Stats',
   emoji: '🎲',
-  tagline: 'Chances, guesses and averages — the maths of how chatbots pick their next word.',
+  tagline: 'Chances, guesses and averages: the maths of how chatbots pick their next word.',
   badge: { id: 'mod-probability', name: 'Sampling Sorcerer', emoji: '🎲' },
   lessons: [
     // ─────────────────────────────── 1. WHAT IS PROBABILITY? ───────────────────────────────
@@ -20,7 +20,7 @@ export default {
             'Every day you guess how likely things are. Will it rain? Will my friend be late? Will I get pizza for dinner?',
             'Probability turns those guesses into **numbers**, so we can compare them and do maths with them.',
             {
-              analogy: 'A weather forecast that says "70% chance of rain" is a probability. It doesn\'t promise rain — it says rain is *pretty likely*, so maybe take an umbrella.',
+              analogy: 'A weather forecast that says "70% chance of rain" is a probability. It doesn\'t promise rain. It says rain is *pretty likely*, so maybe take an umbrella.',
               emoji: '🌦️',
             },
             { words: [['probability', 'a number that says how likely something is'], ['event', 'the thing we care about happening, like "it rains" or "I roll a 6"']] },
@@ -34,11 +34,11 @@ export default {
               table: {
                 head: ['Probability', 'What it means', 'Example'],
                 rows: [
-                  ['`0`', 'Impossible — it will never happen', 'Rolling a 7 on a normal dice'],
+                  ['`0`', 'Impossible: it will never happen', 'Rolling a 7 on a normal dice'],
                   ['`0.25`', 'Unlikely', 'Picking a heart from a deck of cards'],
-                  ['`0.5`', 'Even chance — 50/50', 'A coin landing on heads'],
+                  ['`0.5`', 'Even chance: 50/50', 'A coin landing on heads'],
                   ['`0.9`', 'Very likely', 'The sun is out on a summer afternoon'],
-                  ['`1`', 'Certain — it will always happen', 'Tomorrow comes after today'],
+                  ['`1`', 'Certain: it will always happen', 'Tomorrow comes after today'],
                 ],
               },
             },
@@ -48,7 +48,7 @@ export default {
                 q: 'Which probability means "this will definitely happen"?',
                 options: ['0', '0.5', '1', '100'],
                 answer: 2,
-                explain: '1 means certain. (100 is the *percentage* version — 100% — but the probability number itself is 1.)',
+                explain: '1 means certain. (100 is the *percentage* version, 100%, but the probability number itself is 1.)',
               },
             },
           ],
@@ -64,10 +64,10 @@ export default {
               steps: [
                 'Count **all** the possible results: 1, 2, 3, 4, 5, 6. That\'s **6** results.',
                 'Count the results we **want**: just the 6. That\'s **1** result.',
-                'Divide: `1 ÷ 6 = 0.1666…` — about **0.17**.',
+                'Divide: `1 ÷ 6 = 0.1666…`: about **0.17**.',
               ],
             },
-            'What about rolling an **even** number? The good results are 2, 4 and 6 — that\'s 3 of them. So the chance is `3 ÷ 6 = 0.5`.',
+            'What about rolling an **even** number? The good results are 2, 4 and 6. That\'s 3 of them. So the chance is `3 ÷ 6 = 0.5`.',
             { tryit: py`
 # The chance recipe: wanted / total
 wanted = 1   # rolling a 6
@@ -121,7 +121,7 @@ print("as a percentage:", p * 100, "%")
                 rows: [['pizza', '0.40'], ['ice cream', '0.30'], ['vegetables', '0.05'], ['…lots of other words', '0.25']],
               },
             },
-            'Notice the probabilities add up to **1** — because the next word has to be *something*.',
+            'Notice the probabilities add up to **1**, because the next word has to be *something*.',
             { tip: 'When all the possible outcomes are listed, their probabilities always add up to exactly 1 (or 100%).' },
           ],
         },
@@ -215,7 +215,7 @@ assert _r == 25, f"as_percent(0.25) gave {_r!r}"
             { big: 'Nope! Real results wobble around the probability.' },
             'You might get 4 heads, or 7, or even 3. That\'s **randomness**.',
             {
-              analogy: 'Think of a bag with the same number of red and blue sweets. Grab 4 without looking — sometimes you\'ll get 3 red and 1 blue. Unlucky? No, just random!',
+              analogy: 'Think of a bag with the same number of red and blue sweets. Grab 4 without looking. Sometimes you\'ll get 3 red and 1 blue. Unlucky? No, just random!',
               emoji: '🍬',
             },
             { words: [['experiment', 'trying something many times and writing down what happens'], ['random', 'you can\'t know the result for sure before it happens']] },
@@ -286,7 +286,7 @@ for n in [10, 100, 1000, 100000]:
           blocks: [
             {
               list: [
-                'Real results are **random** — they wobble around the probability.',
+                'Real results are **random**: they wobble around the probability.',
                 '`random.choice(...)` lets Python run experiments for us.',
                 '`my_list.count(x)` counts how many times `x` appears.',
                 'More tries → the fraction gets closer to the true probability.',
@@ -389,7 +389,7 @@ assert _r is not None and abs(_r - 0.6) < 1e-9, f"expected 0.6, got {_r!r}"
             'Now your friend says: *"The marble you grabbed is BIG."* What\'s the chance it\'s red **given** it\'s big?',
             {
               steps: [
-                'Forget the small marbles — we know ours is big. There are only **4** big marbles.',
+                'Forget the small marbles. We know ours is big. There are only **4** big marbles.',
                 'How many of those big marbles are red? **3**.',
                 'So the chance is `3 ÷ 4 = 0.75`.',
               ],
@@ -459,12 +459,12 @@ print("P(red | big) =", len(red_big) / len(big))
             {
               list: [
                 'Conditional probability = the chance of something **given** a clue.',
-                'Written `P(A | B)` — "probability of A given B".',
+                'Written `P(A | B)`: "probability of A given B".',
                 'Method: shrink to the group you know about, then count inside it.',
                 'Chatbots predict the next word *given* the words before it.',
               ],
             },
-            { big: 'Detective time — let\'s code the marble bag! 🔍' },
+            { big: 'Detective time: let\'s code the marble bag! 🔍' },
           ],
         },
       ],
@@ -545,7 +545,7 @@ assert _r is not None and abs(_r - 0.5) < 1e-9, f"expected 0.5, got {_r!r}"
 ` },
           ],
           hints: [
-            'Look back at the "Let Python do the counting" page — the try-it does almost exactly this!',
+            'Look back at the "Let Python do the counting" page, the try-it does almost exactly this!',
             'Step 1: `right_size = [m for m in marbles if m["size"] == size]`',
             'Step 2: `matches = [m for m in right_size if m["color"] == color]`, then `return len(matches) / len(right_size)`.',
           ],
@@ -563,9 +563,9 @@ assert _r is not None and abs(_r - 0.5) < 1e-9, f"expected 0.5, got {_r!r}"
           title: 'Your phone is guessing!',
           blocks: [
             'When you type on a phone, it suggests the next word above the keyboard. Type "good" and it might suggest **morning**, **night** or **luck**.',
-            { big: 'That\'s next-word prediction — the same basic idea behind chatbots.' },
+            { big: 'That\'s next-word prediction: the same basic idea behind chatbots.' },
             { analogy: 'Imagine a friend who has read every message you\'ve ever sent. When you type "see you", they shout "LATER!" because that\'s what usually comes next.', emoji: '📱' },
-            { words: [['token', 'a small piece of text a model works with — often a word or part of a word'], ['prediction', 'a smart guess about what will happen next']] },
+            { words: [['token', 'a small piece of text a model works with, often a word or part of a word'], ['prediction', 'a smart guess about what will happen next']] },
           ],
         },
         {
@@ -622,9 +622,9 @@ for word in followers:
           ],
         },
         {
-          title: 'Big models do this — but smarter',
+          title: 'Big models do this, but smarter',
           blocks: [
-            'Real chatbots don\'t just look at **one** previous word. They look at the whole conversation so far — hundreds or thousands of words!',
+            'Real chatbots don\'t just look at **one** previous word. They look at the whole conversation so far, hundreds or thousands of words!',
             'And instead of a simple counting table, they use a giant neural network. But the goal is exactly the same:',
             { big: 'P(next word | everything before it)' },
             { tryit: py`
@@ -661,7 +661,7 @@ print(" ".join(story))
           id: 'prob-cond',
           title: 'A tiny bigram model',
           xp: XP.code,
-          task: 'Write `next_token_probs(counts, prev)` that returns a dictionary of `P(next | prev)` — each count divided by the total for `prev`.',
+          task: 'Write `next_token_probs(counts, prev)` that returns a dictionary of `P(next | prev)`, each count divided by the total for `prev`.',
           steps: [
             'Get the inner dictionary for `prev`: `followers = counts[prev]`.',
             'Add up all its counts to get the `total`.',
@@ -733,7 +733,7 @@ assert _r is not None and abs(_r["there"] - 0.9) < 1e-9, f"got {_r!r}"
         {
           title: 'What is a distribution?',
           blocks: [
-            { big: 'A distribution shows how likely EVERY possible result is — all at once.' },
+            { big: 'A distribution shows how likely EVERY possible result is, all at once.' },
             'For a fair dice, every number 1 to 6 has the same chance. Its distribution is flat:',
             { table: { head: ['Roll', '1', '2', '3', '4', '5', '6'], rows: [['Chance', '1/6', '1/6', '1/6', '1/6', '1/6', '1/6']] } },
             { analogy: 'A distribution is like a map of chances. Instead of "how likely is a 6?", it answers "how likely is *each* number?"', emoji: '🗺️' },
@@ -751,7 +751,7 @@ rolls = [random.randint(1, 6) for i in range(600)]
 for face in range(1, 7):
     n = rolls.count(face)
     print(face, "#" * (n // 5), n)
-`, note: 'Each # is 5 rolls. The bars are all about the same height — a flat distribution!' },
+`, note: 'Each # is 5 rolls. The bars are all about the same height, a flat distribution!' },
             { words: [['histogram', 'a bar chart showing how often each result happened']] },
           ],
         },
@@ -782,7 +782,7 @@ for t in range(2, 13):
           title: 'The bell curve',
           blocks: [
             'When lots of little random things add together, you very often get a hill shaped like a **bell**. It\'s called the **normal distribution** or **Gaussian** (after a mathematician called Gauss).',
-            'Heights of people, test scores, the size of apples — they all make bell curves. Most things are near the middle; very small or very big ones are rare.',
+            'Heights of people, test scores, the size of apples. They all make bell curves. Most things are near the middle; very small or very big ones are rare.',
             'A bell curve is described by just **two numbers**:',
             { table: { head: ['Number', 'Symbol', 'What it controls'], rows: [['mean', '`μ` (mu)', 'where the middle (top of the bell) is'], ['standard deviation', '`σ` (sigma)', 'how wide and spread out the bell is']] } },
             { words: [['normal distribution', 'the famous bell-shaped curve; also called the Gaussian'], ['mean (μ)', 'the middle of the bell'], ['standard deviation (σ)', 'how spread out the bell is']] },
@@ -791,7 +791,7 @@ for t in range(2, 13):
         {
           title: 'The bell curve formula',
           blocks: [
-            'There\'s a formula that gives the height of the bell at any point `x`. Don\'t worry — you don\'t need to memorise it, just copy it into code!',
+            'There\'s a formula that gives the height of the bell at any point `x`. Don\'t worry. You don\'t need to memorise it, just copy it into code!',
             { code: 'height(x) = exp(-(x - μ)² / (2σ²)) / (σ · √(2π))' },
             {
               steps: [
@@ -817,7 +817,7 @@ for x in range(-3, 4):
           title: 'Where AI uses the bell curve',
           blocks: [
             'When a neural network is born, its millions of numbers (called **weights**) start out as small random numbers picked from a bell curve. Then training slowly improves them.',
-            { tip: 'Starting with bell-curve randomness means most weights are near 0, with just a few bigger ones — a nice gentle start.' },
+            { tip: 'Starting with bell-curve randomness means most weights are near 0, with just a few bigger ones, a nice gentle start.' },
           ],
         },
         {
@@ -888,7 +888,7 @@ assert abs(_r - 0.199471) < 1e-5, f"expected about 0.1995, got {_r!r}"
           hints: [
             'You need `math.exp`, `math.sqrt` and `math.pi`.',
             'Uncomment the steps in the starter: make `top` and `bottom` variables.',
-            '`return top / bottom` — and check your brackets carefully!',
+            '`return top / bottom`, and check your brackets carefully!',
           ],
         },
       ],
@@ -916,7 +916,7 @@ assert abs(_r - 0.199471) < 1e-5, f"expected about 0.1995, got {_r!r}"
 sweets = [2, 4, 6, 8]
 mean = sum(sweets) / len(sweets)
 print("mean:", mean)
-`, note: 'Add another friend with 10 sweets — what happens to the mean?' },
+`, note: 'Add another friend with 10 sweets. What happens to the mean?' },
             { words: [['mean', 'the average: add everything up, then divide by how many there are']] },
           ],
         },
@@ -932,7 +932,7 @@ print("mean:", mean)
                 q: 'Which class has scores that are more spread out?',
                 options: ['Class A', 'Class B', 'They are the same'],
                 answer: 1,
-                explain: 'Class B goes from 10 to 90 — very spread out. Class A stays close to 50.',
+                explain: 'Class B goes from 10 to 90, very spread out. Class A stays close to 50.',
               },
             },
           ],
@@ -949,7 +949,7 @@ print("mean:", mean)
               ],
             },
             { tip: 'Why square? Because -3 and +3 are equally "far". Squaring stops the minus and plus distances cancelling out.' },
-            { words: [['variance', 'the average of the squared distances from the mean — a measure of spread']] },
+            { words: [['variance', 'the average of the squared distances from the mean, a measure of spread']] },
           ],
         },
         {
@@ -981,7 +981,7 @@ scores = [2, 4, 4, 4, 5, 5, 7, 9]
 print("mean:", np.mean(scores))
 print("variance:", np.var(scores))
 print("std:", np.std(scores))
-`, note: 'Same answers as doing it by hand — but much less typing!' },
+`, note: 'Same answers as doing it by hand, but much less typing!' },
             { tip: 'AI models watch the mean and std of their numbers during training to check nothing is exploding or vanishing.' },
           ],
         },
@@ -992,7 +992,7 @@ print("std:", np.std(scores))
               list: [
                 '**Mean** = add up, divide by how many. The "fair share".',
                 '**Variance** = average squared distance from the mean.',
-                '**Standard deviation** = √variance — a typical distance from the mean.',
+                '**Standard deviation** = √variance, a typical distance from the mean.',
                 'NumPy: `np.mean`, `np.var`, `np.std`.',
               ],
             },
@@ -1087,7 +1087,7 @@ assert _r is not None and abs(_r[0] - 5) < 1e-9, f"got {_r!r}"
 _r = describe([2, 4, 4, 4, 5, 5, 7, 9])
 assert abs(_r[1] - 4) < 1e-9, f"expected 4, got {_r[1]!r}"
 ` },
-            { name: 'standard deviation', fail: 'std is the square root of variance — np.std does it', code: py`
+            { name: 'standard deviation', fail: 'std is the square root of variance; np.std does it', code: py`
 _r = describe([2, 4, 4, 4, 5, 5, 7, 9])
 assert abs(_r[2] - 2) < 1e-9, f"expected 2, got {_r[2]!r}"
 ` },
@@ -1144,7 +1144,7 @@ high = max(heights)
 scaled = [(h - low) / (high - low) for h in heights]
 print(scaled)
 `, note: 'The shortest becomes 0 and the tallest becomes 1.' },
-            'NumPy can do the maths on a whole array at once — no loop needed:',
+            'NumPy can do the maths on a whole array at once, no loop needed:',
             { tryit: py`
 import numpy as np
 
@@ -1156,7 +1156,7 @@ print((x - x.min()) / (x.max() - x.min()))
                 q: 'Min-max scale [0, 5, 10]. What does 5 become?',
                 options: ['0', '0.5', '5', '1'],
                 answer: 1,
-                explain: '(5 - 0) / (10 - 0) = 0.5 — it\'s exactly in the middle.',
+                explain: '(5 - 0) / (10 - 0) = 0.5. It\'s exactly in the middle.',
               },
             },
           ],
@@ -1174,7 +1174,7 @@ x = np.array([1.0, 2.0, 3.0, 4.0, 10.0])
 z = (x - x.mean()) / x.std()
 print("z-scores:", z.round(2))
 print("new mean:", round(z.mean(), 6), " new std:", round(z.std(), 6))
-`, note: 'The 10 has a big z-score — it\'s far above average.' },
+`, note: 'The 10 has a big z-score. It\'s far above average.' },
             { words: [['z-score', 'how many standard deviations a number is above (+) or below (−) the mean']] },
           ],
         },
@@ -1182,7 +1182,7 @@ print("new mean:", round(z.mean(), 6), " new std:", round(z.std(), 6))
           title: 'Why AI loves normalization',
           blocks: [
             'Neural networks learn much better when their numbers are small and on similar scales. Huge numbers make learning wobbly.',
-            'Chatbots use a step called **LayerNorm** inside every layer — it\'s z-scoring, applied to the list of numbers for each word, over and over.',
+            'Chatbots use a step called **LayerNorm** inside every layer. It\'s z-scoring, applied to the list of numbers for each word, over and over.',
             { tip: 'Normalizing is like tidying up before you start working. Everything is easier when it\'s neat!' },
           ],
         },
@@ -1292,7 +1292,7 @@ assert _r is not None and abs(_np.mean(_r)) < 1e-9 and abs(_np.std(_r) - 1) < 1e
         {
           title: 'Step 1: make everything positive',
           blocks: [
-            'Probabilities can\'t be negative. Softmax uses a special function called **exp** (exponential). It turns **any** number into a positive number — and bigger numbers into *much* bigger numbers.',
+            'Probabilities can\'t be negative. Softmax uses a special function called **exp** (exponential). It turns **any** number into a positive number, and bigger numbers into *much* bigger numbers.',
             { table: { head: ['score', 'exp(score)'], rows: [['-1', '0.37'], ['0', '1'], ['1', '2.72'], ['2', '7.39'], ['3', '20.09']] } },
             { tryit: py`
 import math
@@ -1306,7 +1306,7 @@ for score in [-1, 0, 1, 2, 3]:
         {
           title: 'Step 2: share out to make 1',
           blocks: [
-            'Now divide each positive number by the **total**, so they add up to 1 — exactly like turning counts into probabilities!',
+            'Now divide each positive number by the **total**, so they add up to 1, exactly like turning counts into probabilities!',
             'Let\'s do scores `[3, 2, -1]` slowly:',
             {
               steps: [
@@ -1340,7 +1340,7 @@ print("adds up to:", sum(probs))
                 explain: 'Equal scores give equal probabilities, and they must add up to 1: 0.5 each.',
               },
             },
-            { tip: 'The biggest score always gets the biggest probability. Softmax never changes the order — it just converts to chances.' },
+            { tip: 'The biggest score always gets the biggest probability. Softmax never changes the order. It just converts to chances.' },
           ],
         },
         {
@@ -1348,7 +1348,7 @@ print("adds up to:", sum(probs))
           blocks: [
             {
               list: [
-                'Models give each option a **score** (logit) — any number.',
+                'Models give each option a **score** (logit), any number.',
                 'Softmax: **exp** every score (makes them positive), then **divide by the total** (makes them add to 1).',
                 'Bigger score → bigger probability.',
                 'Chatbots run softmax every time they pick a word.',
@@ -1443,14 +1443,14 @@ words = ["mat", "floor", "moon"]
 probs = [0.70, 0.25, 0.05]
 picks = np.random.choice(words, size=20, p=probs)
 print(list(picks))
-`, note: 'Run it a few times — mostly "mat", a few "floor", and a rare "moon".' },
+`, note: 'Run it a few times: mostly "mat", a few "floor", and a rare "moon".' },
             { tip: '`size=20` means "spin 20 times". The probabilities in `p` must add up to 1.' },
             {
               quick: {
                 q: 'If you sample 1,000 times with probability 0.70 for "mat", about how many "mat"s will you get?',
                 options: ['About 70', 'About 700', 'Exactly 1,000', 'About 250'],
                 answer: 1,
-                explain: '0.70 × 1,000 = 700. It won\'t be *exactly* 700 — randomness wobbles — but close.',
+                explain: '0.70 × 1,000 = 700. It won\'t be *exactly* 700, randomness wobbles, but close.',
               },
             },
           ],
@@ -1466,7 +1466,7 @@ print(list(picks))
                 head: ['Temperature', 'What happens', 'Feels like'],
                 rows: [
                   ['Low (like 0.2)', 'The favourite word gets almost all the probability', 'Careful, predictable, a bit boring'],
-                  ['1', 'Normal — as the model learned it', 'Balanced'],
+                  ['1', 'Normal: as the model learned it', 'Balanced'],
                   ['High (like 2)', 'All words get closer to equal chances', 'Creative, surprising, sometimes silly'],
                 ],
               },
@@ -1490,7 +1490,7 @@ for T in [0.2, 1.0, 3.0]:
     print("T =", T, "->", softmax_t(scores, T).round(2))
 `, note: 'At T = 0.2 the first word takes almost everything. At T = 3 it\'s much more even.' },
             { tip: '`z - z.max()` is a safety trick: it stops `exp` making numbers too huge for the computer. It doesn\'t change the answer.' },
-            'Below is a playground — drag the temperature slider and watch the bars change shape!',
+            'Below is a playground. Drag the temperature slider and watch the bars change shape!',
           ],
         },
         {
@@ -1622,7 +1622,7 @@ assert abs(_frac - 0.8) < 0.05, f"'a' came up {_frac:.0%} of the time, expected 
                 q: 'A spam filter never marks anything as spam. 2% of emails are spam. What is its accuracy?',
                 options: ['2%', '50%', '98%', '0%'],
                 answer: 2,
-                explain: 'It\'s right on all the 98% normal emails — but useless at catching spam!',
+                explain: 'It\'s right on all the 98% normal emails, but useless at catching spam!',
               },
             },
           ],
@@ -1635,8 +1635,8 @@ assert abs(_frac - 0.8) < 0.05, f"'a' came up {_frac:.0%} of the time, expected 
               table: {
                 head: ['', 'Robot says "cat"', 'Robot says "not cat"'],
                 rows: [
-                  ['**Really a cat**', '✅ True Positive (TP)', '❌ False Negative (FN) — missed it'],
-                  ['**Not a cat**', '❌ False Positive (FP) — false alarm', '✅ True Negative (TN)'],
+                  ['**Really a cat**', '✅ True Positive (TP)', '❌ False Negative (FN): missed it'],
+                  ['**Not a cat**', '❌ False Positive (FP): false alarm', '✅ True Negative (TN)'],
                 ],
               },
             },
@@ -1705,7 +1705,7 @@ print("precision:", tp / (tp + fp), " recall:", round(tp / (tp + fn), 2))
           xp: XP.code,
           task: 'Write `metrics(y_true, y_pred)` that returns `(accuracy, precision, recall)` for lists of 0s and 1s.',
           steps: [
-            'Walk through both lists together with `zip(y_true, y_pred)` and count TP, FP and FN — and how many were right.',
+            'Walk through both lists together with `zip(y_true, y_pred)` and count TP, FP and FN, and how many were right.',
             'accuracy = right ÷ total.',
             'precision = TP ÷ (TP + FP), but use `0.0` if TP + FP is 0.',
             'recall = TP ÷ (TP + FN), but use `0.0` if TP + FN is 0.',
@@ -1769,7 +1769,7 @@ assert tuple(_r) == (0.5, 0.0, 0.0), f"got {_r!r}"
 ` },
           ],
           hints: [
-            'Inside the loop: `if t == 1 and p == 1: tp += 1` — and similar lines for fp, fn and right.',
+            'Inside the loop: `if t == 1 and p == 1: tp += 1`, and similar lines for fp, fn and right.',
             'accuracy is `right / len(y_true)`.',
             'Guard the division: `precision = tp / (tp + fp) if tp + fp > 0 else 0.0`.',
           ],
@@ -1820,7 +1820,7 @@ assert tuple(_r) == (0.5, 0.0, 0.0), f"got {_r!r}"
                 explain: 'Standard deviation measures spread. The mean measures the middle.',
               },
             },
-            { tip: 'Ready? The quiz below is the real checkpoint. Wrong answers just get a nudge — take your time!' },
+            { tip: 'Ready? The quiz below is the real checkpoint. Wrong answers just get a nudge. Take your time!' },
           ],
         },
       ],
@@ -1841,8 +1841,8 @@ assert tuple(_r) == (0.5, 0.0, 0.0), f"got {_r!r}"
               q: 'You lower the temperature from 1.0 to 0.2. What happens?',
               options: [
                 'Outputs become more random and creative',
-                'The most likely words get even more likely — outputs become more predictable',
-                'Nothing — temperature only changes speed',
+                'The most likely words get even more likely, outputs become more predictable',
+                'Nothing: temperature only changes speed',
                 'The model forgets the question',
               ],
               answer: 1,
@@ -1852,7 +1852,7 @@ assert tuple(_r) == (0.5, 0.0, 0.0), f"got {_r!r}"
               q: 'Why is next-word prediction a conditional probability?',
               options: [
                 'Because it only works when the internet is on',
-                'The model works out P(next word | all the words before it) — the earlier words are the "given"',
+                'The model works out P(next word | all the words before it), the earlier words are the "given"',
                 'Because every word is equally likely',
                 'Because probabilities are always 0.5',
               ],
@@ -1861,7 +1861,7 @@ assert tuple(_r) == (0.5, 0.0, 0.0), f"got {_r!r}"
             },
             {
               q: 'Very high temperature (like 5) makes the probabilities…',
-              options: ['Sharper', 'Flatter — closer to all equal', 'Negative', 'Add up to more than 1'],
+              options: ['Sharper', 'Flatter: closer to all equal', 'Negative', 'Add up to more than 1'],
               answer: 1,
               explain: 'A big temperature shrinks all the scores toward each other, so every word looks similar.',
             },

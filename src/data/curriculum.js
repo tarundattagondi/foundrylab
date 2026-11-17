@@ -1,5 +1,5 @@
 // FoundryLab curriculum entry point. Each module's lessons, labs and quizzes
-// live in src/data/modules/<module>.js — see src/data/helpers.js for the format.
+// live in src/data/modules/<module>.js. See src/data/helpers.js for the format.
 import python from './modules/python.js'
 import git from './modules/git.js'
 import linalg from './modules/linalg.js'

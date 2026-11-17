@@ -106,10 +106,10 @@ export async function runPython(code, { tests = [], check = false } = {}) {
 }
 
 const EXPLANATIONS = {
-  SyntaxError: "Python couldn't read this line — look for a missing colon, bracket, or quote.",
+  SyntaxError: "Python couldn't read this line. Look for a missing colon, bracket, or quote.",
   IndentationError: 'The spacing at the start of a line is off. Python uses indentation to group code.',
   TabError: 'Tabs and spaces got mixed. Stick to spaces (4 per level).',
-  NameError: "Python doesn't know that name yet — check the spelling, or define it before you use it.",
+  NameError: "Python doesn't know that name yet. Check the spelling, or define it before you use it.",
   TypeError: "An operation got a value of the wrong type (like adding a number to None). Did a function forget to return something?",
   ValueError: 'The type was right but the value was not (like float("banana")).',
   IndexError: "You asked for a position that doesn't exist in the list. Remember indexes start at 0.",
@@ -120,10 +120,10 @@ const EXPLANATIONS = {
   ImportError: "Python couldn't import that. Double-check the name.",
   RecursionError: 'A function kept calling itself forever. Make sure there is a stopping case.',
   FileNotFoundError: "That file doesn't exist yet. Did you write it first, and use the same path?",
-  AssertionError: 'An assert statement failed — a check in the code was not true.',
+  AssertionError: 'An assert statement failed: a check in the code was not true.',
   UnboundLocalError: 'A variable was used inside a function before it was given a value there.',
 }
 
 export function explainError(type) {
-  return EXPLANATIONS[type] || 'Python hit a snag. Read the last line of the traceback — it usually names the problem.'
+  return EXPLANATIONS[type] || 'Python hit a snag. Read the last line of the traceback; it usually names the problem.'
 }

@@ -1,13 +1,13 @@
 import { py, XP } from '../helpers.js'
 
-// ───────────────────────────────── MODULE 4 — CALCULUS ─────────────────────────────────
+// ───────────────────────────────── MODULE 4, CALCULUS ─────────────────────────────────
 // Written for a curious 10–12 year-old who knows a little Python but has never seen calculus.
 
 export default {
   id: 'calculus',
   title: 'Calculus',
   emoji: '⛰️',
-  tagline: 'Slopes, gradients and the chain rule — how models learn.',
+  tagline: 'Slopes, gradients and the chain rule, how models learn.',
   badge: { id: 'mod-calculus', name: 'Gradient Guru', emoji: '⛰️' },
   lessons: [
     // ─── 1. Functions ────────────────────────────────────────────────────────
@@ -29,7 +29,7 @@ export default {
         {
           title: 'A function is a machine',
           blocks: [
-            { analogy: 'Imagine a juice machine. You drop an apple **in**, the machine follows its **rule** (squeeze!), and apple juice comes **out**. Same apple in, same juice out — every single time.', emoji: '🧃' },
+            { analogy: 'Imagine a juice machine. You drop an apple **in**, the machine follows its **rule** (squeeze!), and apple juice comes **out**. Same apple in, same juice out, every single time.', emoji: '🧃' },
             'In math, a **function** is a machine just like that. You give it a number (the **input**), it follows a rule, and it gives you back a number (the **output**).',
             { steps: ['Pick a rule, for example: "double the number, then add 1".', 'Put in **3**. Double it: 3 × 2 = 6. Add 1: 6 + 1 = **7**.', 'Put in **10**. Double it: 20. Add 1: **21**.', 'Same input always gives the same output. Put in 3 again and you get 7 again!'] },
             { words: [['function', 'a machine that turns an input number into an output number using a rule'], ['input', 'the number you put in'], ['output', 'the number that comes out']] },
@@ -104,7 +104,7 @@ for x in [1, 2, 3, 4, 5]:
           title: 'Build two function machines',
           xp: XP.code,
           task: 'Finish the two machines: `f(x)` doubles x and adds 1, and `g(x)` squares x.',
-          steps: ['Inside `f`, replace `pass` with `return 2 * x + 1`.', 'Inside `g`, replace `pass` with a line that returns x times x.', 'Press **Run** — you should see 7 and 16.', 'Press **Check**.'],
+          steps: ['Inside `f`, replace `pass` with `return 2 * x + 1`.', 'Inside `g`, replace `pass` with a line that returns x times x.', 'Press **Run**. You should see 7 and 16.', 'Press **Check**.'],
           starter: py`
 # A function is a machine: x goes in, an answer comes out.
 
@@ -152,7 +152,7 @@ assert _r == 9, f"g(-3) gave {_r!r}, expected 9"
 ` },
           ],
           hints: [
-            'Each machine needs a `return` line — that is what comes out of the machine.',
+            'Each machine needs a `return` line. That is what comes out of the machine.',
             'For f: `return 2 * x + 1`. Remember the star for multiplying!',
             'For g: `return x * x` (or `return x ** 2`).',
           ],
@@ -213,7 +213,7 @@ def f(x):
 # A sideways picture: more stars = bigger output
 for x in range(-3, 4):
     print(str(x).rjust(3), "*" * f(x))
-`, note: 'Tilt your head to the right — see the valley shape?' },
+`, note: 'Tilt your head to the right. See the valley shape?' },
           ],
         },
         {
@@ -239,7 +239,7 @@ for x in range(-3, 4):
           id: 'calc-table',
           title: 'Make a table of points',
           xp: XP.code,
-          task: 'Write `make_table(func, xs)` that returns a list of `(x, func(x))` pairs — the points you would draw on a graph.',
+          task: 'Write `make_table(func, xs)` that returns a list of `(x, func(x))` pairs, the points you would draw on a graph.',
           steps: ['Start with an empty list (already done for you: `table = []`).', 'Loop: `for x in xs:`', 'Inside the loop, add the pair: `table.append((x, func(x)))`.', 'After the loop, `return table` (already there).'],
           starter: py`
 def f(x):
@@ -287,7 +287,7 @@ assert _r == [(3, 9), (1, 1)], f"got {_r!r}"
           hints: [
             'You need a `for` loop that visits every x in `xs`.',
             'A pair in Python is written with brackets: `(x, func(x))`.',
-            'Inside the loop: `table.append((x, func(x)))` — notice the double brackets!',
+            'Inside the loop: `table.append((x, func(x)))`. Notice the double brackets!',
           ],
         },
       ],
@@ -324,7 +324,7 @@ assert _r == [(3, 9), (1, 1)], f"got {_r!r}"
             'If you know two points on a line, you can find its slope.',
             'Take two points from our old friend `f(x) = 2x + 1`: **(1, 3)** and **(3, 7)**.',
             { steps: ['Rise: how much did y change? 7 − 3 = **4**.', 'Run: how much did x change? 3 − 1 = **2**.', 'Slope = rise ÷ run = 4 ÷ 2 = **2**.'] },
-            'So the line goes up 2 for every 1 step across. Look back at the rule `2x + 1` — there is the 2! The number in front of x *is* the slope.',
+            'So the line goes up 2 for every 1 step across. Look back at the rule `2x + 1`. There is the 2! The number in front of x *is* the slope.',
             { code: 'slope = (y2 - y1) / (x2 - x1)' },
             { tryit: py`
 x1, y1 = 1, 3
@@ -363,7 +363,7 @@ print("flat:", slope(0, 5, 3, 5))
         {
           title: 'Recap 🎒',
           blocks: [
-            { list: ['**Slope** = steepness = rise ÷ run.', 'From two points: `(y2 - y1) / (x2 - x1)`.', 'Positive = uphill, negative = downhill, zero = flat.', 'In `f(x) = 2x + 1`, the slope is the 2 in front of x.', 'Slope tells us which way is downhill — super useful for AI.'] },
+            { list: ['**Slope** = steepness = rise ÷ run.', 'From two points: `(y2 - y1) / (x2 - x1)`.', 'Positive = uphill, negative = downhill, zero = flat.', 'In `f(x) = 2x + 1`, the slope is the 2 in front of x.', 'Slope tells us which way is downhill, super useful for AI.'] },
           ],
         },
       ],
@@ -449,7 +449,7 @@ assert _r == 0.25, f"expected 0.25, got {_r!r}"
           title: 'The derivative',
           blocks: [
             'The slope of a curve at one exact spot has a special name: the **derivative**.',
-            { words: [['derivative', 'the slope of a curve at one exact point — how fast the output changes when you nudge the input']] },
+            { words: [['derivative', 'the slope of a curve at one exact point, how fast the output changes when you nudge the input']] },
             { analogy: 'A car speedometer! Your position changes over time. The speedometer tells you how fast it is changing *right now*. That "right now" speed is a derivative.', emoji: '🚗' },
             "We write the derivative of f with a little dash: **f′(x)**. Read it as \"f prime of x\".",
             { quick: { q: 'A derivative tells you…', options: ['the biggest output', 'the slope at one exact spot', 'the input that gives zero', 'how many points are on the graph'], answer: 1, explain: 'A derivative is the steepness (slope) right at one point on the curve.' } },
@@ -495,7 +495,7 @@ for x in [0, 1, 2, 3]:
           blocks: [
             { big: 'The derivative tells an AI: "if you turn this knob a tiny bit, how much does your mistake change?"' },
             { list: ['Derivative is **positive** → turning the knob up makes things worse. Turn it down!', 'Derivative is **negative** → turning it up makes things better. Turn it up!', 'Derivative is **zero** → you are at a flat spot, maybe the best one.'] },
-            { quick: { q: 'At the very bottom of the valley `x²` (x = 0), the derivative is…', options: ['very big', '0 — flat', 'negative', 'impossible to know'], answer: 1, explain: 'The bottom of a valley is flat, so its slope is 0.' } },
+            { quick: { q: 'At the very bottom of the valley `x²` (x = 0), the derivative is…', options: ['very big', '0 (flat)', 'negative', 'impossible to know'], answer: 1, explain: 'The bottom of a valley is flat, so its slope is 0.' } },
           ],
         },
         {
@@ -850,7 +850,7 @@ assert _g is not None and abs(_g - _num) < 1e-4, f"got {_g!r}, nudging says {_nu
 ` },
           ],
           hints: [
-            'The slope of z² (with respect to z) is 2z — the power rule!',
+            'The slope of z² (with respect to z) is 2z, the power rule!',
             'The slope of w·x when you change w is just x.',
             'Chain rule: `dy_dw = dy_dz * dz_dw`.',
           ],
@@ -869,7 +869,7 @@ assert _g is not None and abs(_g - _num) < 1e-4, f"got {_g!r}, nudging says {_nu
           blocks: [
             'An AI makes a guess called a **prediction**. Then we compare it to the right answer, called the **target**.',
             { analogy: 'Throwing darts. The bullseye is the target. Where your dart lands is your prediction. The distance between them is how wrong you were.', emoji: '🎯' },
-            { words: [['prediction', 'the answer the AI guesses'], ['target', 'the correct answer'], ['error', 'prediction minus target — how far off the guess was']] },
+            { words: [['prediction', 'the answer the AI guesses'], ['target', 'the correct answer'], ['error', 'prediction minus target: how far off the guess was']] },
           ],
         },
         {
@@ -901,7 +901,7 @@ print(squared_error(3, 3))
           blocks: [
             'An AI makes many predictions. To get one score, we take the **average** of all the squared errors. This is called the **mean squared error**, or **MSE**.',
             { steps: ['Predictions: [2, 4]. Targets: [3, 4].', 'Squared errors: (2 − 3)² = 1, and (4 − 4)² = 0.', 'Average: (1 + 0) ÷ 2 = **0.5**.'] },
-            { words: [['loss', 'one number that says how wrong the AI is overall — smaller is better'], ['mean', 'the average: add them up, divide by how many'], ['MSE', 'mean squared error, a very common loss']] },
+            { words: [['loss', 'one number that says how wrong the AI is overall, smaller is better'], ['mean', 'the average: add them up, divide by how many'], ['MSE', 'mean squared error, a very common loss']] },
             { tryit: py`
 preds = [2, 4, 7]
 targets = [3, 4, 5]
@@ -1066,7 +1066,7 @@ def gradient(w, b):
 for w, b in [(0, 0), (1, 0), (2, -1)]:
     print("at", (w, b), "gradient is", gradient(w, b))
 `, note: 'The gradient shrinks as we get closer to (2, -1).' },
-            { quick: { q: 'If the gradient is (0, 0), you are probably…', options: ['at a flat bottom', 'on a very steep slope', 'lost', 'at the start'], answer: 0, explain: 'Zero slope in every direction means flat ground — usually the bottom of the valley.' } },
+            { quick: { q: 'If the gradient is (0, 0), you are probably…', options: ['at a flat bottom', 'on a very steep slope', 'lost', 'at the start'], answer: 0, explain: 'Zero slope in every direction means flat ground, usually the bottom of the valley.' } },
           ],
         },
         {
@@ -1150,7 +1150,7 @@ assert _r is not None and tuple(_r) == (6, 4), f"got {_r!r}"
             'Every step uses one simple rule:',
             { code: 'new x = x - learning_rate * slope' },
             { list: ['If the slope is positive (uphill to the right), we subtract → x moves left, downhill. ✓', 'If the slope is negative (uphill to the left), subtracting a negative adds → x moves right, downhill. ✓', 'Either way, we go downhill. Clever!'] },
-            { words: [['learning rate', 'how big each step is — a small number like 0.1']] },
+            { words: [['learning rate', 'how big each step is (a small number like 0.1)']] },
           ],
         },
         {
@@ -1332,7 +1332,7 @@ print("final w =", round(w, 3))
               q: 'What does a derivative tell you?',
               options: ['The biggest output of a function', 'How steep the function is at one spot (the slope)', 'The input that makes the output zero', 'How many knobs a model has'],
               answer: 1,
-              explain: 'A derivative is the slope at one exact point — how fast the output changes when you nudge the input.',
+              explain: 'A derivative is the slope at one exact point, how fast the output changes when you nudge the input.',
             },
             {
               q: 'If `y = f(g(x))`, how do you find how fast y changes with x?',
@@ -1375,7 +1375,7 @@ print("final w =", round(w, 3))
             'Inside the loop, compute the slope: the average of `2 * (w * x - y) * x` over all the (x, y) pairs.',
             'Tip: `sum(2 * (w * x - y) * x for x, y in zip(xs, ys)) / len(xs)`.',
             'Then step downhill: `w = w - lr * grad`.',
-            'Run it — you should see about 2.0.',
+            'Run it. You should see about 2.0.',
           ],
           starter: py`
 def train(xs, ys, lr=0.01, steps=200):

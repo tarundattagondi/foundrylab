@@ -1,6 +1,6 @@
 import { XP } from '../helpers.js'
 
-// Joins lines into one string — handy for terminal sessions in { code } blocks.
+// Joins lines into one string, handy for terminal sessions in { code } blocks.
 const lines = (...l) => l.join('\n')
 
 // GitSim state (see src/lib/gitSim.js): { initialized, files: {name: 'untracked'|'modified'|'staged'|'committed'|'conflicted'},
@@ -10,7 +10,7 @@ export default {
   id: 'git',
   title: 'Git & GitHub',
   emoji: '🌿',
-  tagline: 'Save, branch, share, and collaborate — without fear.',
+  tagline: 'Save, branch, share, and collaborate, without fear.',
   badge: { id: 'mod-git', name: 'Version Wizard', emoji: '🌿' },
   lessons: [
     // ─────────────────────────────── 1. What is version control? ───────────────────────────────
@@ -33,7 +33,7 @@ export default {
               ),
             },
             'People make copies like this because they are scared of losing a good version. But soon nobody knows which file is the newest, or what changed between them.',
-            'Programmers had this exact problem — but with *thousands* of files. So they invented a better way.',
+            'Programmers had this exact problem, but with *thousands* of files. So they invented a better way.',
           ],
         },
         {
@@ -48,7 +48,7 @@ export default {
         {
           title: 'Meet Git',
           blocks: [
-            '**Git** is the most popular version control tool in the world. Almost every AI project — including the code behind ChatGPT-style models — uses Git.',
+            '**Git** is the most popular version control tool in the world. Almost every AI project, including the code behind ChatGPT-style models, uses Git.',
             { list: [
               'Git runs on **your computer**.',
               'It watches a folder you choose.',
@@ -68,7 +68,7 @@ export default {
               '**Undo mistakes.** Broke your code? Jump back to the last save point.',
               '**Try ideas safely.** Test a wild new idea without wrecking the version that works.',
               '**Work with friends.** Many people can work on the same project at once.',
-              '**Share your work.** Put your projects online (on GitHub) so others — like future employers — can see them.',
+              '**Share your work.** Put your projects online (on GitHub) so others, like future employers, can see them.',
             ] },
             { quick: { q: 'What is the main job of version control?', options: ['Make your computer faster', 'Keep save points of your project so nothing is lost', 'Write code for you', 'Delete old files'], answer: 1, explain: 'Version control remembers every saved version, like save points in a game.' } },
           ],
@@ -94,8 +94,8 @@ export default {
           xp: XP.quiz,
           questions: [
             { q: 'Which video-game idea is most like a Git snapshot?', options: ['A power-up', 'A save point', 'A high score', 'A boss fight'], answer: 1, explain: 'A save point remembers everything at one moment so you can go back to it.' },
-            { q: 'With Git, how many copies of `story.txt` do you keep in your folder?', options: ['One — Git remembers the old versions for you', 'One per day', 'As many as you like', 'None'], answer: 0, explain: 'You keep one file. Git stores the history behind the scenes.' },
-            { q: 'Which is NOT a reason to use Git?', options: ['Undoing mistakes', 'Working with friends', 'Making your internet faster', 'Trying ideas safely'], answer: 2, explain: 'Git has nothing to do with internet speed — it is all about saving and sharing versions.' },
+            { q: 'With Git, how many copies of `story.txt` do you keep in your folder?', options: ['One: Git remembers the old versions for you', 'One per day', 'As many as you like', 'None'], answer: 0, explain: 'You keep one file. Git stores the history behind the scenes.' },
+            { q: 'Which is NOT a reason to use Git?', options: ['Undoing mistakes', 'Working with friends', 'Making your internet faster', 'Trying ideas safely'], answer: 2, explain: 'Git has nothing to do with internet speed. It is all about saving and sharing versions.' },
           ],
         },
       ],
@@ -112,7 +112,7 @@ export default {
           blocks: [
             'Usually you use a computer by clicking: click a folder, click a file. A **terminal** is a different way: you **type** what you want, and the computer types back.',
             { analogy: 'It is like texting the computer. You send a short message (a **command**), and it replies.', emoji: '💬' },
-            'Git is mostly used from the terminal, so let’s get comfy with it first. Don’t worry — you can’t break anything here. FoundryLab’s terminal is a safe pretend one!',
+            'Git is mostly used from the terminal, so let’s get comfy with it first. Don’t worry. You can’t break anything here. FoundryLab’s terminal is a safe pretend one!',
           ],
         },
         {
@@ -123,34 +123,34 @@ export default {
             { table: { head: ['Part', 'What it means'], rows: [
               ['`you@foundry`', 'who you are and which computer'],
               ['`~/project`', 'which folder you are in right now'],
-              ['`$`', 'the **prompt** — “I’m ready, type something!”'],
+              ['`$`', 'the **prompt**: “I’m ready, type something!”'],
               ['`ls`', 'the command *you* typed'],
             ] } },
             'You type after the `$` and press **Enter**. The computer’s answer appears on the next lines.',
           ],
         },
         {
-          title: 'ls — look around',
+          title: 'ls: look around',
           blocks: [
             '`ls` is short for **list**. It shows the files in the folder you are in.',
             { code: lines('$ ls', 'notes.txt  homework.py') },
-            { list: ['Line 1: you typed `ls`.', 'Line 2: the computer answered — there are two files here.'] },
+            { list: ['Line 1: you typed `ls`.', 'Line 2: the computer answered. There are two files here.'] },
             { tip: 'Commands are short because programmers type them a LOT. `ls` = list.' },
           ],
         },
         {
-          title: 'touch — make a new empty file',
+          title: 'touch: make a new empty file',
           blocks: [
             '`touch` followed by a name makes a brand-new, empty file.',
             { code: lines('$ touch hello.txt', '$ ls', 'hello.txt  notes.txt  homework.py') },
-            { steps: ['`touch hello.txt` made the file. (The computer says nothing — silence means “done!”)', '`ls` shows it is now in the folder.'] },
-            { warn: 'Spaces matter! `touch hello.txt` works. `touchhello.txt` does not — the computer can’t find a command called “touchhello.txt”.' },
+            { steps: ['`touch hello.txt` made the file. (The computer says nothing; silence means “done!”)', '`ls` shows it is now in the folder.'] },
+            { warn: 'Spaces matter! `touch hello.txt` works. `touchhello.txt` does not: the computer can’t find a command called “touchhello.txt”.' },
           ],
         },
         {
-          title: 'cat — peek inside a file',
+          title: 'cat: peek inside a file',
           blocks: [
-            '`cat` shows what is written inside a file. (It comes from the word con-**cat**-enate, not the animal 🐱 — but you can think of a cat peeking in!)',
+            '`cat` shows what is written inside a file. (It comes from the word con-**cat**-enate, not the animal 🐱, but you can think of a cat peeking in!)',
             { code: lines('$ cat notes.txt', 'Buy milk', 'Learn Git') },
             'The two lines under the command are what is written inside `notes.txt`.',
             { quick: { q: 'Which command shows the files in your folder?', options: ['`cat`', '`ls`', '`touch`', '`help`'], answer: 1, explain: '`ls` lists the files. `cat` shows what is *inside* one file.' } },
@@ -162,7 +162,7 @@ export default {
             { words: [
               ['terminal', 'a window where you type commands instead of clicking'],
               ['command', 'a short instruction you type, like `ls`'],
-              ['prompt', 'the `$` sign — the computer is ready for you'],
+              ['prompt', 'the `$` sign: the computer is ready for you'],
             ] },
             { table: { head: ['Command', 'What it does'], rows: [
               ['`ls`', 'list the files here'],
@@ -185,7 +185,7 @@ export default {
             { prompt: 'Look at the files in this folder.', hint: 'ls', check: (s, cmd) => /^ls/.test(cmd) },
             { prompt: 'Peek inside notes.txt.', hint: 'cat notes.txt', check: (s, cmd) => /^cat\s+notes\.txt/.test(cmd) },
             { prompt: 'Make a new empty file called hello.txt.', hint: 'touch hello.txt', check: (s) => 'hello.txt' in s.files },
-            { prompt: 'List the files again — is hello.txt there?', hint: 'ls', check: (s, cmd) => /^ls/.test(cmd) && 'hello.txt' in s.files },
+            { prompt: 'List the files again. Is hello.txt there?', hint: 'ls', check: (s, cmd) => /^ls/.test(cmd) && 'hello.txt' in s.files },
             { prompt: 'Ask the terminal what commands it knows.', hint: 'help', check: (s, cmd) => cmd === 'help' },
           ],
         },
@@ -207,19 +207,19 @@ export default {
           ],
         },
         {
-          title: 'git init — start watching this folder',
+          title: 'git init: start watching this folder',
           blocks: [
             'Git does nothing until you tell it which folder to look after. `git init` (short for **initialize**, which means “start”) does that.',
             { code: lines('$ git init', 'Initialized empty Git repository in /home/you/project/.git/') },
             { list: [
-              'Git made a hidden folder called `.git` — that’s where it keeps all your save points.',
+              'Git made a hidden folder called `.git`. That’s where it keeps all your save points.',
               'Your folder is now a **repository** (or **repo** for short): a folder that Git looks after.',
             ] },
             { tip: 'You only run `git init` **once** per project.' },
           ],
         },
         {
-          title: 'git status — “what’s going on?”',
+          title: 'git status: “what’s going on?”',
           blocks: [
             '`git status` is the question you will ask most. It tells you what Git sees right now.',
             { code: lines(
@@ -229,9 +229,9 @@ export default {
               '        story.txt',
             ) },
             { steps: [
-              '`On branch main` — you are on the main line of your project (more on branches later!).',
-              '`Untracked files:` — files Git sees, but is **not** saving yet.',
-              '`story.txt` — the file that is untracked.',
+              '`On branch main`: you are on the main line of your project (more on branches later!).',
+              '`Untracked files:`: files Git sees, but is **not** saving yet.',
+              '`story.txt`: the file that is untracked.',
             ] },
           ],
         },
@@ -249,7 +249,7 @@ export default {
           blocks: [
             { words: [
               ['repository (repo)', 'a project folder that Git looks after'],
-              ['initialize', 'to start something up — `git init` starts Git in a folder'],
+              ['initialize', 'to start something up, `git init` starts Git in a folder'],
               ['untracked', 'a file Git can see but is not saving yet'],
             ] },
             { list: ['`git init` → start Git in this folder (once).', '`git status` → ask Git what it sees (any time, as often as you like!).'] },
@@ -268,7 +268,7 @@ export default {
             { prompt: 'Turn this folder into a Git repository.', hint: 'git init', check: (s) => s.initialized },
             { prompt: 'Ask Git what it sees.', hint: 'git status', check: (s, cmd) => /^git status/.test(cmd) },
             { prompt: 'Make a new file called poem.txt.', hint: 'touch poem.txt', check: (s) => 'poem.txt' in s.files },
-            { prompt: 'Ask Git again — it should spot poem.txt too.', hint: 'git status', check: (s, cmd) => /^git status/.test(cmd) && 'poem.txt' in s.files },
+            { prompt: 'Ask Git again. It should spot poem.txt too.', hint: 'git status', check: (s, cmd) => /^git status/.test(cmd) && 'poem.txt' in s.files },
           ],
         },
       ],
@@ -289,7 +289,7 @@ export default {
           ],
         },
         {
-          title: 'git add — pick what to save',
+          title: 'git add: pick what to save',
           blocks: [
             '`git add` puts a file into the **staging area**: the waiting spot for things that will go into your next save point.',
             { code: lines('$ git add story.txt', '$ git status', 'Changes to be committed:', '        new/changed:  story.txt') },
@@ -298,14 +298,14 @@ export default {
           ],
         },
         {
-          title: 'git commit — make the save point',
+          title: 'git commit: make the save point',
           blocks: [
             '`git commit` takes a snapshot of everything you added. The `-m` part lets you write a **message** (the caption) in quotes.',
             { code: lines('$ git commit -m "Write the first chapter"', '[main a1b2c3d] Write the first chapter', ' 1 file changed') },
             { steps: [
-              '`-m "Write the first chapter"` — your caption for this save point.',
-              '`a1b2c3d` — a special ID code Git gives every commit (like a fingerprint).',
-              '`1 file changed` — how many files are in this save point.',
+              '`-m "Write the first chapter"`: your caption for this save point.',
+              '`a1b2c3d`: a special ID code Git gives every commit (like a fingerprint).',
+              '`1 file changed`: how many files are in this save point.',
             ] },
           ],
         },
@@ -385,7 +385,7 @@ export default {
         {
           title: 'Looking back in time',
           blocks: [
-            'Every commit you make is remembered. `git log` shows the list — newest first.',
+            'Every commit you make is remembered. `git log` shows the list, newest first.',
             { analogy: 'It is like flipping backwards through your photo album, reading the caption under every picture.', emoji: '📖' },
           ],
         },
@@ -405,9 +405,9 @@ export default {
               '    Start my story',
             ) },
             { steps: [
-              '`commit 9f3e2a1` — the ID of the newest save point.',
-              '`(HEAD -> main)` — **HEAD** means “you are here”. You are on the newest commit of main.',
-              '`Author` — who made it.',
+              '`commit 9f3e2a1`: the ID of the newest save point.',
+              '`(HEAD -> main)`: **HEAD** means “you are here”. You are on the newest commit of main.',
+              '`Author`: who made it.',
               'The indented line is the commit message.',
             ] },
           ],
@@ -417,7 +417,7 @@ export default {
           blocks: [
             'Long logs take up lots of space. Add `--oneline` to get one line per commit:',
             { code: lines('$ git log --oneline', '9f3e2a1 (HEAD -> main) Add chapter 2', 'a1b2c3d Start my story') },
-            { tip: 'This is why good messages matter — the one-line log is just IDs and your messages!' },
+            { tip: 'This is why good messages matter: the one-line log is just IDs and your messages!' },
             { quick: { q: 'In `git log`, what does HEAD mean?', options: ['The first commit ever', 'Where you are right now', 'The boss of the project', 'A deleted commit'], answer: 1, explain: 'HEAD is the “you are here” marker.' } },
           ],
         },
@@ -443,7 +443,7 @@ export default {
             { prompt: 'Make a new file called the-end.txt.', hint: 'touch the-end.txt', check: (s) => 'the-end.txt' in s.files },
             { prompt: 'Stage it.', hint: 'git add the-end.txt', check: (s) => s.files['the-end.txt'] === 'staged' },
             { prompt: 'Commit it.', hint: 'git commit -m "Add the ending"', check: (s) => (s.branches.main || []).length >= 4 },
-            { prompt: 'Look at the short history — your new commit is on top!', hint: 'git log --oneline', check: (s, cmd) => /^git log/.test(cmd) && (s.branches.main || []).length >= 4 },
+            { prompt: 'Look at the short history. Your new commit is on top!', hint: 'git log --oneline', check: (s, cmd) => /^git log/.test(cmd) && (s.branches.main || []).length >= 4 },
           ],
         },
       ],
@@ -458,7 +458,7 @@ export default {
         {
           title: 'What if your idea is a bad one?',
           blocks: [
-            'You have a story that works. You want to try a crazy new ending — but what if it’s terrible? You don’t want to wreck the good version.',
+            'You have a story that works. You want to try a crazy new ending, but what if it’s terrible? You don’t want to wreck the good version.',
             { big: 'Branches let you try ideas in a safe copy of your project.' },
           ],
         },
@@ -485,7 +485,7 @@ export default {
         {
           title: 'Switching branches',
           blocks: [
-            'To move into a branch, use `git checkout` (or the newer `git switch` — both work).',
+            'To move into a branch, use `git checkout` (or the newer `git switch`, both work).',
             { code: lines('$ git checkout dragon-ending', "Switched to branch 'dragon-ending'") },
             'Shortcut! Make a branch **and** jump into it in one command:',
             { code: lines('$ git checkout -b space-ending', "Switched to a new branch 'space-ending'") },
@@ -507,7 +507,7 @@ export default {
         {
           title: 'Recap',
           blocks: [
-            { words: [['branch', 'a separate line of work — a safe parallel universe for an idea'], ['main', 'the main branch every repo starts with'], ['checkout / switch', 'move to a different branch']] },
+            { words: [['branch', 'a separate line of work, a safe parallel universe for an idea'], ['main', 'the main branch every repo starts with'], ['checkout / switch', 'move to a different branch']] },
             { list: ['`git branch` → list branches.', '`git branch name` → make one.', '`git checkout name` → go to one.', '`git checkout -b name` → make it and go.'] },
           ],
         },
@@ -524,7 +524,7 @@ export default {
             { prompt: 'List the branches you have.', hint: 'git branch', check: (s, cmd) => cmd === 'git branch' },
             { prompt: 'Make a new branch called rainbow.', hint: 'git branch rainbow', check: (s) => Boolean(s.branches.rainbow) },
             { prompt: 'Move into the rainbow branch.', hint: 'git checkout rainbow   (or git switch rainbow)', check: (s) => s.branch === 'rainbow' },
-            { prompt: 'List branches again — where is the star (*) now?', hint: 'git branch', check: (s, cmd) => cmd === 'git branch' && s.branch === 'rainbow' },
+            { prompt: 'List branches again. Where is the star (*) now?', hint: 'git branch', check: (s, cmd) => cmd === 'git branch' && s.branch === 'rainbow' },
             { prompt: 'Go back to main.', hint: 'git checkout main   (or git switch main)', check: (s) => s.branch === 'main' },
             { prompt: 'Use the shortcut: make a branch called stars and jump in.', hint: 'git checkout -b stars   (or git switch -c stars)', check: (s) => s.branch === 'stars' },
           ],
@@ -551,17 +551,17 @@ export default {
           blocks: [
             'The rule: **go to the branch that should receive the changes**, then merge the other one into it.',
             { code: lines('$ git checkout main', "Switched to branch 'main'", '$ git merge dragon-ending', 'Fast-forward', ' 1 commit merged') },
-            { steps: ['`git checkout main` — stand on the branch that receives.', '`git merge dragon-ending` — pull the dragon commits in.', '“Fast-forward” means main simply caught up — easy!'] },
+            { steps: ['`git checkout main`: stand on the branch that receives.', '`git merge dragon-ending`: pull the dragon commits in.', '“Fast-forward” means main simply caught up, easy!'] },
           ],
         },
         {
           title: 'The full branch adventure',
           blocks: [
             { steps: [
-              '`git checkout -b experiment` — make a safe branch.',
-              'Change files, `git add`, `git commit` — as many times as you want.',
-              '`git checkout main` — go back home.',
-              '`git merge experiment` — bring the good idea in.',
+              '`git checkout -b experiment`: make a safe branch.',
+              'Change files, `git add`, `git commit`: as many times as you want.',
+              '`git checkout main`: go back home.',
+              '`git merge experiment`: bring the good idea in.',
             ] },
             { quick: { q: 'You want the changes from `experiment` inside `main`. Where should you be standing?', options: ['On experiment', 'On main', 'It doesn’t matter', 'On a new branch'], answer: 1, explain: 'You merge INTO the branch you are on. So stand on main, then `git merge experiment`.' } },
           ],
@@ -607,7 +607,7 @@ export default {
               ['**Git**', 'the tool on *your* computer that makes save points'],
               ['**GitHub**', 'a website that stores a copy of your repo online'],
             ] } },
-            { analogy: 'Git is your notebook. GitHub is a library where you keep a copy of the notebook so friends can read it — and so it’s safe if your computer breaks.', emoji: '📚' },
+            { analogy: 'Git is your notebook. GitHub is a library where you keep a copy of the notebook so friends can read it, and so it’s safe if your computer breaks.', emoji: '📚' },
           ],
         },
         {
@@ -619,15 +619,15 @@ export default {
           ],
         },
         {
-          title: 'git clone — download a project',
+          title: 'git clone: download a project',
           blocks: [
-            '`git clone` copies a whole repo from GitHub onto your computer — every file AND all the history.',
+            '`git clone` copies a whole repo from GitHub onto your computer, every file AND all the history.',
             { code: lines('$ git clone https://github.com/foundrylab/tiny-gpt.git', "Cloning into 'tiny-gpt'...", 'Receiving objects: 100% (12/12), done.') },
             { tip: 'This is how you get almost any open-source AI project: find it on GitHub, copy its address, `git clone` it.' },
           ],
         },
         {
-          title: 'git push — upload your commits',
+          title: 'git push: upload your commits',
           blocks: [
             'You made commits on your computer. GitHub doesn’t know about them yet! `git push` sends them up.',
             { code: lines('$ git push', 'To https://github.com/you/tiny-gpt.git', '   a1b2c3d..9f3e2a1  main -> main') },
@@ -635,7 +635,7 @@ export default {
           ],
         },
         {
-          title: 'git pull — download new changes',
+          title: 'git pull: download new changes',
           blocks: [
             'Your friend pushed some new commits. To get them onto your computer, use `git pull`. ⬇️',
             { code: lines('$ git pull', 'Updating 9f3e2a1..c4d5e6f', 'Fast-forward', ' tokenizer.py | 4 ++--') },
@@ -719,8 +719,8 @@ export default {
               'Decide what the line should be (keep one version, or mix them).',
               'Delete all the marker lines (`<<<<<<<`, `=======`, `>>>>>>>`).',
               'Save the file.',
-              '`git add config.py` — tells Git “I fixed it”.',
-              '`git commit` — finishes the merge.',
+              '`git add config.py`: tells Git “I fixed it”.',
+              '`git commit`: finishes the merge.',
             ] },
             { code: 'lr = 0.001' },
             '↑ After fixing, the file just has the line you chose. No markers!',
@@ -736,7 +736,7 @@ export default {
           title: 'Recap',
           blocks: [
             { words: [['merge conflict', 'when two branches changed the same lines and Git needs you to pick'], ['conflict markers', 'the `<<<<<<<`, `=======` and `>>>>>>>` lines Git adds to show both versions'], ['resolve', 'fix a conflict']] },
-            { list: ['Conflicts are normal — don’t panic.', 'Open the file, choose, delete the markers.', '`git add` the file, then `git commit`.'] },
+            { list: ['Conflicts are normal: don’t panic.', 'Open the file, choose, delete the markers.', '`git add` the file, then `git commit`.'] },
           ],
         },
       ],
@@ -776,9 +776,9 @@ export default {
           blocks: [
             'Not everything in your folder belongs in Git:',
             { list: [
-              '🔑 **Secrets** — like passwords or API keys (often in a file called `.env`).',
-              '📦 **Huge files** — datasets or trained models that are gigabytes big.',
-              '🗑️ **Junk** — files your computer makes by itself, like the `.venv/` folder for Python packages.',
+              '🔑 **Secrets**: like passwords or API keys (often in a file called `.env`).',
+              '📦 **Huge files**: datasets or trained models that are gigabytes big.',
+              '🗑️ **Junk**: files your computer makes by itself, like the `.venv/` folder for Python packages.',
             ] },
             { warn: 'If you push a secret key to GitHub, strangers can find it and use it. Always keep secrets out!' },
           ],
@@ -792,7 +792,7 @@ export default {
               ['`.venv/`', 'the whole .venv folder'],
               ['`.env`', 'the secrets file'],
               ['`*.pt`', 'every file ending in .pt (`*` means “anything”)'],
-              ['`# ...`', 'a comment — just a note for humans'],
+              ['`# ...`', 'a comment: just a note for humans'],
             ] } },
             { analogy: 'It’s a “do not pack” list for your suitcase. 🧳 Git checks it before packing anything into a commit.', emoji: '🚫' },
           ],
@@ -802,7 +802,7 @@ export default {
           blocks: [
             'You can add a line to a file with `echo` and `>>`:',
             { code: lines('$ echo ".venv/" >> .gitignore', '$ cat .gitignore', '.venv/') },
-            { steps: ['`echo ".venv/"` — the text to write.', '`>>` — “add it to the end of…”', '`.gitignore` — …this file (it gets created if it’s new).'] },
+            { steps: ['`echo ".venv/"`: the text to write.', '`>>`: “add it to the end of…”', '`.gitignore`: …this file (it gets created if it’s new).'] },
             { quick: { q: 'Which line in .gitignore keeps your secret `.env` file out of Git?', options: ['`.env`', '`secret`', '`password`', '`ignore everything`'], answer: 0, explain: 'You just write the file’s name on its own line.' } },
           ],
         },
@@ -810,7 +810,7 @@ export default {
           title: 'README: your project’s front page',
           blocks: [
             '`README.md` is the first thing people see on your GitHub page. It explains what your project is and how to use it.',
-            'The `.md` means it’s written in **Markdown** — plain text with a few symbols for formatting.',
+            'The `.md` means it’s written in **Markdown**, plain text with a few symbols for formatting.',
             { table: { head: ['You type', 'You get'], rows: [
               ['`# My Project`', 'a big title'],
               ['`## Setup`', 'a smaller heading'],
@@ -847,9 +847,9 @@ export default {
             { prompt: 'See what Git wants to track.', hint: 'git status', check: (s, cmd) => /^git status/.test(cmd) },
             { prompt: 'Add .venv/ to a .gitignore file.', hint: 'echo ".venv/" >> .gitignore', check: (s) => s.ignore.includes('.venv/') },
             { prompt: 'Also ignore .env (your secrets).', hint: 'echo ".env" >> .gitignore', check: (s) => s.ignore.includes('.env') },
-            { prompt: 'Check again — the ignored files have vanished from the list!', hint: 'git status', check: (s, cmd) => /^git status/.test(cmd) && s.ignore.includes('.env') },
+            { prompt: 'Check again: the ignored files have vanished from the list!', hint: 'git status', check: (s, cmd) => /^git status/.test(cmd) && s.ignore.includes('.env') },
             { prompt: 'Stage everything that’s left.', hint: 'git add .', check: (s) => s.files['train.py'] === 'staged' && s.files['.gitignore'] === 'staged' },
-            { prompt: 'Commit — your secrets stay safe.', hint: 'git commit -m "Add train.py and .gitignore"', check: (s) => s.files['train.py'] === 'committed' },
+            { prompt: 'Commit, and your secrets stay safe.', hint: 'git commit -m "Add train.py and .gitignore"', check: (s) => s.files['train.py'] === 'committed' },
           ],
         },
         {
@@ -882,7 +882,7 @@ export default {
         {
           title: 'Helping with other people’s projects',
           blocks: [
-            'Thousands of people build open-source AI tools together on GitHub. You can help too — even by fixing one typo! But you can’t push straight into someone else’s project. So GitHub has three helpers:',
+            'Thousands of people build open-source AI tools together on GitHub. You can help too, even by fixing one typo! But you can’t push straight into someone else’s project. So GitHub has three helpers:',
             { list: ['🍴 **Fork**', '📬 **Pull Request (PR)**', '🐛 **Issue**'] },
           ],
         },
@@ -916,16 +916,16 @@ export default {
             { steps: [
               '🍴 **Fork** the project on GitHub.',
               '💻 `git clone` your fork.',
-              '🌿 `git checkout -b fix-typo` — make a branch.',
+              '🌿 `git checkout -b fix-typo`: make a branch.',
               '✏️ Edit, `git add`, `git commit`.',
               '⬆️ `git push` your branch.',
               '📬 Open a **Pull Request** on GitHub.',
-              '🎉 The owners merge it — you’re an open-source contributor!',
+              '🎉 The owners merge it, and you’re an open-source contributor!',
             ] },
           ],
         },
         {
-          title: 'Recap — and you did it!',
+          title: 'Recap: you did it!',
           blocks: [
             { words: [['fork', 'your own copy of someone else’s repo on GitHub'], ['pull request (PR)', 'asking the owners to merge your changes'], ['issue', 'a note reporting a bug or idea']] },
             { big: 'You now know the same Git skills professional AI engineers use every day. 🌿🏆' },
@@ -960,7 +960,7 @@ export default {
             { q: 'You found a bug but have no time to fix it. What do you open?', options: ['A fork', 'A PR', 'An issue', 'A new branch'], answer: 2, explain: 'Issues track bugs and ideas so someone can pick them up.' },
             { q: 'Which command makes a branch AND switches to it?', options: ['git branch -d fix', 'git checkout -b fix', 'git merge fix', 'git commit -b fix'], answer: 1, explain: '`git checkout -b fix` (or `git switch -c fix`).' },
             { q: 'What are the two steps to make a save point?', options: ['git init, then git log', 'git add, then git commit', 'git push, then git pull', 'git clone, then git merge'], answer: 1, explain: 'Add picks the changes; commit saves them with a message.' },
-            { q: 'Which belongs in .gitignore for a Python AI project?', options: ['train.py', 'README.md', '.venv/', 'requirements.txt'], answer: 2, explain: 'Share requirements.txt, never the venv itself — it’s big and only works on your computer.' },
+            { q: 'Which belongs in .gitignore for a Python AI project?', options: ['train.py', 'README.md', '.venv/', 'requirements.txt'], answer: 2, explain: 'Share requirements.txt, never the venv itself. It’s big and only works on your computer.' },
           ],
         },
       ],

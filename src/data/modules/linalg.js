@@ -4,7 +4,7 @@ export default {
   id: 'linalg',
   title: 'Linear Algebra',
   emoji: '📐',
-  tagline: 'Vectors, matrices and shapes — the language of every neural net.',
+  tagline: 'Vectors, matrices and shapes, the language of every neural net.',
   badge: { id: 'mod-linalg', name: 'Matrix Mage', emoji: '📐' },
   lessons: [
     // ───────────────────────────── 1. Coordinates ─────────────────────────────
@@ -17,7 +17,7 @@ export default {
           title: 'Where is the treasure?',
           blocks: [
             { big: 'Two numbers can tell you exactly where something is.' },
-            { analogy: 'Imagine a pirate treasure map with a grid on it. The map says: "Walk 3 squares across, then 2 squares up. Dig here!" Those two numbers — 3 and 2 — are all you need to find the gold.', emoji: '🏴‍☠️' },
+            { analogy: 'Imagine a pirate treasure map with a grid on it. The map says: "Walk 3 squares across, then 2 squares up. Dig here!" Those two numbers, 3 and 2, are all you need to find the gold.', emoji: '🏴‍☠️' },
             'Mathematicians do the same thing. They draw a grid and use two numbers to point at any spot on it.',
           ],
         },
@@ -25,7 +25,7 @@ export default {
           title: 'Across first, then up',
           blocks: [
             'The grid has two lines that cross in the middle:',
-            { list: ['The **x-axis** goes left ↔ right (across).', 'The **y-axis** goes down ↕ up.', 'Where they cross is called the **origin**. It is the spot (0, 0) — the starting point.'] },
+            { list: ['The **x-axis** goes left ↔ right (across).', 'The **y-axis** goes down ↕ up.', 'Where they cross is called the **origin**. It is the spot (0, 0), the starting point.'] },
             'We always write the across number first, then the up number: `(x, y)`.',
             { table: { head: ['Point', 'Means'], rows: [['(3, 2)', 'go 3 across, 2 up'], ['(0, 4)', "don't go across at all, go 4 up"], ['(5, 0)', 'go 5 across, stay on the floor']] } },
             { tip: 'A trick to remember the order: you walk *along the hallway* before you go *up the stairs*. x before y!' },
@@ -127,7 +127,7 @@ assert list(_r) == [5, 7], f"got {_r!r}"
           title: 'An arrow tells you how to walk',
           blocks: [
             { big: 'A vector is an arrow. It has a direction and a length.' },
-            { analogy: 'Your friend gives you directions: "From where you are, walk 3 steps east and 2 steps north." They didn\'t tell you WHERE you are — just how to move. That set of directions is a vector.', emoji: '🧭' },
+            { analogy: 'Your friend gives you directions: "From where you are, walk 3 steps east and 2 steps north." They didn\'t tell you WHERE you are, just how to move. That set of directions is a vector.', emoji: '🧭' },
             'We draw a vector as an arrow. The arrow points the way you walk, and its length shows how far.',
           ],
         },
@@ -141,7 +141,7 @@ assert list(_r) == [5, 7], f"got {_r!r}"
           ],
         },
         {
-          title: 'Point vs vector — what is the difference?',
+          title: 'Point vs vector: what is the difference?',
           blocks: [
             'A **point** is a place: "the treasure is at (3, 2)".',
             'A **vector** is a move: "walk 3 across and 2 up".',
@@ -155,7 +155,7 @@ assert list(_r) == [5, 7], f"got {_r!r}"
             'A video game needs 3 numbers: across, up, and forward. That is a vector with **3** components: `[2, 5, 1]`.',
             'Nothing stops us from using more! A vector describing a pizza could be:',
             { boxes: ['8', '2', '1', '0'], labels: ['cheese', 'mushroom', 'olive', 'pineapple'], caption: 'pizza' },
-            'We can\'t draw 4 directions on paper, but the computer doesn\'t care — it just keeps a list of numbers.',
+            'We can\'t draw 4 directions on paper, but the computer doesn\'t care. It just keeps a list of numbers.',
             { tryit: py`
 pizza = [8, 2, 1, 0]
 print("This vector has", len(pizza), "components")
@@ -167,7 +167,7 @@ print("Cheese amount:", pizza[0])
           title: 'The opposite arrow',
           blocks: [
             'To walk *back* the way you came, flip the sign of every number. The opposite of [3, 2] is [-3, -2].',
-            { steps: ['Start with [3, 2].', 'Flip 3 → -3.', 'Flip 2 → -2.', 'The opposite arrow is **[-3, -2]** — same length, pointing the other way.'] },
+            { steps: ['Start with [3, 2].', 'Flip 3 → -3.', 'Flip 2 → -2.', 'The opposite arrow is **[-3, -2]**: same length, pointing the other way.'] },
             { tryit: py`
 v = [3, 2]
 opposite = [-x for x in v]
@@ -191,7 +191,7 @@ print(opposite)
           title: 'Make and flip arrows',
           xp: XP.code,
           task: 'Write `make_vector(east, north)` that returns a list, and `opposite(v)` that returns the arrow pointing the other way.',
-          steps: ['In `make_vector`, return a list with `east` first and `north` second.', 'In `opposite`, make a new list where every number has its sign flipped (multiply by -1).', 'Make `opposite` work for vectors of ANY length — use a loop or a list comprehension.'],
+          steps: ['In `make_vector`, return a list with `east` first and `north` second.', 'In `opposite`, make a new list where every number has its sign flipped (multiply by -1).', 'Make `opposite` work for vectors of ANY length. Use a loop or a list comprehension.'],
           starter: py`
 def make_vector(east, north):
     # Return [east, north]
@@ -257,7 +257,7 @@ assert list(_r) == [-1, 4, 0, -7], f"got {_r!r}"
             'To use a library, we **import** it at the top of our code:',
             { code: 'import numpy as np' },
             'The `as np` part gives it a short nickname. Instead of typing `numpy` every time, we just type `np`.',
-            'Now we can make a NumPy **array** — NumPy\'s super-powered version of a list:',
+            'Now we can make a NumPy **array**, NumPy\'s super-powered version of a list:',
             { tryit: py`
 import numpy as np
 
@@ -305,7 +305,7 @@ print(prices.sum())   # add them all up
         {
           title: 'Recap',
           blocks: [
-            { words: [['library', 'code someone else wrote that you can borrow'], ['import', 'the word that brings a library into your program'], ['NumPy', 'a library for fast math with many numbers'], ['array', "NumPy's list — it does real math with `+`, `*` and friends"]] },
+            { words: [['library', 'code someone else wrote that you can borrow'], ['import', 'the word that brings a library into your program'], ['NumPy', 'a library for fast math with many numbers'], ['array', "NumPy's list: it does real math with `+`, `*` and friends"]] },
             { big: '`import numpy as np`, then `np.array([...])`.' },
             { tip: '**How AI uses this:** a neural network does millions of additions and multiplications. NumPy (and tools built like it, such as PyTorch) does them all at once, super fast.' },
           ],
@@ -374,7 +374,7 @@ assert total is not None and _np.array_equal(total, [11, 22, 33]), f"got {total!
           blocks: [
             'Let\'s add `[2, 5, -1]` and `[4, -2, 3]`. Match up the positions:',
             { steps: ['First numbers: 2 + 4 = **6**.', 'Second numbers: 5 + (-2) = **3**.', 'Third numbers: -1 + 3 = **2**.', 'Answer: **[6, 3, 2]**.'] },
-            { warn: 'You can only add vectors that have the **same number of components**. [1, 2] + [1, 2, 3] makes no sense — which number would the 3 pair up with?' },
+            { warn: 'You can only add vectors that have the **same number of components**. [1, 2] + [1, 2, 3] makes no sense: which number would the 3 pair up with?' },
             { tryit: py`
 import numpy as np
 
@@ -389,7 +389,7 @@ print(a + b)
           blocks: [
             'Multiplying a vector by a single number is called **scaling**. The number is called a **scalar**.',
             { list: ['× 2 → the arrow becomes twice as long.', '× 0.5 → half as long.', '× -1 → same length, pointing backwards.'] },
-            { steps: ['Start with [3, 1].', 'Multiply each number by 2.', '3 × 2 = 6 and 1 × 2 = 2.', 'Answer: **[6, 2]** — same direction, twice as far.'] },
+            { steps: ['Start with [3, 1].', 'Multiply each number by 2.', '3 × 2 = 6 and 1 × 2 = 2.', 'Answer: **[6, 2]**: same direction, twice as far.'] },
             { tryit: py`
 import numpy as np
 
@@ -520,7 +520,7 @@ import numpy as np
 v = np.array([1, 2, 2])
 print(np.linalg.norm(v))
 `, note: 'Try [3, 4]. You should get 5 again!' },
-            { quick: { q: 'What is the length of `[0, 7]`?', options: ['0', '7', '49', '14'], answer: 1, explain: '0² + 7² = 49, and √49 = 7. Makes sense — it\'s just 7 straight up!' } },
+            { quick: { q: 'What is the length of `[0, 7]`?', options: ['0', '7', '49', '14'], answer: 1, explain: '0² + 7² = 49, and √49 = 7. Makes sense. It\'s just 7 straight up!' } },
           ],
         },
         {
@@ -538,7 +538,7 @@ print(np.linalg.norm(v))
           id: 'la-length-lab',
           title: 'Measure an arrow',
           xp: XP.code,
-          task: 'Write `length(v)` that returns how long the vector `v` is — without NumPy!',
+          task: 'Write `length(v)` that returns how long the vector `v` is, without NumPy!',
           steps: ['Start a running total at 0.', 'Loop over each number in `v` and add its square (`x ** 2`) to the total.', 'Return `math.sqrt(total)`.'],
           starter: py`
 import math
@@ -613,7 +613,7 @@ assert abs(_r - 10) < 1e-9, f"expected 10, got {_r!r}"
           title: 'What the answer means',
           blocks: [
             { table: { head: ['Dot product', 'The arrows are…', 'Wagon kids'], rows: [['big and positive', 'pointing the same way', 'pulling together 🎉'], ['zero', 'at a right angle (perpendicular)', 'not helping each other 🤷'], ['negative', 'pointing opposite ways', 'fighting! 😠']] } },
-            { steps: ['[1, 0] · [0, 1] = 1×0 + 0×1 = **0**. One points right, one points up — a right angle!', '[1, 2] · [-1, -2] = -1 + -4 = **-5**. Opposite directions → negative.'] },
+            { steps: ['[1, 0] · [0, 1] = 1×0 + 0×1 = **0**. One points right, one points up, a right angle!', '[1, 2] · [-1, -2] = -1 + -4 = **-5**. Opposite directions → negative.'] },
             { quick: { q: 'What is `[2, 3] · [4, -1]`?', options: ['5', '11', '[8, -3]', '-5'], answer: 0, explain: '2×4 = 8, and 3×(-1) = -3. Add them: 8 + (-3) = 5. Positive, so they mostly agree.' } },
           ],
         },
@@ -645,7 +645,7 @@ a = np.array([1, 2, 3])
 b = np.array([4, 5, 6])
 print(np.dot(a, b))
 `, note: 'Check by hand: 1×4 + 2×5 + 3×6 = ?' },
-            { tip: 'Play with the arrows in the playground below the lesson — watch the number change as you drag!' },
+            { tip: 'Play with the arrows in the playground below the lesson. Watch the number change as you drag!' },
           ],
         },
         {
@@ -665,7 +665,7 @@ print(np.dot(a, b))
           title: 'Dot product two ways',
           xp: XP.code,
           numpy: true,
-          task: 'Write `dot(a, b)` using `np.dot`, and `dot_by_hand(a, b)` using a loop — no NumPy.',
+          task: 'Write `dot(a, b)` using `np.dot`, and `dot_by_hand(a, b)` using a loop, no NumPy.',
           steps: ['In `dot`, just return `np.dot(a, b)`.', 'In `dot_by_hand`, loop through the pairs with `zip(a, b)`.', 'Multiply each pair and add it to `total`. Return `total`.'],
           starter: py`
 import numpy as np
@@ -761,7 +761,7 @@ assert dot_by_hand([1, 2], [-1, -2]) == -5
         {
           title: 'Matrices in NumPy',
           blocks: [
-            'In Python, a matrix is a **list of lists** — one inner list per row. NumPy turns it into a 2D array:',
+            'In Python, a matrix is a **list of lists**, one inner list per row. NumPy turns it into a 2D array:',
             { tryit: py`
 import numpy as np
 
@@ -791,7 +791,7 @@ print(M[:, 0])    # the whole of column 0
         {
           title: 'Recap',
           blocks: [
-            { words: [['matrix', 'a table of numbers in rows and columns (plural: matrices)'], ['row', 'a line of numbers going across'], ['column', 'a line of numbers going down'], ['shape', '(rows, columns) — how big the matrix is']] },
+            { words: [['matrix', 'a table of numbers in rows and columns (plural: matrices)'], ['row', 'a line of numbers going across'], ['column', 'a line of numbers going down'], ['shape', '(rows, columns): how big the matrix is']] },
             { big: 'Matrix = table. Shape = (rows, columns). Rows first!' },
             { tip: '**How AI uses this:** a neural network\'s "brain" is stored as matrices full of numbers called *weights*. Learning means slowly changing those numbers.' },
           ],
@@ -834,7 +834,7 @@ assert isinstance(M, _np.ndarray) and _np.array_equal(M, [[1, 2, 3], [4, 5, 6]])
             { name: 'rows = 2 and cols = 3', fail: 'rows, cols = M.shape', code: py`
 assert (rows, cols) == (2, 3), f"got rows={rows!r}, cols={cols!r}"
 ` },
-            { name: 'middle is 5', fail: 'M[1, 1] — remember counting starts at 0', code: py`
+            { name: 'middle is 5', fail: 'M[1, 1]: remember counting starts at 0', code: py`
 assert middle == 5, f"got {middle!r}"
 ` },
           ],
@@ -853,7 +853,7 @@ assert middle == 5, f"got {middle!r}"
           title: 'Lots of dot products at once',
           blocks: [
             { big: 'Matrix multiplication is just many dot products, neatly organised.' },
-            { analogy: 'At a sweet shop, a table lists how many of each sweet two kids bought. Another list gives each sweet\'s price. To find what each kid spends, you multiply their row of amounts by the prices and add up — a dot product for each kid! Matrix multiplication does all the kids at once.', emoji: '🍬' },
+            { analogy: 'At a sweet shop, a table lists how many of each sweet two kids bought. Another list gives each sweet\'s price. To find what each kid spends, you multiply their row of amounts by the prices and add up: a dot product for each kid! Matrix multiplication does all the kids at once.', emoji: '🍬' },
           ],
         },
         {
@@ -863,7 +863,7 @@ assert middle == 5, f"got {middle!r}"
             { table: { head: ['', 'lolly', 'choc'], rows: [['Ana', '2', '1'], ['Ben', '0', '3']] } },
             'Prices (B): one column, one row per sweet. Lolly costs 5, choc costs 10.',
             { table: { head: ['', 'price'], rows: [['lolly', '5'], ['choc', '10']] } },
-            { steps: ['Ana\'s row [2, 1] · prices [5, 10] = 2×5 + 1×10 = **20**.', 'Ben\'s row [0, 3] · prices [5, 10] = 0×5 + 3×10 = **30**.', 'The answer is a column: **[[20], [30]]** — Ana spends 20, Ben spends 30.'] },
+            { steps: ['Ana\'s row [2, 1] · prices [5, 10] = 2×5 + 1×10 = **20**.', 'Ben\'s row [0, 3] · prices [5, 10] = 0×5 + 3×10 = **30**.', 'The answer is a column: **[[20], [30]]**, Ana spends 20, Ben spends 30.'] },
           ],
         },
         {
@@ -926,7 +926,7 @@ print("shape:", C.shape)
         {
           title: 'Recap',
           blocks: [
-            { words: [['matrix multiplication', 'every row of the first matrix dotted with every column of the second'], ['@', 'the Python symbol for matrix multiplication'], ['inner dimensions', 'the two middle numbers of the shapes — they must match']] },
+            { words: [['matrix multiplication', 'every row of the first matrix dotted with every column of the second'], ['@', 'the Python symbol for matrix multiplication'], ['inner dimensions', 'the two middle numbers of the shapes. They must match']] },
             { big: 'Row · column for every box. Inside numbers match, outside numbers survive.' },
             { tip: '**How AI uses this:** every layer of a neural network is a matrix multiplication: input @ weights. Big AIs do trillions of these every second!' },
           ],
@@ -941,7 +941,7 @@ print("shape:", C.shape)
           xp: XP.code,
           numpy: true,
           task: 'Multiply `A` and `B` with `@`, save the answer as `C`, and print `C.shape`.',
-          steps: ['Set `C = A @ B`.', 'Print `C.shape` — it should show `(2, 4)`.'],
+          steps: ['Set `C = A @ B`.', 'Print `C.shape`: it should show `(2, 4)`.'],
           starter: py`
 import numpy as np
 
@@ -1040,7 +1040,7 @@ assert _r == (1, 3072), f"got {_r!r}"
             { analogy: 'Imagine a table drawn on see-through paper. Flip it over along the diagonal line from the top-left corner. What was a row is now a column!', emoji: '🔄' },
             { table: { head: ['A', '', ''], rows: [['1', '2', '3'], ['4', '5', '6']] } },
             { table: { head: ['A.T', ''], rows: [['1', '4'], ['2', '5'], ['3', '6']] } },
-            'A has shape (2, 3). Its transpose `A.T` has shape (3, 2) — the numbers swap.',
+            'A has shape (2, 3). Its transpose `A.T` has shape (3, 2), the numbers swap.',
           ],
         },
         {
@@ -1055,7 +1055,7 @@ A = np.array([[1, 2, 3],
 print(A.T)
 print(A.shape, "->", A.T.shape)
 `, note: 'What do you think A.T.T gives? Try it!' },
-            { tip: 'Transpose is how you fix "shapes don\'t fit" problems. If (2, 3) @ (2, 3) fails, (2, 3) @ (3, 2) — using the transpose — works!' },
+            { tip: 'Transpose is how you fix "shapes don\'t fit" problems. If (2, 3) @ (2, 3) fails, (2, 3) @ (3, 2), using the transpose, works!' },
           ],
         },
         {
@@ -1078,7 +1078,7 @@ print(A @ I)
         {
           title: 'The inverse: the "undo" matrix',
           blocks: [
-            'In normal math, × 4 can be undone by × ¼. A matrix can sometimes be undone too, by its **inverse**. A matrix times its inverse gives the identity — like nothing happened.',
+            'In normal math, × 4 can be undone by × ¼. A matrix can sometimes be undone too, by its **inverse**. A matrix times its inverse gives the identity, like nothing happened.',
             { analogy: 'Tying your shoelaces and then untying them. The inverse is the "untie" move: do one, then the other, and you\'re back where you started.', emoji: '👟' },
             { tryit: py`
 import numpy as np
@@ -1089,7 +1089,7 @@ A_inv = np.linalg.inv(A)
 print(A_inv)
 print(A @ A_inv)
 `, note: 'A @ A_inv gives the identity matrix (1s on the diagonal).' },
-            { warn: 'Not every matrix has an inverse — some moves can\'t be undone, like squashing a drawing flat.' },
+            { warn: 'Not every matrix has an inverse, some moves can\'t be undone, like squashing a drawing flat.' },
           ],
         },
         {
@@ -1115,7 +1115,7 @@ print(A @ B)
           blocks: [
             { words: [['transpose (.T)', 'flip rows into columns'], ['identity (I)', 'the "do nothing" matrix, made with np.eye'], ['inverse', 'the "undo" matrix: A @ inverse = I'], ['element-wise', 'box-by-box, matching positions']] },
             { big: '.T flips, I does nothing, inverse undoes. * is box-by-box, @ is rows·columns.' },
-            { tip: '**How AI uses this:** the attention trick in chatbots uses `Q @ K.T` — a transpose to make the shapes fit! You\'ll do it yourself in the checkpoint.' },
+            { tip: '**How AI uses this:** the attention trick in chatbots uses `Q @ K.T`, a transpose to make the shapes fit! You\'ll do it yourself in the checkpoint.' },
           ],
         },
       ],
@@ -1202,7 +1202,7 @@ assert A_inv is not None and _np.allclose(A @ A_inv, _np.eye(2)), "A @ A_inv sho
         {
           title: 'Why not just use the dot product?',
           blocks: [
-            'The dot product measures agreement — but it also grows when arrows are **longer**. That\'s a problem: a long arrow isn\'t "more meaningful", it\'s just longer.',
+            'The dot product measures agreement, but it also grows when arrows are **longer**. That\'s a problem: a long arrow isn\'t "more meaningful", it\'s just longer.',
             { steps: ['[1, 1] · [1, 1] = 2.', '[10, 10] · [10, 10] = 200.', 'Same direction both times, but very different scores!'] },
             'We want a score that only cares about **direction**. Here comes cosine similarity!',
           ],
@@ -1212,7 +1212,7 @@ assert A_inv is not None and _np.allclose(A @ A_inv, _np.eye(2)), "A @ A_inv sho
           blocks: [
             'Take the dot product, then divide by both lengths. This "cancels out" the length.',
             { big: 'cosine similarity = (a · b) ÷ (length of a × length of b)' },
-            { steps: ['a = [3, 4], b = [6, 8].', 'Dot product: 3×6 + 4×8 = 18 + 32 = **50**.', 'Length of a: √(9 + 16) = **5**. Length of b: √(36 + 64) = **10**.', 'Divide: 50 ÷ (5 × 10) = 50 ÷ 50 = **1**.', 'Score 1 — b is just a longer copy of a. Same direction!'] },
+            { steps: ['a = [3, 4], b = [6, 8].', 'Dot product: 3×6 + 4×8 = 18 + 32 = **50**.', 'Length of a: √(9 + 16) = **5**. Length of b: √(36 + 64) = **10**.', 'Divide: 50 ÷ (5 × 10) = 50 ÷ 50 = **1**.', 'Score 1: b is just a longer copy of a. Same direction!'] },
           ],
         },
         {
@@ -1220,7 +1220,7 @@ assert A_inv is not None and _np.allclose(A @ A_inv, _np.eye(2)), "A @ A_inv sho
           blocks: [
             'Cosine similarity is always between -1 and 1:',
             { table: { head: ['Score', 'Meaning', 'Example'], rows: [['1', 'same direction', 'cat & kitten'], ['0', 'unrelated (right angle)', 'cat & spreadsheet'], ['-1', 'opposite direction', 'up & down']] } },
-            { quick: { q: 'Two embeddings have a cosine similarity of 0.98. What does that suggest?', options: ['The words mean very different things', 'The words have very similar meanings', 'One word is longer', 'There is a bug'], answer: 1, explain: '0.98 is very close to 1, so the arrows point almost the same way — similar meaning.' } },
+            { quick: { q: 'Two embeddings have a cosine similarity of 0.98. What does that suggest?', options: ['The words mean very different things', 'The words have very similar meanings', 'One word is longer', 'There is a bug'], answer: 1, explain: '0.98 is very close to 1, so the arrows point almost the same way, similar meaning.' } },
           ],
         },
         {
@@ -1328,7 +1328,7 @@ assert _r is not None and abs(_r - 0.70710678) < 1e-4, f"got {_r!r}"
           blocks: [
             { big: 'You started with a treasure map. Now you can do the math inside AI. 🎉' },
             'Let\'s do a quick warm-up of everything before the final test.',
-            { table: { head: ['Idea', 'In one line'], rows: [['vector', 'a list of numbers / an arrow'], ['dot product', 'multiply pairs and add — do they agree?'], ['matrix', 'a table of numbers with a (rows, cols) shape'], ['A @ B', 'rows · columns; inside numbers must match'], ['.T', 'flip rows and columns'], ['cosine similarity', 'compare directions, ignore length']] } },
+            { table: { head: ['Idea', 'In one line'], rows: [['vector', 'a list of numbers / an arrow'], ['dot product', 'multiply pairs and add: do they agree?'], ['matrix', 'a table of numbers with a (rows, cols) shape'], ['A @ B', 'rows · columns; inside numbers must match'], ['.T', 'flip rows and columns'], ['cosine similarity', 'compare directions, ignore length']] } },
           ],
         },
         {
@@ -1343,7 +1343,7 @@ A = np.ones((3, 4))
 B = np.ones((4, 1))
 print((A @ B).shape)
 `, note: 'Change the shapes and predict the answer BEFORE you press Run.' },
-            { quick: { q: '`(5, 2) @ (5, 2)` …', options: ['(5, 5)', '(2, 2)', 'error — inside numbers 2 and 5 differ', '(5, 2)'], answer: 2, explain: 'The inside numbers are 2 and 5. They don\'t match! Transpose one to fix it.' } },
+            { quick: { q: '`(5, 2) @ (5, 2)` …', options: ['(5, 5)', '(2, 2)', 'error: inside numbers 2 and 5 differ', '(5, 2)'], answer: 2, explain: 'The inside numbers are 2 and 5. They don\'t match! Transpose one to fix it.' } },
           ],
         },
         {
@@ -1379,7 +1379,7 @@ print("shape:", scores.shape)
           xp: XP.quiz,
           questions: [
             { q: 'What is the shape of `(2, 3) @ (3, 4)`?', options: ['(3, 3)', '(2, 4)', '(4, 2)', "Can't multiply"], answer: 1, explain: 'Inner 3s match and cancel; outer 2 and 4 remain.' },
-            { q: 'What is the shape of `(3, 2) @ (3, 2)`?', options: ['(3, 2)', '(2, 2)', '(3, 3)', "Can't multiply"], answer: 3, explain: 'Inner numbers are 2 and 3 — no match. You would need to transpose one: (3,2) @ (2,3) → (3,3).' },
+            { q: 'What is the shape of `(3, 2) @ (3, 2)`?', options: ['(3, 2)', '(2, 2)', '(3, 3)', "Can't multiply"], answer: 3, explain: 'Inner numbers are 2 and 3: no match. You would need to transpose one: (3,2) @ (2,3) → (3,3).' },
             { q: 'A word embedding `(1, 768)` goes through weights `(768, 3072)`. Output?', options: ['(768, 768)', '(1, 3072)', '(3072, 1)', "Can't multiply"], answer: 1, explain: 'Inside 768s match. That is literally a layer inside GPT-2!' },
             { q: 'A batch `(32, 10)` @ weights `(10, 1)` gives…', options: ['(32, 1)', '(10, 10)', '(32, 10)', "Can't multiply"], answer: 0, explain: 'One answer for each of the 32 examples.' },
             { q: 'If `A` has shape `(5, 3)`, what is `A.T.shape`?', options: ['(5, 3)', '(3, 5)', '(15,)', '(3, 3)'], answer: 1, explain: 'Transpose swaps rows and columns.' },
@@ -1391,7 +1391,7 @@ print("shape:", scores.shape)
           title: 'Attention scores',
           xp: XP.code,
           numpy: true,
-          task: 'Write `scores(Q, K)` that returns every row of Q dotted with every row of K — a matrix of shape `(n, m)`.',
+          task: 'Write `scores(Q, K)` that returns every row of Q dotted with every row of K, a matrix of shape `(n, m)`.',
           steps: ['Q has shape (n, d) and K has shape (m, d). `Q @ K` won\'t fit!', 'Flip K with `.T` so it has shape (d, m).', 'Return `Q @ K.T`.'],
           starter: py`
 import numpy as np
@@ -1433,7 +1433,7 @@ _r = scores(_Q, _K)
 assert _np.allclose(_r, [[3, 1, 0], [8, 2, -2]]), f"got {_r!r}"
 ` },
           ],
-          hints: ['`Q @ K` fails: (n, d) @ (m, d) — the inside numbers are d and m.', 'Transpose K so it becomes (d, m).', '`return Q @ K.T`'],
+          hints: ['`Q @ K` fails: (n, d) @ (m, d): the inside numbers are d and m.', 'Transpose K so it becomes (d, m).', '`return Q @ K.T`'],
         },
       ],
     },

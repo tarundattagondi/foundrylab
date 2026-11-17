@@ -12,7 +12,7 @@ export default [
         title: 'What is a program?',
         blocks: [
           { big: 'A program is a list of instructions for a computer.' },
-          'Computers are super fast, but they are not smart on their own. They do *exactly* what you tell them — nothing more, nothing less.',
+          'Computers are super fast, but they are not smart on their own. They do *exactly* what you tell them, nothing more, nothing less.',
           { analogy: 'A program is like a recipe. A recipe says: "1. Crack 2 eggs. 2. Stir. 3. Cook for 3 minutes." The cook follows the steps in order. The computer is the cook, and you write the recipe!', emoji: '🍳' },
           'Writing these instructions is called **programming** or **coding**. People who do it are called **programmers**. Today, that includes you. 🎉',
         ],
@@ -20,9 +20,9 @@ export default [
       {
         title: 'What is Python?',
         blocks: [
-          'Computers only understand 0s and 1s. That is very hard for humans to write. So people invented **programming languages** — special languages that are easy for humans *and* can be translated for the computer.',
-          '**Python** is one of the most popular programming languages in the world. It is famous for being easy to read — it looks a lot like English.',
-          { tip: 'Almost every AI tool you have heard of — ChatGPT, image generators, self-driving car software — was built using Python. That is why we start here!' },
+          'Computers only understand 0s and 1s. That is very hard for humans to write. So people invented **programming languages**, special languages that are easy for humans *and* can be translated for the computer.',
+          '**Python** is one of the most popular programming languages in the world. It is famous for being easy to read. It looks a lot like English.',
+          { tip: 'Almost every AI tool you have heard of (ChatGPT, image generators, self-driving car software) was built using Python. That is why we start here!' },
           { words: [['program', 'a list of instructions for a computer'], ['code', 'the instructions you write'], ['Python', 'a programming language that is easy to read']] },
         ],
       },
@@ -41,8 +41,8 @@ export default [
           'You can put any words inside the quotes. Try changing the message below to your own name!',
           { tryit: py`print("My name is Sam")
 print("I am learning Python!")`, note: 'Change "Sam" to your name, then press Run.' },
-          'Notice: we used **two** print lines, and the computer showed **two** lines. Python runs your code **from top to bottom**, one line at a time — just like reading a book.',
-          { quick: { q: 'What will `print("pizza")` show on the screen?', options: ['print("pizza")', 'pizza', '"pizza"', 'Nothing'], answer: 1, explain: 'print shows just the text inside the quotes — the quotes themselves are not shown.' } },
+          'Notice: we used **two** print lines, and the computer showed **two** lines. Python runs your code **from top to bottom**, one line at a time, just like reading a book.',
+          { quick: { q: 'What will `print("pizza")` show on the screen?', options: ['print("pizza")', 'pizza', '"pizza"', 'Nothing'], answer: 1, explain: 'print shows just the text inside the quotes, the quotes themselves are not shown.' } },
         ],
       },
       {
@@ -59,16 +59,16 @@ print("2 + 3")`, note: 'Spot the difference between the two lines!' },
       {
         title: 'Mistakes are totally normal',
         blocks: [
-          'If you make a typo, Python shows an **error message**. That is not the computer being angry — it is the computer asking for help!',
+          'If you make a typo, Python shows an **error message**. That is not the computer being angry. It is the computer asking for help!',
           { tryit: py`print("Hello"`, note: 'This one has a mistake on purpose. Run it and read the message.', expectError: true },
           'The error says something is wrong with the brackets. Every `(` needs a matching `)`. Try fixing it by adding `)` at the end, then run again!',
-          { tip: 'Every programmer — even experts with 20 years of experience — sees errors every single day. Reading them carefully is a superpower.' },
+          { tip: 'Every programmer, even experts with 20 years of experience, sees errors every single day. Reading them carefully is a superpower.' },
         ],
       },
       {
         title: 'Recap',
         blocks: [
-          { list: ['A **program** is a recipe of instructions for a computer.', '**Python** is an easy-to-read programming language used for AI.', '`print(...)` shows things on the screen.', 'Text goes inside quotes: `"hello"`. Numbers don\'t need quotes.', 'Python runs code from top to bottom.', 'Errors are normal — read them, fix, try again.'] },
+          { list: ['A **program** is a recipe of instructions for a computer.', '**Python** is an easy-to-read programming language used for AI.', '`print(...)` shows things on the screen.', 'Text goes inside quotes: `"hello"`. Numbers don\'t need quotes.', 'Python runs code from top to bottom.', 'Errors are normal: read them, fix, try again.'] },
           { big: 'You are officially a programmer now. 🎉' },
         ],
       },
@@ -99,7 +99,7 @@ assert "I am learning Python!" in __stdout__, f"the screen showed {__stdout__!r}
 assert __stdout__.find("Hello, world!") < __stdout__.find("I am learning Python!")
 ` },
         ],
-        hints: ['Lines that start with `#` are notes for humans — Python ignores them. Write your code under it.', 'Each line looks like `print("some words")` — don\'t forget the quotes and brackets.', 'Line 1: `print("Hello, world!")` · Line 2: `print("I am learning Python!")`'],
+        hints: ['Lines that start with `#` are notes for humans. Python ignores them. Write your code under it.', 'Each line looks like `print("some words")`. Don\'t forget the quotes and brackets.', 'Line 1: `print("Hello, world!")` · Line 2: `print("I am learning Python!")`'],
       },
     ],
   },
@@ -126,7 +126,7 @@ assert __stdout__.find("Hello, world!") < __stdout__.find("I am learning Python!
           { boxes: ['10'], caption: 'score' },
           'Now whenever you write `score`, Python opens the box and uses what is inside.',
           { tryit: py`score = 10
-print(score)`, note: 'Notice: no quotes around score — we want the box, not the word.' },
+print(score)`, note: 'Notice: no quotes around score. We want the box, not the word.' },
         ],
       },
       {
@@ -170,7 +170,7 @@ print(each)`, note: '12 apples shared by 4 friends. Try other numbers!' },
         title: 'Good names for boxes',
         blocks: [
           'Variable names follow a few rules:',
-          { list: ['Use letters, numbers and underscores `_` — like `high_score` or `player2`.', 'No spaces! Write `high_score`, not `high score`.', 'Can\'t start with a number: `2player` is not allowed.', 'Capitals matter: `Score` and `score` are two different boxes.'] },
+          { list: ['Use letters, numbers and underscores `_`, like `high_score` or `player2`.', 'No spaces! Write `high_score`, not `high score`.', 'Can\'t start with a number: `2player` is not allowed.', 'Capitals matter: `Score` and `score` are two different boxes.'] },
           { tip: 'Pick names that explain what is inside. `minutes_left` is much clearer than `x`.' },
           { quick: { q: 'Which is a valid variable name?', options: ['my score', '1st_place', 'total_points', 'cost$'], answer: 2, explain: 'total_points uses only letters and underscores, and doesn\'t start with a number.' } },
         ],
@@ -218,7 +218,7 @@ assert globals().get("next_year") == age + 1, f"next_year is {globals().get('nex
 assert str(name) in __stdout__ and str(next_year) in __stdout__
 ` },
         ],
-        hints: ['Text needs quotes: `name = "Robo"`. Numbers don\'t: `age = 11`.', 'Use the box to make a new box: `next_year = age + 1`.', 'Finish with `print(name)` and `print(next_year)` — no quotes, because you want what is inside the boxes.'],
+        hints: ['Text needs quotes: `name = "Robo"`. Numbers don\'t: `age = 11`.', 'Use the box to make a new box: `next_year = age + 1`.', 'Finish with `print(name)` and `print(next_year)`: no quotes, because you want what is inside the boxes.'],
       },
     ],
   },
@@ -245,7 +245,7 @@ assert str(name) in __stdout__ and str(next_year) in __stdout__
 print(type(3.5))
 print(type("hello"))
 print(type(True))`, note: 'Run it and match each answer to the table.' },
-          { quick: { q: 'What type is `"7"` (with quotes)?', options: ['int', 'float', 'str', 'bool'], answer: 2, explain: 'The quotes make it text — a string — even though it looks like a number.' } },
+          { quick: { q: 'What type is `"7"` (with quotes)?', options: ['int', 'float', 'str', 'bool'], answer: 2, explain: 'The quotes make it text, a string, even though it looks like a number.' } },
         ],
       },
       {
@@ -263,7 +263,7 @@ print(first + second)`, note: 'Strings glued together.' },
       {
         title: 'Changing types',
         blocks: [
-          'Sometimes you have a number stuck inside text — for example, when someone types their age into a website. You can convert it:',
+          'Sometimes you have a number stuck inside text, for example, when someone types their age into a website. You can convert it:',
           { table: { head: ['Instruction', 'Turns into', 'Example'], rows: [['`int("12")`', 'a whole number', '`12`'], ['`float("2.5")`', 'a decimal number', '`2.5`'], ['`str(99)`', 'text', '`"99"`']] } },
           { tryit: py`typed = "12"
 age = int(typed)
@@ -332,7 +332,7 @@ assert message == "Score: 42", f"message is {message!r}"
 assert "Score: 42" in __stdout__
 ` },
         ],
-        hints: ['`int("21")` gives the number 21.', '`doubled = number * 2`. To join a number to text, wrap it: `str(doubled)`.', '`message = "Score: " + str(doubled)` — watch the space after the colon.'],
+        hints: ['`int("21")` gives the number 21.', '`doubled = number * 2`. To join a number to text, wrap it: `str(doubled)`.', '`message = "Score: " + str(doubled)`. Watch the space after the colon.'],
       },
     ],
   },
@@ -409,7 +409,7 @@ else:
         title: 'Recap',
         blocks: [
           { list: ['Comparisons (`== != > < >= <=`) give True or False.', '`if` runs indented code only when the question is True.', '`elif` checks another question; `else` catches everything left.', 'Combine with `and`, `or`, `not`.', 'Don\'t forget the colon `:` and the 4-space indent!'] },
-          { words: [['condition', 'a yes/no question like `score > 10`'], ['indent', 'spaces at the start of a line, showing it belongs to the if'], ['elif', '"else if" — another question to check']] },
+          { words: [['condition', 'a yes/no question like `score > 10`'], ['indent', 'spaces at the start of a line, showing it belongs to the if'], ['elif', '"else if": another question to check']] },
           { tip: 'AI connection: a spam filter decides "if this email looks like spam, move it to the spam folder". Decisions are everywhere!' },
         ],
       },
@@ -471,7 +471,7 @@ assert medal(70) == "silver" and medal(90) == "gold" and medal(50) == "bronze"
 assert medal(10) == "none", f"got {medal(10)!r}"
 ` },
         ],
-        hints: ['You don\'t need to understand `def` and `return` fully yet — the next lessons explain them. Just add more `elif` checks.', 'Copy the gold pattern: `elif score >= 70:` then (indented) `return "silver"`.', 'Add `elif score >= 50:` → `return "bronze"`. The final `return "none"` handles the rest.'],
+        hints: ['You don\'t need to understand `def` and `return` fully yet, the next lessons explain them. Just add more `elif` checks.', 'Copy the gold pattern: `elif score >= 70:` then (indented) `return "silver"`.', 'Add `elif score >= 50:` → `return "bronze"`. The final `return "none"` handles the rest.'],
       },
     ],
   },
@@ -485,7 +485,7 @@ assert medal(10) == "none", f"got {medal(10)!r}"
       {
         title: 'Computers love repeating',
         blocks: [
-          'Imagine writing "I will not talk in class" 100 times. Boring! A computer can do it in a blink — with a **loop**.',
+          'Imagine writing "I will not talk in class" 100 times. Boring! A computer can do it in a blink, with a **loop**.',
           { big: 'A loop repeats code for you.' },
           { analogy: 'A loop is like a washing machine\'s spin cycle: it does the same thing over and over until it is done.', emoji: '🔁' },
         ],
@@ -495,19 +495,19 @@ assert medal(10) == "none", f"got {medal(10)!r}"
         blocks: [
           { tryit: py`for i in range(5):
     print("Hello!")`, note: 'Five hellos with just two lines. Try 10!' },
-          { steps: ['`range(5)` makes the numbers 0, 1, 2, 3, 4 (five numbers — it starts at 0!).', '`for i in` means: take each number one at a time and call it `i`.', 'The indented line runs once for each number.'] },
+          { steps: ['`range(5)` makes the numbers 0, 1, 2, 3, 4 (five numbers. It starts at 0!).', '`for i in` means: take each number one at a time and call it `i`.', 'The indented line runs once for each number.'] },
           { tryit: py`for i in range(5):
     print("Lap number", i)`, note: 'See how i changes each time round.' },
-          { tip: '`range(1, 6)` gives 1, 2, 3, 4, 5 — it stops *before* the second number.' },
+          { tip: '`range(1, 6)` gives 1, 2, 3, 4, 5. It stops *before* the second number.' },
         ],
       },
       {
         title: 'Looping over a list of things',
         blocks: [
-          'Loops also walk through a list of items (we will learn lists properly soon — for now, it is items in square brackets).',
+          'Loops also walk through a list of items (we will learn lists properly soon; for now, it is items in square brackets).',
           { tryit: py`for fruit in ["apple", "banana", "cherry"]:
     print("I like", fruit)`, note: 'Add another fruit to the list!' },
-          { quick: { q: 'How many times does `for i in range(3):` repeat?', options: ['2', '3', '4', 'Forever'], answer: 1, explain: 'range(3) is 0, 1, 2 — three numbers, so three times.' } },
+          { quick: { q: 'How many times does `for i in range(3):` repeat?', options: ['2', '3', '4', 'Forever'], answer: 1, explain: 'range(3) is 0, 1, 2, three numbers, so three times.' } },
         ],
       },
       {
@@ -541,13 +541,13 @@ while countdown > 0:
     print(countdown)
     countdown = countdown - 1
 print("Blast off! 🚀")`, note: 'A rocket countdown.' },
-          { warn: 'If the question never becomes False, the loop runs forever! That is an **infinite loop**. If that happens here, FoundryLab stops it after 8 seconds — no harm done.' },
+          { warn: 'If the question never becomes False, the loop runs forever! That is an **infinite loop**. If that happens here, FoundryLab stops it after 8 seconds, no harm done.' },
         ],
       },
       {
         title: 'Recap',
         blocks: [
-          { list: ['`for i in range(n):` repeats n times (i goes 0 to n−1).', '`for item in [...]:` visits each item.', 'Add things up with a total that starts at 0.', '`while` repeats while a condition is True — make sure it ends!'] },
+          { list: ['`for i in range(n):` repeats n times (i goes 0 to n−1).', '`for item in [...]:` visits each item.', 'Add things up with a total that starts at 0.', '`while` repeats while a condition is True. Make sure it ends!'] },
           { words: [['loop', 'code that repeats'], ['range', 'a list of counting numbers, starting from 0'], ['infinite loop', 'a loop that never stops (oops!)']] },
         ],
       },
@@ -652,14 +652,14 @@ assert to_labels([]) == []
         blocks: [
           '`print(...)`, `type(...)`, `int(...)` and `range(...)` are all **functions**: named commands that do a job.',
           { big: 'Now you will build your own.' },
-          { analogy: 'A function is like a toaster. You put bread in (the **input**), it does its job, and toast pops out (the **output**). You don\'t need to know how it works inside — you just use it!', emoji: '🍞' },
+          { analogy: 'A function is like a toaster. You put bread in (the **input**), it does its job, and toast pops out (the **output**). You don\'t need to know how it works inside. You just use it!', emoji: '🍞' },
         ],
       },
       {
         title: 'Defining a function',
         blocks: [
           { code: 'def say_hi():\n    print("Hi there!")\n    print("Welcome!")' },
-          { steps: ['`def` means "define" — "I\'m teaching Python a new command".', '`say_hi` is the name you choose.', '`()` and `:` finish the first line.', 'The indented lines are the **body** — what the function does.'] },
+          { steps: ['`def` means "define": "I\'m teaching Python a new command".', '`say_hi` is the name you choose.', '`()` and `:` finish the first line.', 'The indented lines are the **body**: what the function does.'] },
           'Defining a function does NOT run it. It is like writing a recipe card. To use it, you **call** it by writing its name with brackets:',
           { tryit: py`def say_hi():
     print("Hi there!")
@@ -689,7 +689,7 @@ area(10, 2)`, note: 'Two inputs, separated by a comma.' },
       {
         title: 'Outputs: return',
         blocks: [
-          '`print` just *shows* something. `return` *hands back* an answer so you can use it later — like the toast popping out.',
+          '`print` just *shows* something. `return` *hands back* an answer so you can use it later, like the toast popping out.',
           { tryit: py`def double(x):
     return x * 2
 
@@ -704,7 +704,7 @@ print(double(answer))`, note: 'We saved the answer in a box, then used it again!
         title: 'Why functions are awesome',
         blocks: [
           { list: ['**Reuse**: write once, use a thousand times.', '**Names**: `calculate_score()` explains itself.', '**Fix once**: if there\'s a bug, you fix it in one place.'] },
-          { tip: 'AI connection: in AI code, almost everything is a function — `train()`, `predict()`, `tokenize()`. Big programs are built from many small functions.' },
+          { tip: 'AI connection: in AI code, almost everything is a function, `train()`, `predict()`, `tokenize()`. Big programs are built from many small functions.' },
         ],
       },
       {
@@ -928,7 +928,7 @@ assert _r == [1, 2, 3], f"got {_r!r}"
 print(ages["Leo"])`, note: 'Use the key in square brackets.' },
           'If the key isn\'t there, you get a `KeyError`. A safer way is `.get(key, backup)`, which gives the backup value instead of crashing:',
           { tryit: py`ages = {"Ava": 11, "Leo": 12}
-print(ages.get("Zoe", "unknown"))`, note: 'Zoe isn\'t in the dict — no crash!' },
+print(ages.get("Zoe", "unknown"))`, note: 'Zoe isn\'t in the dict, but no crash!' },
           { quick: { q: 'With `prices = {"apple": 2, "pear": 3}`, what is `prices["pear"]`?', options: ['"pear"', '2', '3', 'Error'], answer: 2, explain: 'Look up the key "pear" → its value is 3.' } },
         ],
       },
@@ -941,7 +941,7 @@ ages["Leo"] = 12     # add a new key
 ages["Ava"] = 12     # change an existing one
 print(ages)
 print(len(ages))`, note: 'Ava had a birthday 🎂' },
-          { tip: 'Keys are unique — each locker name appears only once. Setting the same key again replaces the value.' },
+          { tip: 'Keys are unique: each locker name appears only once. Setting the same key again replaces the value.' },
         ],
       },
       {
@@ -1031,7 +1031,7 @@ assert price_of({"apple": 2, "pear": 3}, "pear") == 3
 assert price_of({"apple": 2}, "kiwi") == 0
 ` },
         ],
-        hints: ['Inside count_words: `for w in words:` then add to the count.', '`counts[w] = counts.get(w, 0) + 1` — .get gives 0 the first time.', 'price_of is one line: `return prices.get(item, 0)`.'],
+        hints: ['Inside count_words: `for w in words:` then add to the count.', '`counts[w] = counts.get(w, 0) + 1`: .get gives 0 the first time.', 'price_of is one line: `return prices.get(item, 0)`.'],
       },
     ],
   },
@@ -1059,19 +1059,19 @@ print(len(set(words)))`, note: 'How many DIFFERENT words?' },
       {
         title: 'Tuples: lists you can\'t change',
         blocks: [
-          'A **tuple** looks like a list, but uses round brackets `( )` and is **frozen** — you can\'t change it after making it.',
+          'A **tuple** looks like a list, but uses round brackets `( )` and is **frozen**. You can\'t change it after making it.',
           { tryit: py`point = (3, 4)
 print(point[0])
 print(point[1])`, note: 'Indexing works just like lists.' },
           { tryit: py`point = (3, 4)
-point[0] = 10`, note: 'Trying to change a tuple causes an error — on purpose.', expectError: true },
-          { tip: 'AI connection: the **shape** of AI data is a tuple, like `(32, 768)` — "32 rows, 768 columns". Shapes shouldn\'t change by accident, so tuples are perfect.' },
+point[0] = 10`, note: 'Trying to change a tuple causes an error, on purpose.', expectError: true },
+          { tip: 'AI connection: the **shape** of AI data is a tuple, like `(32, 768)`, "32 rows, 768 columns". Shapes shouldn\'t change by accident, so tuples are perfect.' },
         ],
       },
       {
         title: 'zip: pairing two lists',
         blocks: [
-          '`zip` walks through two lists side by side, making pairs — like a zipper joining two sides of a jacket. 🧥',
+          '`zip` walks through two lists side by side, making pairs, like a zipper joining two sides of a jacket. 🧥',
           { tryit: py`names = ["Ava", "Leo", "Mia"]
 ages = [11, 12, 10]
 for name, age in zip(names, ages):
@@ -1093,7 +1093,7 @@ print(vocab)`, note: 'You just built an AI vocabulary!' },
       {
         title: 'Recap',
         blocks: [
-          { list: ['**set**: unique items only — `set(xs)` removes duplicates.', '**tuple**: a frozen list, `(32, 768)` — great for shapes.', '**zip**: pairs up two lists; `dict(zip(a, b))` makes a dict.'] },
+          { list: ['**set**: unique items only, `set(xs)` removes duplicates.', '**tuple**: a frozen list, `(32, 768)`: great for shapes.', '**zip**: pairs up two lists; `dict(zip(a, b))` makes a dict.'] },
           { words: [['set', 'a collection with no duplicates'], ['tuple', 'an ordered collection that can\'t be changed'], ['zip', 'pairs items from two lists']] },
         ],
       },

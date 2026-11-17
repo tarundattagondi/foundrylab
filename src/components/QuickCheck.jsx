@@ -27,7 +27,7 @@ export default function QuickCheck({ q, options, answer, explain }) {
           )
         })}
       </div>
-      {!right && wrong.length > 0 && <p className="mt-2 text-sm font-bold text-amber-700 dark:text-amber-300">Not that one — try another! Mistakes are how brains learn. 🧠</p>}
+      {!right && wrong.length > 0 && <p className="mt-2 text-sm font-bold text-amber-700 dark:text-amber-300">Not that one. Try another! Mistakes are how brains learn. 🧠</p>}
       {right && <p className="mt-2 animate-pop text-sm"><strong className="text-emerald-700 dark:text-emerald-300">Yes! 🎉 </strong><Inline text={explain} /></p>}
     </div>
   )

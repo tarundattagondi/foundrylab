@@ -9,8 +9,8 @@ import { completeActivity, getDraft, saveDraft, useProgress, markDailyDone, toda
 import { XP } from '../data/curriculum'
 
 const NUDGES = [
-  "Not yet — but that's how learning works. Check the first orange test.",
-  'Close! Read the message on the first failing test — it tells you exactly what was expected.',
+  "Not yet, but that's how learning works. Check the first orange test.",
+  'Close! Read the message on the first failing test. It tells you exactly what was expected.',
   "Every great model was trained on lots of errors. You're doing the same. 💪",
 ]
 
@@ -100,7 +100,7 @@ export default function CodeLab({ lab, daily = false }) {
                   </li>
                 ))}
               </ol>
-              <p className="muted mt-2 text-xs">Write your code in the box below, press <strong>Run</strong> to test it, then <strong>Check</strong> to see if you got it. Stuck? Press <strong>Hint</strong> — that's what it's for!</p>
+              <p className="muted mt-2 text-xs">Write your code in the box below, press <strong>Run</strong> to test it, then <strong>Check</strong> to see if you got it. Stuck? Press <strong>Hint</strong>, that's what it's for!</p>
             </div>
           )}
         </div>
@@ -151,7 +151,7 @@ export default function CodeLab({ lab, daily = false }) {
 
           {solutionOpen && (
             <div className="animate-pop space-y-2 rounded-xl border border-[color:var(--line)] p-3">
-              <p className="text-sm font-bold">Reference solution — read it, then try typing it yourself. That's how it sticks.</p>
+              <p className="text-sm font-bold">Reference solution: read it, then try typing it yourself. That's how it sticks.</p>
               <pre className="overflow-x-auto rounded-lg bg-ink-950 p-3 font-mono text-[13px] text-ink-100"><code>{lab.solution}</code></pre>
               <button className="btn-ghost" onClick={() => onChange(lab.solution)}>Copy into editor</button>
             </div>
@@ -224,7 +224,7 @@ function OutputPanel({ output, busy }) {
           </p>
         )}
         {output?.stdout && <pre className="whitespace-pre-wrap break-words">{output.stdout}</pre>}
-        {output && !output.timeout && !output.stdout && !output.error && <p className="muted font-sans text-sm">(Ran fine — nothing was printed.)</p>}
+        {output && !output.timeout && !output.stdout && !output.error && <p className="muted font-sans text-sm">(Ran fine, nothing was printed.)</p>}
         {output?.error && (
           <div className="mt-2 space-y-2">
             <p className="rounded-lg bg-amber-50 p-2 font-sans text-sm font-bold text-amber-900 dark:bg-amber-900/30 dark:text-amber-200">

@@ -2,7 +2,7 @@
 export default function StreakFlame({ count, showLabel = true }) {
   const size = count === 0 ? 18 : Math.min(18 + count * 2.5, 34)
   return (
-    <div className="flex items-center gap-1.5" title={count ? `${count}-day streak` : 'No streak yet — complete a lab today!'}>
+    <div className="flex items-center gap-1.5" title={count ? `${count}-day streak` : 'No streak yet. Complete a lab today!'}>
       <span
         aria-hidden
         className={`inline-block leading-none ${count ? 'animate-flicker' : 'opacity-40 grayscale'}`}

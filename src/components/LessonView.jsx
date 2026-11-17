@@ -76,8 +76,8 @@ export default function LessonView({ mod, lesson, dailyId }) {
         {!showPractice && (
           <div className="card flex flex-col items-center gap-3 p-6 text-center">
             <p className="text-4xl" aria-hidden>📚</p>
-            <p className="font-bold">Read the lesson pages above first — the practice will make way more sense!</p>
-            <button className="btn-ghost text-sm" onClick={() => setPractice(true)}>I already know this — skip to practice</button>
+            <p className="font-bold">Read the lesson pages above first. The practice will make way more sense!</p>
+            <button className="btn-ghost text-sm" onClick={() => setPractice(true)}>I already know this, skip to practice</button>
           </div>
         )}
       </div>
@@ -95,7 +95,7 @@ export default function LessonView({ mod, lesson, dailyId }) {
           >
             {isDaily && (
               <p className="mb-3 rounded-lg bg-amber-50 p-2 text-sm font-bold text-amber-900 dark:bg-amber-900/20 dark:text-amber-200">
-                ☀️ Daily challenge — solve it again from scratch for bonus XP!
+                ☀️ Daily challenge: solve it again from scratch for bonus XP!
               </p>
             )}
             <div className="mb-4 flex items-center gap-3">

@@ -56,7 +56,7 @@ export default function VectorSimilarityViz({ activity }) {
             <div className="muted mt-1 flex justify-between text-[10px] font-bold"><span>-1</span><span>0</span><span>1</span></div>
           </div>
           <p className="text-sm font-bold">{verdict} · {fmt(angle, 0)}° apart</p>
-          <p className="muted text-xs">Lengths: {fmt(la)} and {fmt(lb)}. Notice: stretching an arrow doesn't change the similarity. Embeddings compare <em>direction</em> — that's how a search engine knows "kitten" is close to "cat".</p>
+          <p className="muted text-xs">Lengths: {fmt(la)} and {fmt(lb)}. Notice: stretching an arrow doesn't change the similarity. Embeddings compare <em>direction</em>. That's how a search engine knows "kitten" is close to "cat".</p>
         </div>
       </div>
     </VizShell>

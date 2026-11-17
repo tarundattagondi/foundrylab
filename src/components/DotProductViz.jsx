@@ -7,11 +7,11 @@ const A_COLOR = 'var(--accent)'
 const B_COLOR = 'var(--blue)'
 
 function meaning(dot, cos) {
-  if (Math.abs(dot) < 1e-9) return { text: 'Perpendicular — these vectors are unrelated.', tone: 'text-sky-600 dark:text-sky-300' }
-  if (cos > 0.9) return { text: 'Strongly aligned — pointing almost the same way!', tone: 'text-emerald-600 dark:text-emerald-300' }
-  if (cos > 0) return { text: 'Somewhat aligned — same general direction.', tone: 'text-emerald-600 dark:text-emerald-300' }
-  if (cos < -0.9) return { text: 'Opposite — pointing away from each other.', tone: 'text-rose-600 dark:text-rose-300' }
-  return { text: 'Leaning apart — more opposite than aligned.', tone: 'text-rose-600 dark:text-rose-300' }
+  if (Math.abs(dot) < 1e-9) return { text: 'Perpendicular: these vectors are unrelated.', tone: 'text-sky-600 dark:text-sky-300' }
+  if (cos > 0.9) return { text: 'Strongly aligned: pointing almost the same way!', tone: 'text-emerald-600 dark:text-emerald-300' }
+  if (cos > 0) return { text: 'Somewhat aligned: same general direction.', tone: 'text-emerald-600 dark:text-emerald-300' }
+  if (cos < -0.9) return { text: 'Opposite: pointing away from each other.', tone: 'text-rose-600 dark:text-rose-300' }
+  return { text: 'Leaning apart: more opposite than aligned.', tone: 'text-rose-600 dark:text-rose-300' }
 }
 
 export default function DotProductViz({ activity }) {

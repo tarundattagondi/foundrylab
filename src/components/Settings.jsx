@@ -47,7 +47,7 @@ export default function Settings() {
       <section className="card p-5">
         <h2 className="font-black">About this browser</h2>
         <ul className="muted mt-2 space-y-1 text-sm">
-          <li>Progress saving: {storageWorks() ? '✅ on (localStorage)' : '⚠️ blocked — progress lasts until you close the tab'}</li>
+          <li>Progress saving: {storageWorks() ? '✅ on (localStorage)' : '⚠️ blocked, so progress lasts until you close the tab'}</li>
           <li>Python engine: {py.state === 'ready' ? '✅ warmed up' : py.state === 'loading' ? '⏳ loading…' : py.state === 'error' ? '⚠️ failed to load' : '💤 loads when you open your first code lab'}</li>
           <li>Everything runs locally. No accounts, no servers, no tracking.</li>
         </ul>

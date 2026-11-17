@@ -38,7 +38,7 @@ export default function TryIt({ code, note }) {
         {value !== code && (
           <button className="btn-ghost" onClick={() => { setValue(code); setOut(null) }}>↺ Put it back</button>
         )}
-        {busy && <span className="muted text-xs font-bold">(the first run wakes up Python — a few seconds)</span>}
+        {busy && <span className="muted text-xs font-bold">(the first run wakes up Python, a few seconds)</span>}
       </div>
       {out && (
         <div className="mt-2 rounded-xl bg-ink-950 p-3 font-mono text-[13px] text-ink-100" aria-live="polite">

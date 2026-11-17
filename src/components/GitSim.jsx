@@ -49,7 +49,7 @@ export default function GitSim({ sim, daily = false }) {
     const echo = { text: `${prompt()} ${raw}`, kind: 'cmd' }
 
     if (cmd === 'hint') {
-      setLines((l) => [...l, echo, { text: finished ? 'All done — nothing left to hint!' : `💡 Try: ${sim.steps[step].hint}`, kind: 'warn' }])
+      setLines((l) => [...l, echo, { text: finished ? 'All done, nothing left to hint!' : `💡 Try: ${sim.steps[step].hint}`, kind: 'warn' }])
       return
     }
     const r = exec(state, raw)
@@ -113,7 +113,7 @@ export default function GitSim({ sim, daily = false }) {
             <span className="h-3 w-3 rounded-full bg-rose-400" />
             <span className="h-3 w-3 rounded-full bg-amber-400" />
             <span className="h-3 w-3 rounded-full bg-emerald-400" />
-            <span className="ml-2 text-xs font-semibold text-ink-400">terminal — sandbox, nothing here touches your real files</span>
+            <span className="ml-2 text-xs font-semibold text-ink-400">terminal (sandbox): nothing here touches your real files</span>
           </div>
           <div ref={scroller} className="h-72 overflow-y-auto px-3 py-2 font-mono text-[13px] leading-relaxed" aria-live="polite">
             {lines.map((l, i) => (
@@ -129,7 +129,7 @@ export default function GitSim({ sim, daily = false }) {
               onChange={(e) => setInput(e.target.value)}
               onKeyDown={onKey}
               className="min-w-0 flex-1 bg-transparent text-white outline-none placeholder:text-ink-500"
-              placeholder={finished ? 'challenge complete — keep playing if you like' : 'type a command…'}
+              placeholder={finished ? 'Challenge complete! Keep playing if you like' : 'type a command…'}
               autoCapitalize="off"
               autoCorrect="off"
               autoComplete="off"

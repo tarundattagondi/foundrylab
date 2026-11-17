@@ -1,5 +1,5 @@
 // A small, forgiving git simulator. Pure functions: exec(state, input) returns
-// the next state plus terminal output. Not real git — just enough to practice.
+// the next state plus terminal output. Not real git, just enough to practice.
 
 const hex = () => Math.random().toString(16).slice(2, 9).padEnd(7, '0')
 const commit = (msg) => ({ hash: hex(), msg })
@@ -56,8 +56,8 @@ const HELP = [
   '  git branch [name] | checkout [-b] name | switch [-c] name | merge name',
   '  git clone url | push | pull | remote -v',
   '  ls | touch file | cat file | echo "text" >> file | code file',
-  '  hint   — get a nudge for the current step',
-  '  clear  — clear the screen',
+  '  hint   - get a nudge for the current step',
+  '  clear  - clear the screen',
 ]
 
 /** Returns { state, lines: [{ text, kind }] , clear? } */
@@ -76,7 +76,7 @@ export function exec(prev, rawInput) {
   if (cmd === 'help') return out(HELP.join('\n')), done()
   if (cmd === 'clear') return { state: s, lines, clear: true }
   if (cmd === 'pwd') return out('/home/you/project'), done()
-  if (cmd === 'cd') return out('(you can stay right here — everything happens in this folder)'), done()
+  if (cmd === 'cd') return out('(you can stay right here, everything happens in this folder)'), done()
   if (cmd === 'ls') {
     const names = Object.keys(s.files).filter((f) => args.includes('-a') || !f.startsWith('.') || f === '.gitignore')
     out(names.length ? names.join('  ') : '(empty folder)')
@@ -126,7 +126,7 @@ export function exec(prev, rawInput) {
       return done()
     }
     if (s.files[sub] === 'committed' || s.files[sub] === 'staged') s.files[sub] = 'modified'
-    out(`(pretend you edited ${sub} — saved ✔)`, 'note')
+    out(`(pretend you edited ${sub}, saved ✔)`, 'note')
     return done()
   }
   if (cmd !== 'git') {
@@ -321,7 +321,7 @@ export function exec(prev, rawInput) {
       s.files[s.conflictFile] = 'conflicted'
       out(`Auto-merging ${s.conflictFile}`)
       err(`CONFLICT (content): Merge conflict in ${s.conflictFile}\nAutomatic merge failed; fix conflicts and then commit the result.`)
-      out("Don't panic — this is normal. Let's look at the file.", 'note')
+      out("Don't panic, this is normal. Let's look at the file.", 'note')
       return done()
     }
     const other = s.branches[name]

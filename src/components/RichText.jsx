@@ -113,7 +113,7 @@ export function Block({ b }) {
         <dl className="space-y-1.5 text-sm">
           {b.words.map(([term, meaning]) => (
             <div key={term}>
-              <dt className="inline font-extrabold">{term}</dt> <dd className="inline">— <Inline text={meaning} /></dd>
+              <dt className="inline font-extrabold">{term}</dt><dd className="inline">: <Inline text={meaning} /></dd>
             </div>
           ))}
         </dl>

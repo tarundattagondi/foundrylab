@@ -62,7 +62,7 @@ function load() {
     const raw = localStorage.getItem(KEY)
     if (raw) return { ...defaultState(), ...JSON.parse(raw) }
   } catch {
-    /* storage blocked or corrupt — start fresh in memory */
+    /* storage blocked or corrupt: start fresh in memory */
   }
   return defaultState()
 }
@@ -75,7 +75,7 @@ function commit(next) {
   try {
     localStorage.setItem(KEY, JSON.stringify(state))
   } catch {
-    /* ignore — progress just won't persist */
+    /* ignore; progress just won't persist */
   }
   listeners.forEach((l) => l())
 }
