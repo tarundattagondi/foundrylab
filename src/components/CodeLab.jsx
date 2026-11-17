@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import CodeEditor from './CodeEditor'
 import { Inline } from './RichText'
+import Spinner from './Spinner'
 import usePyStatus from './usePyStatus'
 import useDark from './useDark'
 import { runPython, warmUp, explainError } from '../lib/pyodideRunner'
@@ -88,6 +89,20 @@ export default function CodeLab({ lab, daily = false }) {
       <div className="flex flex-wrap items-start justify-between gap-3">
         <div className="min-w-0 flex-1">
           <p className="text-[15px] leading-relaxed"><Inline text={lab.task} /></p>
+          {lab.steps && (
+            <div className="mt-3 rounded-xl bg-ink-100 p-3 dark:bg-ink-800">
+              <p className="mb-2 text-[11px] font-extrabold uppercase tracking-wider text-brand-600 dark:text-brand-300">What to do</p>
+              <ol className="space-y-1.5 text-sm">
+                {lab.steps.map((st, i) => (
+                  <li key={i} className="flex gap-2">
+                    <span className="grid h-5 w-5 shrink-0 place-items-center rounded-full bg-brand-500 text-[11px] font-black text-white">{i + 1}</span>
+                    <span><Inline text={st} /></span>
+                  </li>
+                ))}
+              </ol>
+              <p className="muted mt-2 text-xs">Write your code in the box below, press <strong>Run</strong> to test it, then <strong>Check</strong> to see if you got it. Stuck? Press <strong>Hint</strong> — that's what it's for!</p>
+            </div>
+          )}
         </div>
         <div className="flex shrink-0 gap-2">
           {lab.numpy && <span className="chip bg-sky-100 text-sky-800 dark:bg-sky-900/40 dark:text-sky-300">NumPy</span>}
@@ -223,6 +238,3 @@ function OutputPanel({ output, busy }) {
   )
 }
 
-export function Spinner() {
-  return <span className="inline-block h-4 w-4 animate-spin rounded-full border-2 border-current border-t-transparent" aria-hidden />
-}

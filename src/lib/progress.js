@@ -48,6 +48,7 @@ export const BADGES = [
 const defaultState = () => ({
   xp: 0,
   completed: {}, // activityId -> timestamp
+  learned: {}, // lessonId -> timestamp (finished reading the learn pages)
   quizScores: {}, // quizId -> { best, total }
   badges: {}, // badgeId -> timestamp
   streak: { count: 0, lastActive: null },
@@ -205,6 +206,31 @@ export function completeActivity(id, opts = {}) {
     })
   }
   return { firstTime, xpGained, newBadges, levelUp, moduleDone }
+}
+
+/** Finished reading a lesson's learn pages: small XP reward + streak, no badges. */
+export function completeLearn(lessonId) {
+  if (state.learned?.[lessonId]) return
+  const before = levelInfo(state.xp).level
+  const next = {
+    ...state,
+    xp: state.xp + XP.learn,
+    learned: { ...(state.learned || {}), [lessonId]: Date.now() },
+    streak: bumpStreak(state.streak),
+  }
+  const newBadges = [...new Set(autoBadges(next))].filter((b) => !next.badges[b])
+  if (newBadges.length) {
+    next.badges = { ...next.badges }
+    newBadges.forEach((b) => (next.badges[b] = Date.now()))
+  }
+  const after = levelInfo(next.xp)
+  commit(next)
+  celebrate({
+    message: 'Lesson read! Now let\'s practice. 📚',
+    xpGained: XP.learn,
+    newBadges: newBadges.map((b) => BADGES.find((x) => x.id === b)).filter(Boolean),
+    levelUp: after.level > before ? after : null,
+  })
 }
 
 export function recordQuiz(id, correct, total) {

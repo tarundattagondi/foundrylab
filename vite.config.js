@@ -9,9 +9,9 @@ export default defineConfig({
   build: {
     rollupOptions: {
       output: {
-        manualChunks: {
-          react: ['react', 'react-dom'],
-          codemirror: ['codemirror', '@codemirror/lang-python', '@codemirror/theme-one-dark', '@codemirror/view', '@codemirror/state'],
+        manualChunks(id) {
+          if (/node_modules\/(@codemirror|codemirror|@lezer|style-mod|w3c-keyname|crelt)/.test(id)) return 'codemirror'
+          if (/node_modules\/(react|react-dom|scheduler)\//.test(id)) return 'react'
         },
       },
     },

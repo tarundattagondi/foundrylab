@@ -1,6 +1,6 @@
 # ⚒ FoundryLab
 
-**Learn the foundations of Generative AI by *doing*.** FoundryLab is a gamified, hands-on lab in your browser: bite-sized lessons followed immediately by labs with instant feedback. Real Python (and NumPy) runs in your browser through [Pyodide](https://pyodide.org). No backend, no accounts, no API keys.
+**Learn the foundations of Generative AI by *doing* — starting from zero.** FoundryLab is a gamified, hands-on lab in your browser. Every lesson is a few short, kid-friendly pages (everyday analogies, pictures, "Try it" code you can run, quick checks), followed by practice labs with instant feedback. Real Python (and NumPy) runs in your browser through [Pyodide](https://pyodide.org). No backend, no accounts, no API keys.
 
 ![FoundryLab screenshot](docs/screenshot.png)
 <!-- Screenshot placeholder: replace docs/screenshot.png with your own. -->
@@ -9,7 +9,7 @@
 
 | Module | You practice |
 | --- | --- |
-| 🐍 **Python** | lists/dicts/sets/tuples, loops, comprehensions, `*args`/`**kwargs`/lambda, classes as `nn.Module`, files & JSON, venv/pip, f-strings, try/except |
+| 🐍 **Python** | starts at `print("Hello")`: variables, types, if/else, loops, functions, then lists/dicts/sets/tuples, loops, comprehensions, `*args`/`**kwargs`/lambda, classes as `nn.Module`, files & JSON, venv/pip, f-strings, try/except |
 | 🌿 **Git & GitHub** | init/add/commit, branches & merges, clone/push/pull, merge conflicts, `.gitignore`, README, fork/PR/issues, all in a simulated terminal |
 | 📐 **Linear Algebra** | vectors, dot products, matrix multiplication & shapes, transpose/identity/inverse, element-wise vs matrix ops, cosine similarity (NumPy) |
 | ⛰️ **Calculus** | derivatives, the chain rule as backprop, gradients, gradient descent & learning rate |
@@ -17,7 +17,8 @@
 
 ## Features
 
-- **26 auto-graded Python labs.** Your code runs on Pyodide. **Check** runs hidden tests and reports each one in plain words.
+- **55 lessons that start from zero.** Each one is 4–8 short pages with one idea per page, an everyday analogy, a "new words" box, runnable **Try it** examples (142 in total) and ungraded quick checks. Finishing the pages earns XP and unlocks the practice.
+- **50 auto-graded Python labs**, each with numbered "what to do" steps. Your code runs on Pyodide. **Check** runs hidden tests and reports each one in plain words.
 - **Progressive hints.** You get a nudge first, then more detail, then the approach. **Show solution** unlocks after 2 failed checks or once you've used every hint.
 - **Clear errors.** You see the real traceback plus a one-line plain-English explanation. Code that runs over 8 seconds (an infinite loop, say) is stopped safely.
 - **5 interactive playgrounds**, each with a challenge:
@@ -73,42 +74,61 @@ Browser
 
 ## Add a new lab
 
-All content lives in **`src/data/curriculum.js`**. To add a lab, append an object to a lesson's `activities` array:
+Each module lives in its own file: **`src/data/modules/<module>.js`** (`python.js` + `python-basics.js`, `git.js`, `linalg.js`, `calculus.js`, `probability.js`). The full block and activity format is documented at the top of **`src/data/helpers.js`**.
+
+A lesson has `learn` pages (one small idea each) and `activities` (practice):
 
 ```js
 {
-  type: 'code',
-  id: 'py-word-count',            // unique id (used for progress)
-  title: 'Count words',
-  xp: XP.code,
-  numpy: false,                   // true if it uses NumPy (for the badge)
-  task: 'Write `word_count(text)` returning a dict of word → count.',
-  starter: py`
+  id: 'py-word-count',
+  title: 'Counting words',
+  minutes: 6,
+  learn: [
+    {
+      title: 'What are we doing?',
+      blocks: [
+        { big: 'Let\'s count words!' },
+        { analogy: 'Like tallying votes on a whiteboard.', emoji: '🗳️' },
+        { tryit: py`print("a b a".split())`, note: 'split() breaks text into words.' },
+        { quick: { q: 'How many words in "hi there"?', options: ['1', '2'], answer: 1, explain: 'Two words.' } },
+      ],
+    },
+  ],
+  activities: [
+    {
+      type: 'code',
+      id: 'py-word-count-lab',          // unique id (used for progress)
+      title: 'Count words',
+      xp: XP.code,
+      task: 'Write `word_count(text)` returning a dict of word → count.',
+      steps: ['Split the text into words', 'Count each word in a dict', 'Return the dict'],
+      starter: py`
 def word_count(text):
     pass
 `,
-  solution: py`
+      solution: py`
 def word_count(text):
     counts = {}
     for w in text.split():
         counts[w] = counts.get(w, 0) + 1
     return counts
 `,
-  tests: [
-    { name: 'counts repeated words', fail: 'Split on spaces, then count', code: py`
+      tests: [
+        { name: 'counts repeated words', fail: 'Split on spaces, then count', code: py`
 _r = word_count("a b a")
 assert _r == {"a": 2, "b": 1}, f"got {_r!r}"
 ` },
+      ],
+      hints: ['A dict can store counts.', 'Use counts.get(w, 0) + 1', 'Loop over text.split()'],
+    },
   ],
-  hints: ['A dict can store counts.', 'Use counts.get(w, 0) + 1', 'Loop over text.split()'],
 },
 ```
 
-- Tests are plain Python `assert`s that run after the learner's code, in the same namespace. Prefix your helper variables with `_` to avoid clashing with theirs. `__source__` holds the learner's code and `__stdout__` holds what it printed.
-- The `py` tag keeps backslashes and trims indentation edges, so write Python exactly as you would in a `.py` file.
-- Run `npm run verify` to confirm your solution passes and the starter fails.
-
-The other activity types are `quiz` (questions with `options`, `answer`, `explain`), `git` (`setup` plus `steps` with a `check(state, cmd)` function) and `viz` (one of the playground components). A new lesson is just an object in a module's `lessons` array, and it shows up in the sidebar automatically.
+- Add the lesson to a module's `lessons` array and it appears in the sidebar automatically.
+- Tests are plain Python `assert`s that run after the learner's code, in the same namespace. Prefix helper variables with `_`. `__source__` holds the learner's code and `__stdout__` what it printed.
+- Other activity types: `quiz`, `git` (simulated terminal steps with `check(state, cmd)`) and `viz` (a playground component).
+- Run `npm run verify` (or `node scripts/verify-labs.mjs python` for one module) to confirm every solution passes, every starter fails and every Try-it example runs.
 
 ## Deploy for free
 

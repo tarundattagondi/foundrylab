@@ -1,10 +1,10 @@
 // Plays every GitSim scenario with its hint commands and checks each step passes.
 //   node scripts/verify-git.mjs
-import { ALL_ACTIVITIES } from '../src/data/curriculum.js'
+import git from '../src/data/modules/git.js'
 import { exec, initState, normalize } from '../src/lib/gitSim.js'
 
 let bad = 0
-for (const sim of ALL_ACTIVITIES.filter((a) => a.type === 'git')) {
+for (const sim of git.lessons.flatMap((l) => l.activities).filter((a) => a.type === 'git')) {
   let s = initState(sim.setup)
   let step = 0
   for (const st of sim.steps) {

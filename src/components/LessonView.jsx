@@ -1,7 +1,8 @@
-import { useEffect } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { MODULES } from '../data/curriculum'
-import { setLastLesson, useProgress, lessonProgress } from '../lib/progress'
-import { Theory } from './RichText'
+import { setLastLesson, useProgress, lessonProgress, completeLearn } from '../lib/progress'
+import { Blocks } from './RichText'
+import ProgressBar from './ProgressBar'
 import CodeLab from './CodeLab'
 import QuizCard from './QuizCard'
 import GitSim from './GitSim'
@@ -30,6 +31,18 @@ export default function LessonView({ mod, lesson, dailyId }) {
   const lp = lessonProgress(lesson, progress)
   const { prev, next } = neighbours(mod, lesson)
 
+  const learned = Boolean(progress.learned?.[lesson.id])
+  const anyDone = lesson.activities.some((a) => progress.completed[a.id])
+  const [practice, setPractice] = useState(false)
+  const showPractice = practice || learned || anyDone || Boolean(dailyId)
+  const practiceRef = useRef(null)
+
+  function finishLearning() {
+    completeLearn(lesson.id)
+    setPractice(true)
+    setTimeout(() => practiceRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 50)
+  }
+
   useEffect(() => {
     setLastLesson(mod.id, lesson.id)
     window.scrollTo({ top: 0 })
@@ -50,15 +63,26 @@ export default function LessonView({ mod, lesson, dailyId }) {
           {lesson.checkpoint && <span className="chip bg-amber-100 text-amber-800 dark:bg-amber-900/40 dark:text-amber-300">🏁 Checkpoint</span>}
         </div>
         <p className="muted text-sm font-semibold">
-          ⏱ ~{lesson.minutes} min · {lp.done}/{lp.total} activities done
+          ⏱ ~{lesson.minutes} min · {lesson.learn?.length || 1} short pages · {lp.done}/{lp.total} practice done
         </p>
       </header>
 
-      <section className="card p-5 sm:p-6" aria-label="Lesson">
-        <Theory blocks={lesson.theory} />
-      </section>
+      <LearnStepper lesson={lesson} learned={learned} onFinish={finishLearning} />
 
-      {lesson.activities.map((act, i) => {
+      <div ref={practiceRef} className="scroll-mt-24">
+        <h2 className="mb-3 flex items-center gap-2 text-xl font-black">
+          <span aria-hidden>🎯</span> Practice time
+        </h2>
+        {!showPractice && (
+          <div className="card flex flex-col items-center gap-3 p-6 text-center">
+            <p className="text-4xl" aria-hidden>📚</p>
+            <p className="font-bold">Read the lesson pages above first — the practice will make way more sense!</p>
+            <button className="btn-ghost text-sm" onClick={() => setPractice(true)}>I already know this — skip to practice</button>
+          </div>
+        )}
+      </div>
+
+      {showPractice && lesson.activities.map((act, i) => {
         const t = TYPE[act.type]
         const isDaily = act.id === dailyId
         const done = Boolean(progress.completed[act.id])
@@ -104,5 +128,54 @@ export default function LessonView({ mod, lesson, dailyId }) {
         )}
       </nav>
     </article>
+  )
+}
+
+function LearnStepper({ lesson, learned, onFinish }) {
+  const pages = lesson.learn || [{ title: lesson.title, blocks: lesson.theory || [] }]
+  const [i, setI] = useState(0)
+  const top = useRef(null)
+  const page = pages[i]
+  const last = i === pages.length - 1
+
+  const go = (n) => {
+    setI(n)
+    top.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+  }
+
+  return (
+    <section ref={top} className="card scroll-mt-24 overflow-hidden" aria-label="Lesson pages">
+      <div className="border-b border-[color:var(--line)] px-5 py-3 sm:px-6">
+        <div className="mb-2 flex items-center justify-between gap-2 text-xs font-extrabold">
+          <span className="uppercase tracking-wider text-brand-600 dark:text-brand-300">📖 Learn · page {i + 1} of {pages.length}</span>
+          {learned && <span className="chip bg-emerald-100 text-emerald-800 dark:bg-emerald-900/40 dark:text-emerald-300">✓ Read</span>}
+        </div>
+        <ProgressBar value={(i + 1) / pages.length} label="Lesson progress" />
+        <div className="mt-2 flex flex-wrap gap-1" role="tablist" aria-label="Pages">
+          {pages.map((p, n) => (
+            <button
+              key={n}
+              role="tab"
+              aria-selected={n === i}
+              title={p.title}
+              onClick={() => go(n)}
+              className={`h-2.5 rounded-full transition-all ${n === i ? 'w-6 bg-brand-500' : n < i ? 'w-2.5 bg-brand-300 dark:bg-brand-700' : 'w-2.5 bg-ink-200 dark:bg-ink-700'}`}
+            />
+          ))}
+        </div>
+      </div>
+      <div key={i} className="animate-pop space-y-4 p-5 sm:p-6">
+        <h2 className="text-2xl font-black tracking-tight">{page.title}</h2>
+        <Blocks blocks={page.blocks} />
+      </div>
+      <div className="flex items-center justify-between gap-3 border-t border-[color:var(--line)] px-5 py-3 sm:px-6">
+        <button className="btn-ghost" onClick={() => go(i - 1)} disabled={i === 0}>← Back</button>
+        {last ? (
+          <button className="btn-good" onClick={onFinish}>{learned ? 'Go to practice 🎯' : "I've got it! Let's practice 🎯"}</button>
+        ) : (
+          <button className="btn-primary" onClick={() => go(i + 1)}>Next →</button>
+        )}
+      </div>
+    </section>
   )
 }

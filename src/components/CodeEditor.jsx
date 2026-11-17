@@ -14,13 +14,13 @@ const lightTheme = EditorView.theme({
   '.cm-activeLineGutter': { backgroundColor: '#ffe6d4' },
 })
 
-const sizing = EditorView.theme({
-  '&': { minHeight: '220px', maxHeight: '520px' },
+const sizing = (minHeight) => EditorView.theme({
+  '&': { minHeight, maxHeight: '520px' },
   '.cm-scroller': { overflow: 'auto', fontFamily: "'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace", lineHeight: '1.6' },
 })
 
 /** CodeMirror 6 Python editor. Ctrl/Cmd+Enter runs, Shift+Ctrl/Cmd+Enter checks. */
-export default function CodeEditor({ value, onChange, dark, onRun, onCheck, label }) {
+export default function CodeEditor({ value, onChange, dark, onRun, onCheck, label, minHeight = '220px' }) {
   const host = useRef(null)
   const view = useRef(null)
   const themeSlot = useRef(new Compartment())
@@ -42,7 +42,7 @@ export default function CodeEditor({ value, onChange, dark, onRun, onCheck, labe
           keymap.of([indentWithTab]),
           indentUnit.of('    '),
           python(),
-          sizing,
+          sizing(minHeight),
           themeSlot.current.of(dark ? oneDark : lightTheme),
           EditorView.contentAttributes.of({ 'aria-label': label || 'Python code editor' }),
           EditorView.updateListener.of((u) => {
