@@ -6,4 +6,14 @@ export default defineConfig({
   plugins: [react()],
   worker: { format: 'es' },
   base: './',
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          react: ['react', 'react-dom'],
+          codemirror: ['codemirror', '@codemirror/lang-python', '@codemirror/theme-one-dark', '@codemirror/view', '@codemirror/state'],
+        },
+      },
+    },
+  },
 })

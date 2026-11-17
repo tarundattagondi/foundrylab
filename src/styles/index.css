@@ -1,0 +1,65 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Theme tokens. Tailwind's `dark:` variant handles most styling; these cover
+   the few places (CodeMirror, SVG viz) that read CSS variables directly. */
+:root {
+  --bg: #fbf8f4;
+  --card: #ffffff;
+  --ink: #17172a;
+  --muted: #6b6b8a;
+  --line: #e7e2da;
+  --accent: #fb5b14;
+  --accent-soft: #ffe6d4;
+  --good: #16a34a;
+  --bad: #e11d48;
+  --blue: #2563eb;
+  --violet: #7c3aed;
+  --grid: #ece7df;
+  color-scheme: light;
+}
+.dark {
+  --bg: #0e0e1c;
+  --card: #17172a;
+  --ink: #eeeef6;
+  --muted: #9d9dbb;
+  --line: #2b2b44;
+  --accent: #ff7a3d;
+  --accent-soft: #3a2012;
+  --good: #4ade80;
+  --bad: #fb7185;
+  --blue: #60a5fa;
+  --violet: #a78bfa;
+  --grid: #24243a;
+  color-scheme: dark;
+}
+
+html, body, #root { height: 100%; }
+body {
+  background: var(--bg);
+  color: var(--ink);
+  @apply font-sans antialiased;
+}
+
+@layer components {
+  .card { @apply rounded-2xl border bg-white shadow-sm dark:bg-ink-900 border-[color:var(--line)]; }
+  .btn { @apply inline-flex items-center justify-center gap-2 rounded-xl px-4 py-2 text-sm font-bold transition active:scale-[.97] disabled:opacity-50 disabled:cursor-not-allowed; }
+  .btn-primary { @apply btn bg-brand-500 text-white hover:bg-brand-600 shadow-sm shadow-brand-500/30; }
+  .btn-ghost { @apply btn border border-[color:var(--line)] bg-transparent hover:bg-ink-100 dark:hover:bg-ink-800; }
+  .btn-good { @apply btn bg-emerald-600 text-white hover:bg-emerald-700; }
+  .chip { @apply inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 text-xs font-bold; }
+  .muted { color: var(--muted); }
+  .inline-code { @apply rounded-md bg-ink-100 px-1.5 py-0.5 font-mono text-[0.85em] text-brand-700 dark:bg-ink-800 dark:text-brand-300; }
+}
+
+.cm-editor { font-size: 14px; border-radius: 0.75rem; }
+.cm-editor.cm-focused { outline: none; }
+.cm-scroller { font-family: 'JetBrains Mono', ui-monospace, monospace !important; line-height: 1.6; }
+.cm-gutters { border-top-left-radius: 0.75rem; border-bottom-left-radius: 0.75rem; }
+
+.touch-none { touch-action: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
