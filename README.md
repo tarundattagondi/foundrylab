@@ -2,8 +2,9 @@
 
 **Learn the foundations of Generative AI by *doing*, starting from zero.** FoundryLab is a gamified, hands-on lab in your browser. Every lesson is a few short, kid-friendly pages (everyday analogies, pictures, "Try it" code you can run, quick checks), followed by practice labs with instant feedback. Real Python (and NumPy) runs in your browser through [Pyodide](https://pyodide.org). No backend, no accounts, no API keys.
 
-![FoundryLab screenshot](docs/screenshot.png)
-<!-- Screenshot placeholder: replace docs/screenshot.png with your own. -->
+![FoundryLab dashboard](docs/screenshot.png)
+
+![A FoundryLab lesson page with a runnable Try it example](docs/lesson.png)
 
 ## What's inside
 
