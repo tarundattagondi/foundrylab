@@ -1,62 +1,93 @@
 # ⚒ FoundryLab
 
-**Learn the foundations of Generative AI by *doing*, starting from zero.** FoundryLab is a gamified, hands-on lab in your browser. Every lesson is a few short, kid-friendly pages (everyday analogies, pictures, "Try it" code you can run, quick checks), followed by practice labs with instant feedback. Real Python (and NumPy) runs in your browser through [Pyodide](https://pyodide.org). No backend, no accounts, no API keys.
+**Learn the foundations of Generative AI by *doing*, starting from zero.**
+
+FoundryLab teaches Python, Git, Linear Algebra, Calculus and Probability in your browser, simple enough that a curious kid can follow along. Every lesson is a few short pages with everyday comparisons, pictures, code you can run on the spot and quick check questions. Then you practice in labs that grade your work instantly.
+
+Real Python (and NumPy) runs in your browser through [Pyodide](https://pyodide.org). No installs, no accounts, no backend, no API keys.
 
 ![FoundryLab dashboard](docs/screenshot.png)
 
 ![A FoundryLab lesson page with a runnable Try it example](docs/lesson.png)
 
-## What's inside
+## At a glance
 
-| Module | You practice |
+| | |
 | --- | --- |
-| 🐍 **Python** | starts at `print("Hello")`: variables, types, if/else, loops, functions, then lists/dicts/sets/tuples, loops, comprehensions, `*args`/`**kwargs`/lambda, classes as `nn.Module`, files & JSON, venv/pip, f-strings, try/except |
-| 🌿 **Git & GitHub** | init/add/commit, branches & merges, clone/push/pull, merge conflicts, `.gitignore`, README, fork/PR/issues, all in a simulated terminal |
-| 📐 **Linear Algebra** | vectors, dot products, matrix multiplication & shapes, transpose/identity/inverse, element-wise vs matrix ops, cosine similarity (NumPy) |
-| ⛰️ **Calculus** | derivatives, the chain rule as backprop, gradients, gradient descent & learning rate |
-| 🎲 **Probability & Stats** | conditional probability as next-token prediction, Gaussians, mean/variance/std, normalization, softmax + temperature sampling, precision/recall |
+| 📚 Lessons | **59**, made of **334** short pages |
+| ▶ Try it examples | **142** runnable code snippets inside the lessons |
+| 🧪 Code labs | **50**, auto-graded with hidden tests |
+| ⌨️ Terminal challenges | **11** in a safe, simulated Git terminal |
+| ❓ Quizzes | **8** (plus quick checks on almost every lesson) |
+| 🎡 Playgrounds | **5** drag-and-play math widgets, each with a challenge |
+| 🏅 Badges | **16** |
+
+## The curriculum
+
+Every module starts from the very basics and builds up to how AI actually uses the idea.
+
+**🐍 Python (16 lessons).** Hello, computer! Your first program · Variables: labeled boxes · Kinds of data · Making decisions: if & else · Loops · Functions · Lists · Dictionaries · Sets, tuples & zip · List comprehensions · Function tricks: defaults, \*args, \*\*kwargs & lambda · Classes & objects · Inheritance & AI layers (nn.Module) · Files, JSON & virtual environments · f-strings & handling errors · **Checkpoint:** read a real AI model
+
+**🌿 Git & GitHub (11 lessons).** What is version control? · The terminal: typing commands · git init & git status · Staging & committing · git log · Branches · Merging · GitHub: clone, push & pull · Merge conflicts (don't panic!) · .gitignore & README · **Checkpoint:** fork, PR & issues
+
+**📐 Linear Algebra (11 lessons).** Numbers on a grid · Vectors: arrows made of numbers · Meet NumPy · Adding & stretching vectors · How long is an arrow? · Dot product · Matrices: tables of numbers · Multiplying matrices, step by step · Flip, do-nothing & undo matrices · Cosine similarity: how AI compares meanings · **Checkpoint:** shape master
+
+**⛰️ Calculus (10 lessons).** Functions are machines · Graphs · Slope: how steep is it? · Derivatives: the slope of a curve · Handy derivative shortcuts · Chain rule = backprop · Loss: how wrong am I? · Partial derivatives & gradients · Gradient descent & learning rate · **Checkpoint:** train a one-knob model
+
+**🎲 Probability & Stats (11 lessons).** What is probability? · Experiments: flipping coins with Python · Conditional probability · Next-word prediction: how autocomplete works · Distributions & the bell curve · Mean, variance & standard deviation · Normalization · Softmax · Sampling & temperature · Accuracy, precision & recall · **Checkpoint:** think like a sampler
+
+## How a lesson works
+
+1. **Learn, one page at a time.** Each page explains a single idea and uses some of these:
+   - **🧸 Think of it like this:** an everyday comparison (a variable is a labeled box, Git is a video-game save point).
+   - **Pictures:** lists drawn as rows of boxes, tables for matrices, and worked examples done step by step with real numbers.
+   - **▶ Try it yourself:** a small code box you can edit and run, with no grading.
+   - **🤔 Quick check:** a question that just says "try another!" if you pick wrong.
+   - **📖 New words:** a short glossary of every new term.
+2. **Practice.** It unlocks when you finish the pages (or tap "I already know this"). Reading the pages earns 10 XP.
+3. **Labs.** Each lab has numbered "what to do" steps, a starter code box, **Run** and **Check** buttons, and hints.
 
 ## Features
 
-- **55 lessons that start from zero.** Each one is 4–8 short pages with one idea per page, an everyday analogy, a "new words" box, runnable **Try it** examples (142 in total) and ungraded quick checks. Finishing the pages earns XP and unlocks the practice.
-- **50 auto-graded Python labs**, each with numbered "what to do" steps. Your code runs on Pyodide. **Check** runs hidden tests and reports each one in plain words.
-- **Progressive hints.** You get a nudge first, then more detail, then the approach. **Show solution** unlocks after 2 failed checks or once you've used every hint.
-- **Clear errors.** You see the real traceback plus a one-line plain-English explanation. Code that runs over 8 seconds (an infinite loop, say) is stopped safely.
-- **5 interactive playgrounds**, each with a challenge:
-  - **Dot product:** drag the vectors.
-  - **Cosine similarity:** see how embeddings compare by direction.
-  - **Matrix shapes:** test which shapes can multiply.
+- **Instant grading.** **Check** runs hidden tests and explains each result in plain words.
+- **Hints that go step by step.** You get a nudge first, then more detail, then the approach. **Show solution** unlocks only after 2 failed checks or once every hint has been used.
+- **Friendly errors.** You see the real Python traceback plus a one-line plain-English explanation. Code that runs longer than 8 seconds (an infinite loop, say) is stopped safely.
+- **5 playgrounds**, each with a challenge:
+  - **Dot product:** drag two arrows and watch the number change.
+  - **Cosine similarity:** see how AI compares meanings by direction.
+  - **Matrix shapes:** find out which shapes can multiply.
   - **Gradient descent:** roll a ball down a valley and watch it overshoot when the learning rate is too high.
-  - **Temperature:** watch sampling get sharper or flatter.
-- **Git simulator.** A forgiving fake terminal with scripted challenges, command history (↑/↓) and hints.
-- **Checkpoint quizzes.** Wrong answers get a nudge, not a scolding.
-- **Gamification:**
-  - XP and levels: Curious Spark → Token Tinkerer → Tensor Apprentice → Gradient Wrangler → …
-  - A daily streak flame that grows each day.
+  - **Temperature:** make a chatbot's next-word choices sharper or more random.
+- **Git simulator.** A forgiving pretend terminal with step-by-step challenges, command history (↑/↓) and hints. Nothing touches your real files.
+- **Gamification.**
+  - XP and levels: Curious Spark → Token Tinkerer → Tensor Apprentice → … → Foundry Master.
+  - A daily streak flame that grows.
   - 16 badges and a progress ring for every module.
   - Confetti, and a daily challenge picked from topics you've already finished.
-- **Saves locally.** Progress, streaks, badges, quiz scores, your code drafts, theme, and your last lesson are all stored in `localStorage`. If storage is blocked, the app still works.
-- **Dark and light mode, and mobile-friendly.** The editor and playgrounds work on phones.
+- **Saves automatically.** Progress, streaks, badges, quiz scores, your code, theme and your last lesson are kept in your browser (`localStorage`). If storage is blocked, the app still works.
+- **Dark and light mode, and works on phones.**
 
 ## Run it locally (under 5 minutes)
 
-You need **Node.js 18+**.
+You need **Node.js 20 or newer**.
 
 ```bash
-git clone https://github.com/<you>/foundrylab.git
+git clone https://github.com/tarundattagondi/foundrylab.git
 cd foundrylab
 npm install
 npm run dev
 ```
 
-Open the URL Vite prints (usually http://localhost:5173). The first code lab downloads the Python engine (~10 MB, cached by your browser afterwards).
+Open the address it prints (usually http://localhost:5173). The first time you run code, the browser downloads the Python engine (about 10 MB). After that it's cached.
 
-| Script | What it does |
+| Command | What it does |
 | --- | --- |
-| `npm run dev` | Start the dev server with hot reload |
-| `npm run build` | Production build into `dist/` |
-| `npm run preview` | Serve the production build locally |
-| `npm run verify` | Check every lab: the reference solution must pass, the starter must fail (needs local `python3` + `numpy`) |
+| `npm run dev` | Start the app with live reload |
+| `npm run build` | Make a production build in `dist/` |
+| `npm run preview` | Serve that production build locally |
+| `npm run verify` | Check all lesson content (needs local `python3` and `numpy`) |
+
+`npm run verify` confirms that every lab's solution passes its tests, every starter fails, every Try-it example runs and every quiz answer is valid. `node scripts/verify-git.mjs` plays through every terminal challenge.
 
 ## How it works
 
@@ -64,18 +95,35 @@ Open the URL Vite prints (usually http://localhost:5173). The first code lab dow
 Browser
  ├─ React UI (Vite + Tailwind)
  ├─ CodeMirror 6 editor
- └─ Web Worker ── Pyodide (CPython compiled to WebAssembly, loaded from jsDelivr CDN)
-                   └─ harness.py: runs your code, captures stdout, runs hidden tests
+ └─ Web Worker ── Pyodide (Python compiled to WebAssembly, loaded from the jsDelivr CDN)
+                   └─ harness.py: runs your code, captures what it prints, runs hidden tests
 ```
 
-- `src/lib/pyodideRunner.js` lazily starts a Web Worker the first time you open a code lab. The worker loads Pyodide once and keeps it warm for every lab after that. NumPy is fetched the first time a lab imports it. Running Python off the main thread keeps the UI smooth and lets us kill runaway code.
-- `src/lib/harness.py` runs your code in a fresh namespace. On **Check** it runs each hidden test against that namespace and returns pass/fail with friendly messages.
-- `src/lib/progress.js` holds all XP, streak, badge and completion state in `localStorage`.
-- `src/lib/gitSim.js` is a small pure-JS git simulator.
+- **`src/lib/pyodideRunner.js`** starts the Python engine in a Web Worker the first time you run code, then keeps it ready for every lesson. NumPy is fetched the first time it's imported. Running Python off the main page keeps everything smooth and lets runaway code be stopped.
+- **`src/lib/harness.py`** runs your code in a fresh space. On **Check** it runs each hidden test and reports pass or fail with a friendly message.
+- **`src/lib/progress.js`** stores XP, streaks, badges and progress in `localStorage`.
+- **`src/lib/gitSim.js`** is the pretend Git used by the terminal challenges.
 
-## Add a new lab
+### Project layout
 
-Each module lives in its own file: **`src/data/modules/<module>.js`** (`python.js` + `python-basics.js`, `git.js`, `linalg.js`, `calculus.js`, `probability.js`). The full block and activity format is documented at the top of **`src/data/helpers.js`**.
+```
+src/
+  data/
+    curriculum.js        # puts the modules together + lookup helpers
+    helpers.js           # the lesson format (documented at the top) + XP values
+    modules/             # one file per module: all lessons, labs and quizzes
+      python-basics.js   #   Python lessons 1-9
+      python.js          #   Python lessons 10-16 + module info
+      git.js  linalg.js  calculus.js  probability.js
+  lib/                   # Python engine, grading harness, progress, git simulator
+  components/            # lesson pages, labs, quizzes, terminal, playgrounds, dashboard
+scripts/                 # content checkers (verify-labs.mjs, verify-git.mjs)
+docs/                    # README screenshots
+```
+
+## Add a new lesson or lab
+
+Open the module's file in **`src/data/modules/`**. Every block and activity type is listed at the top of **`src/data/helpers.js`**.
 
 A lesson has `learn` pages (one small idea each) and `activities` (practice):
 
@@ -92,13 +140,14 @@ A lesson has `learn` pages (one small idea each) and `activities` (practice):
         { analogy: 'Like tallying votes on a whiteboard.', emoji: '🗳️' },
         { tryit: py`print("a b a".split())`, note: 'split() breaks text into words.' },
         { quick: { q: 'How many words in "hi there"?', options: ['1', '2'], answer: 1, explain: 'Two words.' } },
+        { words: [['split', 'breaks text into a list of words']] },
       ],
     },
   ],
   activities: [
     {
       type: 'code',
-      id: 'py-word-count-lab',          // unique id (used for progress)
+      id: 'py-word-count-lab',          // unique id (used to save progress)
       title: 'Count words',
       xp: XP.code,
       task: 'Write `word_count(text)` returning a dict of word → count.',
@@ -126,16 +175,17 @@ assert _r == {"a": 2, "b": 1}, f"got {_r!r}"
 },
 ```
 
-- Add the lesson to a module's `lessons` array and it appears in the sidebar automatically.
-- Tests are plain Python `assert`s that run after the learner's code, in the same namespace. Prefix helper variables with `_`. `__source__` holds the learner's code and `__stdout__` what it printed.
-- Other activity types: `quiz`, `git` (simulated terminal steps with `check(state, cmd)`) and `viz` (a playground component).
-- Run `npm run verify` (or `node scripts/verify-labs.mjs python` for one module) to confirm every solution passes, every starter fails and every Try-it example runs.
+- Put the lesson in a module's `lessons` array and it shows up in the sidebar automatically.
+- Other page blocks: `code`, `steps`, `list`, `boxes`, `table`, `tip` and `warn`.
+- Tests are plain Python `assert`s that run after the learner's code. Start helper variable names with `_`. `__source__` holds the learner's code and `__stdout__` what it printed.
+- Other activity types: `quiz`, `git` (terminal steps with a `check(state, cmd)` function) and `viz` (one of the 5 playgrounds).
+- Run `npm run verify` (or `node scripts/verify-labs.mjs python` for one module) before you commit.
 
 ## Deploy for free
 
-**Vercel:** import the GitHub repo at [vercel.com/new](https://vercel.com/new). It detects Vite automatically (build: `npm run build`, output: `dist`). Click Deploy.
+**Vercel:** import the repo at [vercel.com/new](https://vercel.com/new). It detects Vite automatically (build command `npm run build`, output folder `dist`). Click Deploy.
 
-**GitHub Pages:** the build uses relative paths (`base: './'`), so `dist/` works from any sub-path. Push `dist/` to a `gh-pages` branch, or use the official "Deploy static content" GitHub Action with `path: dist`.
+**GitHub Pages:** the build uses relative paths (`base: './'`), so `dist/` works from any sub-folder. Publish `dist/` to a `gh-pages` branch, or use GitHub's "Deploy static content" Action with `path: dist`.
 
 ## License
 
