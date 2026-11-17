@@ -6,7 +6,9 @@
 //   node scripts/verify-labs.mjs            # all modules
 //   node scripts/verify-labs.mjs python     # just src/data/modules/python.js
 import { spawnSync } from 'node:child_process'
-import { readFileSync } from 'node:fs'
+import { readFileSync, mkdtempSync } from 'node:fs'
+import { tmpdir } from 'node:os'
+import { join } from 'node:path'
 
 const only = process.argv[2]
 let modules
@@ -68,7 +70,8 @@ for t in data["tryits"]:
 print(f"{len(data['labs'])} labs, {len(data['tryits'])} try-it examples checked")
 sys.exit(1 if bad else 0)
 `
-const r = spawnSync('python3', ['-c', driver], { input: JSON.stringify({ labs, tryits }), encoding: 'utf8' })
+// Run in a scratch folder: some examples write files.
+const r = spawnSync('python3', ['-c', driver], { input: JSON.stringify({ labs, tryits }), encoding: 'utf8', cwd: mkdtempSync(join(tmpdir(), 'foundrylab-')) })
 process.stdout.write(r.stdout)
 process.stderr.write(r.stderr)
 problems.forEach((p) => console.log('BAD', p))
