@@ -55,7 +55,6 @@ body {
 
 .cm-editor { font-size: 14px; border-radius: 0.75rem; }
 .cm-editor.cm-focused { outline: none; }
-.cm-scroller { font-family: 'JetBrains Mono', ui-monospace, monospace !important; line-height: 1.6; }
 .cm-gutters { border-top-left-radius: 0.75rem; border-bottom-left-radius: 0.75rem; }
 
 .touch-none { touch-action: none; }

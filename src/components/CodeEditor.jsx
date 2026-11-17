@@ -16,7 +16,7 @@ const lightTheme = EditorView.theme({
 
 const sizing = EditorView.theme({
   '&': { minHeight: '220px', maxHeight: '520px' },
-  '.cm-scroller': { overflow: 'auto' },
+  '.cm-scroller': { overflow: 'auto', fontFamily: "'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace", lineHeight: '1.6' },
 })
 
 /** CodeMirror 6 Python editor. Ctrl/Cmd+Enter runs, Shift+Ctrl/Cmd+Enter checks. */
@@ -51,6 +51,8 @@ export default function CodeEditor({ value, onChange, dark, onRun, onCheck, labe
         ],
       }),
     })
+    // Re-measure once web fonts arrive so gutters line up with the text.
+    document.fonts?.ready.then(() => view.current?.requestMeasure())
     return () => view.current?.destroy()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])

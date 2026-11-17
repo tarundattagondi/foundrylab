@@ -9,10 +9,10 @@ export default function XPBar({ xp, compact = false }) {
       </div>
       <div className="min-w-0">
         <div className="flex items-baseline gap-2">
-          <span className="truncate text-xs font-extrabold">{title}</span>
-          {!compact && <span className="muted text-[11px] font-semibold">{into}/{next} XP</span>}
+          <span className="hidden truncate text-xs font-extrabold sm:inline">{title}</span>
+          {!compact && <span className="muted whitespace-nowrap text-[11px] font-semibold">{into}/{next} XP</span>}
         </div>
-        <div className="mt-1 h-1.5 w-24 overflow-hidden rounded-full bg-ink-100 sm:w-32 dark:bg-ink-800">
+        <div className="mt-1 h-1.5 w-16 overflow-hidden rounded-full bg-ink-100 sm:w-32 dark:bg-ink-800">
           <div className="h-full rounded-full bg-gradient-to-r from-brand-400 to-amber-400 transition-all duration-700" style={{ width: `${(into / next) * 100}%` }} />
         </div>
       </div>
