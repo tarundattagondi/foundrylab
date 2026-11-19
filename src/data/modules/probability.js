@@ -42,6 +42,7 @@ export default {
                 ],
               },
             },
+            { visual: 'chanceLine' },
             { tip: 'If you ever calculate a probability bigger than 1 or smaller than 0, something went wrong. Check your maths!' },
             {
               quick: {
@@ -58,7 +59,6 @@ export default {
           blocks: [
             'When every result is equally likely, there\'s an easy recipe:',
             { big: 'probability = (ways to get what you want) ÷ (all the possible ways)' },
-            { boxes: ['⚀', '⚁', '⚂', '⚃', '⚄', '⚅'], labels: ['1', '2', '3', '4', '5', '6'], caption: 'a dice' },
             'What is the chance of rolling a **6**? Let\'s go slowly:',
             {
               steps: [
@@ -77,6 +77,27 @@ print("Chance of a 6:", wanted / total)
 wanted = 3   # rolling 2, 4 or 6
 print("Chance of an even number:", wanted / total)
 `, note: 'Press Run. Then change `wanted` to work out the chance of rolling 5 or 6.' },
+            { visual: 'diceChance' },
+            {
+              trace: py`
+def chance(wanted, total):
+    p = wanted / total
+    return p
+
+six = chance(1, 6)
+even = chance(3, 6)
+print(round(six, 2), even)
+`,
+              title: 'Watch the chance recipe work, one line at a time.',
+              notes: {
+                1: 'This only *teaches* Python the recipe. Nothing is worked out yet.',
+                2: 'The recipe itself: wanted ÷ total.',
+                3: '`return` hands the answer back to the line that asked for it.',
+                5: 'Ask for the chance of a 6. The inputs `1` and `6` travel into the function as `wanted` and `total`.',
+                6: 'Same recipe again, now for an even number: 3 good faces out of 6.',
+                7: 'Show both answers. `round(six, 2)` keeps just 2 decimal places.',
+              },
+            },
             { words: [['outcome', 'one possible result, like "rolled a 4"']] },
           ],
         },
@@ -256,6 +277,26 @@ print("fraction of heads:", heads / len(flips))
                 explain: '1 head out of 4 flips: 1 ÷ 4 = 0.25.',
               },
             },
+            {
+              trace: py`
+flips = ["H", "T", "H", "H", "T"]
+heads = 0
+for f in flips:
+    if f == "H":
+        heads = heads + 1
+fraction = heads / len(flips)
+print("heads:", heads, "fraction:", fraction)
+`,
+              title: 'How does counting heads really work? Follow each flip.',
+              notes: {
+                1: 'Our experiment: 5 flips.',
+                2: 'A counter box that starts at 0.',
+                3: 'Look at the flips one at a time. `f` holds the flip we are looking at.',
+                4: 'Ask: is this flip heads?',
+                5: 'Yes! Add 1 to the counter.',
+                6: 'Heads ÷ number of flips = the fraction of heads.',
+              },
+            },
           ],
         },
         {
@@ -270,6 +311,7 @@ for n in [10, 100, 1000, 100000]:
     print(n, "flips -> fraction of heads:", flips.count("H") / n)
 `, note: 'Look how the big experiments land really close to 0.5!' },
             'Mathematicians call this the **law of large numbers**. A few flips can be lucky or unlucky; lots of flips even out.',
+            { visual: 'coinFlipper' },
             { words: [['law of large numbers', 'with lots and lots of tries, results get close to the true probability']] },
           ],
         },
@@ -395,6 +437,7 @@ assert _r is not None and abs(_r - 0.6) < 1e-9, f"expected 0.6, got {_r!r}"
               ],
             },
             { big: 'The clue "it\'s big" changed the chance from 0.5 to 0.75!' },
+            { visual: 'marbleBag' },
           ],
         },
         {
@@ -437,6 +480,29 @@ print("big AND red:", len(red_big))
 print("P(red | big) =", len(red_big) / len(big))
 `, note: 'Try changing it to work out P(blue | big).' },
             { tip: 'The trick for "given" is always: **first shrink the group** to only what you know, **then count** inside that smaller group.' },
+            {
+              trace: py`
+marbles = [("big", "red"), ("big", "blue"), ("small", "red"), ("big", "red")]
+big = 0
+red_and_big = 0
+for size, color in marbles:
+    if size == "big":
+        big = big + 1
+        if color == "red":
+            red_and_big = red_and_big + 1
+print("P(red | big) =", red_and_big, "/", big, "=", red_and_big / big)
+`,
+              title: 'Shrink, then count: watch each marble get checked.',
+              notes: {
+                1: 'Four marbles, each written as (size, colour).',
+                2: 'Counts the BIG marbles. This is our smaller group.',
+                3: 'Counts the marbles that are big AND red.',
+                4: 'Take the marbles out one at a time.',
+                5: 'Step 1, shrink: only big marbles get past this question.',
+                7: 'Step 2, count: is this big marble red?',
+                9: 'red and big ÷ big = P(red | big).',
+              },
+            },
           ],
         },
         {
@@ -576,6 +642,7 @@ assert _r is not None and abs(_r - 0.5) < 1e-9, f"expected 0.5, got {_r!r}"
             { code: 'the cat sat. the cat ran. the cat sat. the dog sat.' },
             'Now count what came right after the word **"the"**:',
             { table: { head: ['After "the"', 'Count'], rows: [['cat', '3'], ['dog', '1'], ['Total', '4']] } },
+            { visual: 'nextWord', text: 'the cat sat. the cat ran. the cat sat. the dog sat.' },
             { words: [['bigram', 'a pair of words that appear next to each other, like "the cat"']] },
           ],
         },
@@ -601,6 +668,31 @@ assert _r is not None and abs(_r - 0.5) < 1e-9, f"expected 0.5, got {_r!r}"
                 explain: 'Total after "I" = 6 + 2 = 8. "am" was 6 of them: 6/8 = 0.75.',
               },
             },
+            {
+              trace: py`
+def next_word_probs(followers):
+    total = sum(followers.values())
+    probs = {}
+    for word in followers:
+        probs[word] = followers[word] / total
+    return probs
+
+after_the = {"cat": 3, "dog": 1}
+answer = next_word_probs(after_the)
+print(answer)
+`,
+              title: 'Counts go IN, probabilities come OUT. Follow the journey.',
+              notes: {
+                1: 'Python learns the recipe for turning counts into chances.',
+                2: 'Add up all the counts: 3 + 1 = 4.',
+                3: 'An empty dictionary to hold the answers.',
+                4: 'Visit each word that came after "the".',
+                5: 'This word\'s count ÷ the total = its probability.',
+                6: 'Send the finished dictionary back.',
+                8: 'What came after "the": cat 3 times, dog 1 time.',
+                9: 'Give the counts to the function. Watch Python jump inside it!',
+              },
+            },
           ],
         },
         {
@@ -618,6 +710,24 @@ total = sum(followers.values())     # 3 + 1 = 4
 for word in followers:
     print("P(", word, "| the ) =", followers[word] / total)
 `, note: 'Change it to look at the word "cat" instead of "the".' },
+            {
+              trace: py`
+words = ["the", "cat", "sat", "the", "cat", "ran"]
+counts = {}
+for i in range(len(words) - 1):
+    pair = words[i] + " " + words[i + 1]
+    counts[pair] = counts.get(pair, 0) + 1
+print(counts)
+`,
+              title: 'Where do the counts come from? Watch Python count word pairs.',
+              notes: {
+                1: 'A tiny story, already split into words.',
+                2: 'An empty dictionary. Each key will be a pair of words.',
+                3: '`i` walks along the story: 0, 1, 2, 3, 4 (stopping before the last word).',
+                4: 'Glue a word to the word right after it, like "the cat".',
+                5: 'Add 1 to that pair\'s count. `.get(pair, 0)` gives 0 the first time we see a pair.',
+              },
+            },
             { tip: '`sum(d.values())` adds up all the numbers stored in a dictionary.' },
           ],
         },
@@ -627,6 +737,7 @@ for word in followers:
             'Real chatbots don\'t just look at **one** previous word. They look at the whole conversation so far, hundreds or thousands of words!',
             'And instead of a simple counting table, they use a giant neural network. But the goal is exactly the same:',
             { big: 'P(next word | everything before it)' },
+            { visual: 'nextWord' },
             { tryit: py`
 counts = {"once": {"upon": 9, "more": 1}, "upon": {"a": 10}, "a": {"time": 8, "dragon": 2}}
 
@@ -752,6 +863,7 @@ for face in range(1, 7):
     n = rolls.count(face)
     print(face, "#" * (n // 5), n)
 `, note: 'Each # is 5 rolls. The bars are all about the same height, a flat distribution!' },
+            { visual: 'diceRoller', dice: 1, allowToggle: false },
             { words: [['histogram', 'a bar chart showing how often each result happened']] },
           ],
         },
@@ -768,6 +880,7 @@ for t in range(2, 13):
     n = totals.count(t)
     print(str(t).rjust(2), "#" * (n // 20))
 `, note: 'See the hill shape? The middle totals happen most!' },
+            { visual: 'diceRoller', dice: 2, allowToggle: false },
             {
               quick: {
                 q: 'With two dice, which total happens most often?',
@@ -785,6 +898,7 @@ for t in range(2, 13):
             'Heights of people, test scores, the size of apples. They all make bell curves. Most things are near the middle; very small or very big ones are rare.',
             'A bell curve is described by just **two numbers**:',
             { table: { head: ['Number', 'Symbol', 'What it controls'], rows: [['mean', '`μ` (mu)', 'where the middle (top of the bell) is'], ['standard deviation', '`σ` (sigma)', 'how wide and spread out the bell is']] } },
+            { visual: 'histogramBuilder' },
             { words: [['normal distribution', 'the famous bell-shaped curve; also called the Gaussian'], ['mean (μ)', 'the middle of the bell'], ['standard deviation (σ)', 'how spread out the bell is']] },
           ],
         },
@@ -811,6 +925,31 @@ for x in range(-3, 4):
     h = bell(x, 0, 1)
     print(str(x).rjust(2), "#" * int(h * 60))
 `, note: 'A sideways bell! Try sigma = 2 to see it get wider and flatter.' },
+            {
+              trace: py`
+import math
+
+def bell(x, mu, sigma):
+    distance = x - mu
+    top = math.exp(-distance ** 2 / (2 * sigma ** 2))
+    bottom = sigma * math.sqrt(2 * math.pi)
+    return top / bottom
+
+middle = bell(0, 0, 1)
+side = bell(1, 0, 1)
+print(round(middle, 3), round(side, 3))
+`,
+              title: 'Follow x through the bell formula, piece by piece.',
+              notes: {
+                3: 'Python learns the bell recipe. Nothing is worked out yet.',
+                4: 'How far is x from the middle?',
+                5: 'The top part: biggest (1) when the distance is 0, smaller further away.',
+                6: 'The bottom part: a fixed number that sets the size of the curve.',
+                7: 'Top ÷ bottom = the height of the bell at x.',
+                9: 'Height right in the middle (x = 0).',
+                10: 'Height one step to the side (x = 1). It should be lower!',
+              },
+            },
           ],
         },
         {
@@ -912,11 +1051,29 @@ assert abs(_r - 0.199471) < 1e-5, f"expected about 0.1995, got {_r!r}"
                 'Share: `20 ÷ 4 = 5`. The mean is **5**.',
               ],
             },
+            { visual: 'meanBalance', values: [2, 4, 6, 8] },
             { tryit: py`
 sweets = [2, 4, 6, 8]
 mean = sum(sweets) / len(sweets)
 print("mean:", mean)
 `, note: 'Add another friend with 10 sweets. What happens to the mean?' },
+            {
+              trace: py`
+sweets = [2, 4, 6, 8]
+total = 0
+for s in sweets:
+    total = total + s
+mean = total / len(sweets)
+print("mean:", mean)
+`,
+              title: 'The fair share, step by step.',
+              notes: {
+                2: 'Start the pile at 0 sweets.',
+                3: 'Take each friend\'s sweets, one friend at a time.',
+                4: 'Put them on the pile.',
+                5: 'Share the pile: total ÷ number of friends.',
+              },
+            },
             { words: [['mean', 'the average: add everything up, then divide by how many there are']] },
           ],
         },
@@ -935,6 +1092,8 @@ print("mean:", mean)
                 explain: 'Class B goes from 10 to 90, very spread out. Class A stays close to 50.',
               },
             },
+            { visual: 'meanBalance', values: [4, 5, 5, 6] },
+            'Try the **Close together** and **Spread out** buttons above. Both have a mean of 5, but they look very different!',
           ],
         },
         {
@@ -948,6 +1107,7 @@ print("mean:", mean)
                 'Find the mean of those squares: `32 ÷ 8 = 4`. The variance is **4**.',
               ],
             },
+            { visual: 'meanBalance', values: [2, 4, 4, 4, 5, 5, 7, 9], showSpread: true },
             { tip: 'Why square? Because -3 and +3 are equally "far". Squaring stops the minus and plus distances cancelling out.' },
             { words: [['variance', 'the average of the squared distances from the mean, a measure of spread']] },
           ],
@@ -966,6 +1126,28 @@ variance = sum(squares) / len(nums)
 std = variance ** 0.5
 print("mean:", mean, " variance:", variance, " std:", std)
 `, note: 'Swap in Class B\'s scores [10, 90, 20, 80] and see the big std!' },
+            {
+              trace: py`
+nums = [4, 6, 8]
+mean = sum(nums) / len(nums)
+squares = []
+for x in nums:
+    distance = x - mean
+    squares.append(distance ** 2)
+variance = sum(squares) / len(nums)
+std = variance ** 0.5
+print("mean:", mean, "variance:", round(variance, 2), "std:", round(std, 2))
+`,
+              title: 'From numbers to spread: watch every distance get squared.',
+              notes: {
+                2: 'First the mean: (4 + 6 + 8) ÷ 3 = 6.',
+                3: 'An empty list to collect the squared distances.',
+                5: 'How far is this number from the mean? (It can be negative.)',
+                6: 'Square it so it is positive, then add it to the list.',
+                7: 'Variance = the average of the squares.',
+                8: 'Standard deviation = the square root of the variance (`** 0.5` means square root).',
+              },
+            },
             { words: [['standard deviation (std)', 'the square root of the variance: the typical distance from the mean']] },
           ],
         },
@@ -1113,6 +1295,7 @@ assert abs(_r[2] - 2) < 1e-9, f"expected 2, got {_r[2]!r}"
             'Imagine describing fruit with two numbers: **weight in grams** (like 150 or 5000) and **sweetness from 1 to 10**.',
             'The weight numbers are HUGE compared with sweetness. A computer might think weight is far more important, just because its numbers are bigger!',
             { big: 'Normalization squishes numbers so they all use the same scale.' },
+            { visual: 'normalizeSquash' },
             { analogy: 'It\'s like converting everyone\'s test score into "out of 100", even if one test was out of 20 and another out of 50. Now you can compare fairly.', emoji: '📏' },
             { words: [['normalization', 'changing numbers so they share the same scale, like 0 to 1'], ['scale', 'the range numbers usually live in']] },
           ],
@@ -1157,6 +1340,26 @@ print((x - x.min()) / (x.max() - x.min()))
                 options: ['0', '0.5', '5', '1'],
                 answer: 1,
                 explain: '(5 - 0) / (10 - 0) = 0.5. It\'s exactly in the middle.',
+              },
+            },
+            {
+              trace: py`
+heights = [120, 150, 135, 160]
+low = min(heights)
+high = max(heights)
+scaled = []
+for h in heights:
+    s = (h - low) / (high - low)
+    scaled.append(s)
+print(scaled)
+`,
+              title: 'Squash each height into 0 to 1, one at a time.',
+              notes: {
+                2: 'The smallest height becomes our 0.',
+                3: 'The biggest height becomes our 1.',
+                5: 'Take each height in turn.',
+                6: 'How far above the smallest, divided by the whole range (160 - 120 = 40).',
+                7: 'Add the squashed number to the new list.',
               },
             },
           ],
@@ -1317,6 +1520,7 @@ for score in [-1, 0, 1, 2, 3]:
               ],
             },
             'So "mat" gets a 72% chance, "floor" 27%, and "moon" only 1%.',
+            { visual: 'softmaxSteps' },
           ],
         },
         {
@@ -1338,6 +1542,35 @@ print("adds up to:", sum(probs))
                 options: ['[1, 1]', '[0.5, 0.5]', '[5, 5]', '[0, 1]'],
                 answer: 1,
                 explain: 'Equal scores give equal probabilities, and they must add up to 1: 0.5 each.',
+              },
+            },
+            {
+              trace: py`
+import math
+
+def softmax(scores):
+    exps = []
+    for s in scores:
+        exps.append(round(math.exp(s), 2))
+    total = round(sum(exps), 2)
+    probs = []
+    for e in exps:
+        probs.append(round(e / total, 2))
+    return probs
+
+answer = softmax([3, 2, -1])
+print(answer)
+`,
+              title: 'Scores go into softmax. Watch them become chances.',
+              notes: {
+                3: 'Python learns the softmax recipe.',
+                5: 'Step 1: visit every score.',
+                6: 'exp makes it positive (and bigger scores much bigger). We round to 2 decimals so it is easy to read.',
+                7: 'Add up all the positive numbers.',
+                9: 'Step 2: visit every positive number.',
+                10: 'Divide by the total so they share out to make 1.',
+                11: 'Hand the probabilities back.',
+                13: 'Send the scores [3, 2, -1] into softmax. Python jumps into the function!',
               },
             },
             { tip: 'The biggest score always gets the biggest probability. Softmax never changes the order. It just converts to chances.' },
@@ -1429,6 +1662,7 @@ assert abs(_r[0] - 0.5) < 1e-9 and abs(_r[1] - 0.5) < 1e-9, f"got {_r!r}"
           blocks: [
             'Once a chatbot has probabilities for every next word, it has to actually **pick one**. Picking at random, using the probabilities, is called **sampling**.',
             { analogy: 'Picture a spinner wheel. "mat" gets a big 70% slice, "floor" a 25% slice, "moon" a tiny 5% slice. Spin it! Usually you land on "mat", but sometimes you get a surprise.', emoji: '🎡' },
+            { visual: 'spinnerWheel' },
             { words: [['sampling', 'picking a result at random, where likely results get picked more often']] },
           ],
         },
@@ -1453,6 +1687,33 @@ print(list(picks))
                 explain: '0.70 × 1,000 = 700. It won\'t be *exactly* 700, randomness wobbles, but close.',
               },
             },
+            'How does the computer *actually* spin? It picks a random number between 0 and 1, then walks along the slices until it passes that number:',
+            {
+              trace: py`
+import random
+random.seed(0)
+
+words = ["mat", "floor", "moon"]
+probs = [0.7, 0.25, 0.05]
+spin = round(random.random(), 2)
+running = 0
+for word, p in zip(words, probs):
+    running = running + p
+    if spin < running:
+        print("The spinner landed at", spin, "so we pick:", word)
+        break
+`,
+              title: 'Inside the spinner: how a random number picks a word.',
+              notes: {
+                2: '`seed(0)` makes the "random" number the same every time, so we can follow along.',
+                6: 'A random number between 0 and 1. This is where the spinner stops.',
+                7: 'How far around the wheel we have walked so far.',
+                8: 'Walk past each slice in turn.',
+                9: 'Add this slice\'s size: "mat" covers 0 to 0.7, "floor" covers 0.7 to 0.95.',
+                10: 'Is the spin inside the slices we have walked past?',
+                12: '`break` stops the loop. We found our word!',
+              },
+            },
           ],
         },
         {
@@ -1471,6 +1732,7 @@ print(list(picks))
                 ],
               },
             },
+            { visual: 'spinnerWheel', showTemp: true },
             { words: [['temperature', 'a dial that makes sampling more predictable (low) or more random (high)']] },
           ],
         },
@@ -1489,6 +1751,22 @@ scores = [3.0, 2.0, 0.5]
 for T in [0.2, 1.0, 3.0]:
     print("T =", T, "->", softmax_t(scores, T).round(2))
 `, note: 'At T = 0.2 the first word takes almost everything. At T = 3 it\'s much more even.' },
+            {
+              trace: py`
+scores = [2.0, 1.0]
+for T in [0.5, 2.0]:
+    scaled = [s / T for s in scores]
+    gap = scaled[0] - scaled[1]
+    print("T =", T, "scores become", scaled, "gap:", gap)
+`,
+              title: 'Why does low temperature make the favourite win more?',
+              notes: {
+                1: 'Two words: the first has score 2, the second has score 1.',
+                2: 'Try a low temperature (0.5), then a high one (2.0).',
+                3: 'Divide every score by the temperature.',
+                4: 'How far apart are the two scores now? A bigger gap means softmax gives the favourite a bigger share.',
+              },
+            },
             { tip: '`z - z.max()` is a safety trick: it stops `exp` making numbers too huge for the computer. It doesn\'t change the answer.' },
             'Below is a playground. Drag the temperature slider and watch the bars change shape!',
           ],
@@ -1653,6 +1931,7 @@ assert abs(_frac - 0.8) < 0.05, f"'a' came up {_frac:.0%} of the time, expected 
             { code: 'recall = TP / (TP + FN)' },
             { analogy: 'Fishing with a net: **precision** = how much of what you caught is actually fish (not boots). **Recall** = how many of the fish in the lake you caught.', emoji: '🎣' },
             { words: [['precision', 'of everything you said YES to, the fraction that was really yes'], ['recall', 'of all the real YES things, the fraction you found']] },
+            { visual: 'confusionGrid' },
           ],
         },
         {
@@ -1680,6 +1959,33 @@ for r, p in zip(really, robot):
 print("TP:", tp, "FP:", fp, "FN:", fn)
 print("precision:", tp / (tp + fp), " recall:", round(tp / (tp + fn), 2))
 `, note: '`zip` walks through both lists side by side.' },
+            {
+              trace: py`
+really = [1, 0, 1, 0]
+robot = [1, 1, 0, 0]
+tp = 0
+fp = 0
+fn = 0
+for r, p in zip(really, robot):
+    if r == 1 and p == 1:
+        tp = tp + 1
+    if r == 0 and p == 1:
+        fp = fp + 1
+    if r == 1 and p == 0:
+        fn = fn + 1
+print("precision:", tp / (tp + fp), "recall:", tp / (tp + fn))
+`,
+              title: 'Grade 4 photos, one by one, and watch the boxes fill up.',
+              notes: {
+                1: 'The truth: photo 1 and photo 3 are cats.',
+                2: 'What the robot said for each photo.',
+                6: '`zip` pairs them up: (truth, robot answer) for each photo.',
+                7: 'Both say cat: a true positive.',
+                9: 'Robot said cat, but it was not: a false alarm (false positive).',
+                11: 'It was a cat, but the robot missed it: a false negative.',
+                13: 'precision = TP ÷ (TP + FP), recall = TP ÷ (TP + FN).',
+              },
+            },
           ],
         },
         {
@@ -1799,6 +2105,31 @@ assert tuple(_r) == (0.5, 0.0, 0.0), f"got {_r!r}"
                 '**Accuracy, precision and recall** tell us how good a model is.',
               ],
             },
+            {
+              trace: py`
+counts = {"star": 8, "moon": 2}
+total = sum(counts.values())
+best = ""
+best_p = 0
+for word in counts:
+    p = counts[word] / total
+    print(word, "has probability", p)
+    if p > best_p:
+        best = word
+        best_p = p
+print("Twinkle twinkle little", best)
+`,
+              title: 'The whole journey in a few lines: counts → probabilities → a choice.',
+              notes: {
+                1: 'What came after "twinkle twinkle little" in our reading: star 8 times, moon 2 times.',
+                2: 'Total count = 10.',
+                6: 'Count ÷ total = the conditional probability of this word.',
+                8: 'Is this the most likely word so far?',
+                9: 'Yes! Remember it as the best word.',
+                11: 'Pick the favourite (like temperature very close to 0).',
+              },
+            },
+            { visual: 'spinnerWheel', words: ['star', 'moon', 'car'], probs: [0.8, 0.15, 0.05], showTemp: true },
           ],
         },
         {

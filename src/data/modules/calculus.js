@@ -30,7 +30,8 @@ export default {
           title: 'A function is a machine',
           blocks: [
             { analogy: 'Imagine a juice machine. You drop an apple **in**, the machine follows its **rule** (squeeze!), and apple juice comes **out**. Same apple in, same juice out, every single time.', emoji: '🧃' },
-            'In math, a **function** is a machine just like that. You give it a number (the **input**), it follows a rule, and it gives you back a number (the **output**).',
+            'In math, a **function** is a machine just like that. You give it a number (the **input**), it follows a rule, and it gives you back a number (the **output**). Try one:',
+            { visual: 'functionMachine', rule: 'x * 2 + 1', show: '2 × x + 1', label: 'double it, then add 1' },
             { steps: ['Pick a rule, for example: "double the number, then add 1".', 'Put in **3**. Double it: 3 × 2 = 6. Add 1: 6 + 1 = **7**.', 'Put in **10**. Double it: 20. Add 1: **21**.', 'Same input always gives the same output. Put in 3 again and you get 7 again!'] },
             { words: [['function', 'a machine that turns an input number into an output number using a rule'], ['input', 'the number you put in'], ['output', 'the number that comes out']] },
           ],
@@ -61,6 +62,21 @@ print(f(0))
 print(f(3))
 print(f(10))
 `, note: 'Press Run. Then change the rule to 3 * x + 1 and run again!' },
+            'Now let us slow Python right down and watch where each input goes:',
+            { trace: py`
+def f(x):
+    return 2 * x + 1
+
+a = f(3)
+b = f(10)
+print(a, b)
+`, title: 'Watch the input 3 travel into the machine f and come back out as 7.', notes: {
+              1: 'Python reads the recipe for the machine `f`. It does NOT run it yet.',
+              2: 'This is the rule inside the machine: double x, then add 1.',
+              4: 'Put 3 into the machine. Python jumps up to `f` with x = 3, works out 2 × 3 + 1, and brings back 7.',
+              5: 'Same machine, new input. This time x = 10, so the answer is 21.',
+              6: 'Show both answers on the screen.',
+            } },
           ],
         },
         {
@@ -69,6 +85,7 @@ print(f(10))
             'There are many, many function machines. Here are a few famous ones:',
             { table: { head: ['Name', 'Rule', 'f(2) is…'], rows: [['add three', 'f(x) = x + 3', '5'], ['squaring', 'f(x) = x²  (x times x)', '4'], ['cubing', 'f(x) = x³  (x times x times x)', '8'], ['constant', 'f(x) = 5  (ignores x!)', '5']] } },
             'The little ² means "squared": multiply the number by itself. So 4² = 4 × 4 = 16. In Python we write it as `x ** 2`.',
+            { visual: 'functionMachine', rule: 'x ** 2', show: 'x²', name: 'square', label: 'multiply x by itself', min: -5, max: 5, start: 4 },
             { tryit: py`
 def square(x):
     return x ** 2
@@ -180,6 +197,7 @@ assert _r == 9, f"g(-3) gave {_r!r}, expected 9"
             'A graph lives on a grid with two lines:',
             { list: ['The **x-axis** goes left ↔ right. It shows the **input**.', 'The **y-axis** goes down ↕ up. It shows the **output**.', 'Where they cross is the **origin**, the point (0, 0).'] },
             'A **point** is written as (x, y). The point (3, 7) means: walk 3 steps right, then 7 steps up, and put a dot there.',
+            { visual: 'pointWalk', target: [3, 7] },
             { words: [['x-axis', 'the left-right line; it shows the input'], ['y-axis', 'the up-down line; it shows the output'], ['point (x, y)', 'a dot: go x across, then y up']] },
             { quick: { q: 'To draw the point (2, 5), you go…', options: ['5 right, 2 up', '2 right, 5 up', '2 left, 5 down', '7 right'], answer: 1, explain: 'The first number is across (x), the second number is up (y).' } },
           ],
@@ -187,9 +205,9 @@ assert _r == 9, f"g(-3) gave {_r!r}, expected 9"
         {
           title: 'From a table to a picture',
           blocks: [
-            'Let us draw `f(x) = 2x + 1`. First, make a table of inputs and outputs:',
-            { table: { head: ['x', '0', '1', '2', '3'], rows: [['f(x)', '1', '3', '5', '7']] } },
-            { steps: ['Turn each column into a point: (0, 1), (1, 3), (2, 5), (3, 7).', 'Put a dot on the grid for each point.', 'Connect the dots.', 'You get a perfectly **straight line** going uphill!'] },
+            'Let us draw `f(x) = 2x + 1`. We make a table of inputs and outputs, turn each column into a dot, and connect the dots. Press **Next** to watch it happen:',
+            { visual: 'plotBuilder', rule: '2 * x + 1', show: '2x + 1', xs: [0, 1, 2, 3] },
+            'The dots line up into a perfectly **straight line** going uphill!',
             { tryit: py`
 def f(x):
     return 2 * x + 1
@@ -197,15 +215,31 @@ def f(x):
 for x in [0, 1, 2, 3]:
     print("point:", (x, f(x)))
 `, note: 'These are the dots we would draw.' },
+            { trace: py`
+def f(x):
+    return 2 * x + 1
+
+points = []
+for x in [0, 1, 2]:
+    y = f(x)
+    points.append((x, y))
+print(points)
+`, title: 'Watch Python build the list of dots, one input at a time.', notes: {
+              4: 'An empty list. The dots will go in here.',
+              5: 'The loop hands us one input at a time: first 0, then 1, then 2.',
+              6: 'Put x into the machine f. Python jumps into f and brings back the output.',
+              7: 'Glue x and y together into a dot `(x, y)` and add it to the list.',
+              8: 'All the dots, ready to draw!',
+            } },
           ],
         },
         {
           title: 'Lines and curves',
           blocks: [
             'Some machines make straight lines. Others make **curves**.',
-            'Look at the squaring machine `f(x) = x²`:',
-            { table: { head: ['x', '-3', '-2', '-1', '0', '1', '2', '3'], rows: [['f(x)', '9', '4', '1', '0', '1', '4', '9']] } },
-            'High on both sides, lowest in the middle at 0. Drawn out, it looks like a smile or a valley: **U**. Mathematicians call this shape a *parabola*.',
+            'Look at the squaring machine `f(x) = x²`. Press **Next** to plot its dots:',
+            { visual: 'plotBuilder', rule: 'x ** 2', show: 'x²', xs: [-3, -2, -1, 0, 1, 2, 3], xmin: -4, xmax: 4, ymin: -1, ymax: 10, unit: 30 },
+            'High on both sides, lowest in the middle at 0. It looks like a smile or a valley: **U**. Mathematicians call this shape a *parabola*.',
             { tryit: py`
 def f(x):
     return x ** 2
@@ -315,6 +349,7 @@ assert _r == [(3, 9), (1, 1)], f"got {_r!r}"
             'The going-up part is called the **rise**. The going-across part is called the **run**. So:',
             { code: 'slope = rise / run' },
             { steps: ['Imagine a staircase. Each step goes 2 across and 1 up.', 'Rise = 1, run = 2.', 'Slope = 1 ÷ 2 = **0.5**. A gentle staircase.', 'Another staircase goes 1 across and 3 up. Slope = 3 ÷ 1 = **3**. Much steeper!'] },
+            { visual: 'slopeLine', a: [1, 1], b: [3, 2] },
             { words: [['rise', 'how much you go up (or down)'], ['run', 'how much you go across']] },
           ],
         },
@@ -334,6 +369,21 @@ rise = y2 - y1
 run = x2 - x1
 print("rise:", rise, " run:", run, " slope:", rise / run)
 `, note: 'Try the points (0, 1) and (2, 5). Same slope?' },
+            { trace: py`
+def slope(x1, y1, x2, y2):
+    rise = y2 - y1
+    run = x2 - x1
+    return rise / run
+
+s = slope(1, 3, 3, 7)
+print("slope is", s)
+`, title: 'Follow the two points into the slope function.', notes: {
+              6: 'We hand the function two points: (1, 3) and (3, 7). Python jumps into `slope` with x1 = 1, y1 = 3, x2 = 3, y2 = 7.',
+              2: 'Rise: how much did y go up? 7 − 3 = 4.',
+              3: 'Run: how much did x go across? 3 − 1 = 2.',
+              4: 'Divide rise by run: 4 ÷ 2 = 2.0, and send it back.',
+              7: 'The answer 2.0 came back and was stored in `s`.',
+            } },
           ],
         },
         {
@@ -349,6 +399,7 @@ print("uphill:", slope(0, 0, 1, 2))
 print("downhill:", slope(0, 4, 2, 0))
 print("flat:", slope(0, 5, 3, 5))
 `, note: 'Make up your own two points and see which kind of slope you get.' },
+            { visual: 'slopeLine', a: [1, 2], b: [4, 5], goal: -2 },
             { quick: { q: 'A line goes from (0, 6) to (3, 0). Is its slope…', options: ['positive (uphill)', 'negative (downhill)', 'zero (flat)'], answer: 1, explain: 'y went DOWN from 6 to 0 while x went right. Rise = -6, run = 3, slope = -2. Downhill!' } },
           ],
         },
@@ -442,7 +493,8 @@ assert _r == 0.25, f"expected 0.25, got {_r!r}"
             'Here is a magic trick. Take any smooth curve and zoom in on one spot. Zoom more. And more.',
             'Eventually that tiny piece of curve looks like a **straight line**!',
             { analogy: 'The Earth is round, but when you stand in a field it looks flat. You are "zoomed in" so much that the curve looks straight.', emoji: '🌍' },
-            'And we already know how to find the slope of a straight line. So: zoom in on a curve, then use rise ÷ run on that tiny straight piece.',
+            'And we already know how to find the slope of a straight line. So: zoom in on a curve, then use rise ÷ run on that tiny straight piece. Try it on the valley `x²`:',
+            { visual: 'tangentZoom', rule: 'x ** 2', show: 'x²', d: '2 * x', dShow: '2x', x0: 1 },
           ],
         },
         {
@@ -470,6 +522,22 @@ h = 0.001
 slope = (f(x + h) - f(x)) / h
 print("slope at x = 3 is about", slope)
 `, note: 'Make h even smaller (0.000001). Does the answer get closer to 6?' },
+            { trace: py`
+def f(x):
+    return x ** 2
+
+x = 3
+h = 0.001
+rise = f(x + h) - f(x)
+slope = rise / h
+print(round(slope, 3))
+`, title: 'Watch the nudge: Python calls the machine f twice.', notes: {
+              4: 'The spot where we want the slope.',
+              5: 'Our tiny nudge.',
+              6: 'This line needs f TWICE. First f(3.001), then f(3). Watch Python jump into f for each one, then subtract.',
+              7: 'Rise ÷ run. The run is the nudge h.',
+              8: 'About 6. That is the slope of x² at x = 3!',
+            } },
           ],
         },
         {
@@ -488,6 +556,24 @@ def derivative(func, x, h=0.00001):
 for x in [0, 1, 2, 3]:
     print("slope of x squared at", x, "is", round(derivative(f, x), 4))
 `, note: 'Notice a pattern? The slope is always 2 times x!' },
+            { trace: py`
+def f(x):
+    return x ** 2
+
+def derivative(func, x, h=0.001):
+    right = func(x + h)
+    left = func(x - h)
+    return (right - left) / (2 * h)
+
+answer = derivative(f, 3)
+print(round(answer, 3))
+`, title: 'Follow derivative(f, 3) all the way to the answer.', notes: {
+              9: 'We hand the machine `f` itself to `derivative`, plus x = 3. Python jumps into `derivative`.',
+              5: 'A tiny step to the RIGHT of 3: Python jumps into f(3.001).',
+              6: 'A tiny step to the LEFT of 3: Python jumps into f(2.999).',
+              7: 'Rise (right − left) divided by run (two nudges wide). Send the answer back.',
+              10: 'The slope at x = 3 is 6.',
+            } },
           ],
         },
         {
@@ -608,6 +694,7 @@ print(derivative(f, 1), derivative(f, 100))
             { big: 'Bring the power down in front, then take 1 away from the power.' },
             { code: 'x²  →  2x¹ = 2x\nx³  →  3x²\nx⁴  →  4x³' },
             { steps: ['Start with x³. The power is 3.', 'Bring the 3 down in front: 3 · x', 'Take 1 off the power: 3 − 1 = 2.', 'Result: **3x²**. At x = 2 that is 3 × 4 = **12**.'] },
+            { visual: 'powerRule', start: 1 },
             { tryit: py`
 def derivative(func, x, h=0.00001):
     return (func(x + h) - func(x - h)) / (2 * h)
@@ -616,6 +703,22 @@ x = 2
 print("nudge says:", round(derivative(lambda t: t ** 3, x), 4))
 print("power rule says:", 3 * x ** 2)
 `, note: 'Both agree! Try t ** 4 and the rule 4 * x ** 3.' },
+            { trace: py`
+def rule(x):
+    return 3 * x ** 2
+
+def nudge(x, h=0.0001):
+    return ((x + h) ** 3 - (x - h) ** 3) / (2 * h)
+
+x = 2
+print("rule says:", rule(x))
+print("nudge says:", round(nudge(x), 3))
+`, title: 'Two ways to get the slope of x³ at x = 2. Do they agree?', notes: {
+              1: 'The shortcut for x³: bring the 3 down, take 1 off the power, giving 3x².',
+              4: 'The nudge trick, written just for x³.',
+              8: 'Jump into `rule` with x = 2: 3 × 2² = 3 × 4 = 12.',
+              9: 'Jump into `nudge` with x = 2. It comes back as about 12 too!',
+            } },
           ],
         },
         {
@@ -623,6 +726,7 @@ print("power rule says:", 3 * x ** 2)
           blocks: [
             'If a function is made of pieces added together, find the slope of each piece and **add them up**.',
             { steps: ['f(x) = x² + 3x + 5', 'Slope of x² is 2x.', 'Slope of 3x is 3.', 'Slope of 5 is 0.', 'Total: f′(x) = **2x + 3**. At x = 2: 2 × 2 + 3 = **7**.'] },
+            { visual: 'powerRule', start: 4 },
             { tryit: py`
 def f(x):
     return x ** 2 + 3 * x + 5
@@ -732,6 +836,21 @@ z = g(x)
 y = f(z)
 print("x =", x, "-> z =", z, "-> y =", y)
 `, note: 'Try x = 1 and x = 5.' },
+            { trace: py`
+def g(x):
+    return 3 * x
+
+def f(z):
+    return z ** 2
+
+y = f(g(2))
+print(y)
+`, title: 'f(g(2)): watch which machine runs first.', notes: {
+              7: 'Read it inside-out! Python must finish g(2) first, then hands that answer to f.',
+              2: 'Machine g: 3 × 2 = 6.',
+              5: 'Machine f gets the 6 from g: 6² = 36.',
+              8: 'The chain turned 2 into 36.',
+            } },
           ],
         },
         {
@@ -748,6 +867,7 @@ print("x =", x, "-> z =", z, "-> y =", y)
           blocks: [
             'Let us use our chain: `z = 3x`, then `y = z²`. How fast does y change when x changes? Let us find it at x = 2.',
             { steps: ['Forward: z = 3 × 2 = 6, and y = 6² = 36.', 'Slope of step 1 (z = 3x): **3**.', 'Slope of step 2 (y = z²): 2z = 2 × 6 = **12**.', 'Multiply them: 3 × 12 = **36**.', 'So nudging x a tiny bit makes y change about 36 times as much!'] },
+            { visual: 'chainGears', x0: 2 },
             { tryit: py`
 def chain(x):
     return (3 * x) ** 2
@@ -785,6 +905,30 @@ dz_dw = x          # then slope of step 1 (w * x, changing w)
 dy_dw = dy_dz * dz_dw
 print("y =", y, " slope for knob w =", dy_dw)
 `, note: 'Change w to 1. How does the slope change?' },
+            { trace: py`
+def forward(x, w):
+    z = w * x
+    y = z ** 2
+    return z, y
+
+def backward(x, z):
+    dy_dz = 2 * z
+    dz_dw = x
+    return dy_dz * dz_dw
+
+z, y = forward(2, 3)
+slope_w = backward(2, z)
+print("y =", y, " slope for w =", slope_w)
+`, title: 'Forward pass, then backward pass, one line at a time.', notes: {
+              11: 'FORWARD: push x = 2 through the chain using the knob w = 3.',
+              2: 'Step 1 of the chain: z = 3 × 2 = 6.',
+              3: 'Step 2 of the chain: y = 6² = 36.',
+              12: 'BACKWARD: now start from the end and work back to the knob w.',
+              7: 'Slope of the LAST step first: y = z² has slope 2z = 12.',
+              8: 'Then the step before it: z = w × x has slope x = 2 (for the knob w).',
+              9: 'Chain rule: multiply them. 12 × 2 = 24.',
+              13: 'Turning knob w a tiny bit changes y about 24 times as much.',
+            } },
           ],
         },
         {
@@ -911,6 +1055,21 @@ for p, t in zip(preds, targets):
     total += (p - t) ** 2
 print("MSE =", total / len(preds))
 `, note: 'Change preds to exactly match targets. What is the MSE now?' },
+            { trace: py`
+preds = [2, 4]
+targets = [3, 4]
+total = 0
+for p, t in zip(preds, targets):
+    error = p - t
+    total = total + error ** 2
+mse = total / len(preds)
+print("MSE =", mse)
+`, title: 'Watch each guess get scored, then averaged.', notes: {
+              4: 'zip pairs each guess with its right answer: first (2, 3), then (4, 4).',
+              5: 'How far off was this guess?',
+              6: 'Square the miss (so it is never negative) and add it to the running total.',
+              7: 'Divide by how many guesses there were: the average.',
+            } },
           ],
         },
         {
@@ -925,7 +1084,8 @@ for w in [0, 1, 2, 3, 4]:
     loss = sum((w * x - y) ** 2 for x, y in zip(xs, ys)) / len(xs)
     print("w =", w, " loss =", round(loss, 2), " ", "#" * int(loss))
 `, note: 'Look at the shape of the # bars. A valley!' },
-            'The loss is lowest at w = 2, the perfect knob setting. **Training = finding the bottom of the loss valley.** And the derivative tells us which way is downhill.',
+            'The loss is lowest at w = 2, the perfect knob setting. **Training = finding the bottom of the loss valley.** And the derivative tells us which way is downhill. See it for yourself:',
+            { visual: 'lossPlayground', points: [[1, 2], [2, 4], [3, 6]], w0: 0.5 },
             { quick: { q: 'Which loss is better?', options: ['0.1', '25', 'They are equally good', 'Bigger is always better'], answer: 0, explain: 'Loss measures wrongness, so smaller is better. 0.1 is much closer to perfect.' } },
           ],
         },
@@ -1050,6 +1210,7 @@ print("slope for b:", round(slope_b, 3))
             { code: 'gradient = (slope for w, slope for b) = (-4, 2)' },
             { big: 'The gradient points in the direction that goes uphill fastest.' },
             'So if we want to go **downhill** (smaller loss), we step the *opposite* way of the gradient.',
+            { visual: 'gradientHill', start: [0, 0], center: [2, -1] },
             { words: [['gradient', 'the list of all the partial derivatives; an arrow pointing uphill']] },
             { quick: { q: 'To make the loss smaller, you should step…', options: ['in the direction of the gradient', 'opposite to the gradient', 'randomly', 'not at all'], answer: 1, explain: 'The gradient points uphill. Go the opposite way to go downhill.' } },
           ],
@@ -1066,6 +1227,23 @@ def gradient(w, b):
 for w, b in [(0, 0), (1, 0), (2, -1)]:
     print("at", (w, b), "gradient is", gradient(w, b))
 `, note: 'The gradient shrinks as we get closer to (2, -1).' },
+            { trace: py`
+def gradient(w, b):
+    slope_w = 2 * (w - 2)
+    slope_b = 2 * (b + 1)
+    return (slope_w, slope_b)
+
+g = gradient(0, 0)
+print("uphill arrow:", g)
+downhill = (-g[0], -g[1])
+print("downhill arrow:", downhill)
+`, title: 'From two knobs to an arrow: follow gradient(0, 0).', notes: {
+              6: 'Start with both knobs at 0. Python jumps into `gradient` with w = 0 and b = 0.',
+              2: 'Freeze b, wiggle only w: slope 2 × (0 − 2) = −4.',
+              3: 'Freeze w, wiggle only b: slope 2 × (0 + 1) = 2.',
+              4: 'Put both slopes together. That pair is the gradient.',
+              8: 'Flip both signs to get the downhill direction.',
+            } },
             { quick: { q: 'If the gradient is (0, 0), you are probably…', options: ['at a flat bottom', 'on a very steep slope', 'lost', 'at the start'], answer: 0, explain: 'Zero slope in every direction means flat ground, usually the bottom of the valley.' } },
           ],
         },
@@ -1168,6 +1346,25 @@ for step in range(10):
     x = x - lr * slope(x)
     print("step", step + 1, " x =", round(x, 3))
 `, note: 'Change the loop to range(50). Does x reach 3?' },
+            { visual: 'descentSteps', target: 3, start: 0, lr0: 0.1 },
+            'Now watch Python do three steps (we use a learning rate of 0.25 so the numbers stay neat):',
+            { trace: py`
+def slope(x):
+    return 2 * (x - 3)
+
+x = 0
+lr = 0.25
+for step in range(3):
+    s = slope(x)
+    x = x - lr * s
+print("after 3 steps, x =", x)
+`, title: 'Three steps of gradient descent, line by line.', notes: {
+              4: 'We start on the left side of the valley, at x = 0.',
+              5: 'The learning rate: how big each step is.',
+              7: 'Feel the ground: jump into `slope` to find out how steep it is right here.',
+              8: 'Step the opposite way of the slope. A negative slope makes x go UP (to the right), toward 3.',
+              9: 'Each step got us closer to the bottom at 3.',
+            } },
           ],
         },
         {
@@ -1292,6 +1489,28 @@ assert _r is not None and abs(_r - 3) > 10, f"got {_r!r}"
             'Our model has ONE knob, w. It predicts `w * x`. The data follows `y = 2x`, so the perfect knob is w = 2. But the model starts at w = 0 and does not know that!',
             { steps: ['Predict: for every x, guess `w * x`.', 'Measure the slope of the MSE loss for w: the average of `2 * (w * x - y) * x`.', 'Step: `w = w - lr * slope`.', 'Repeat many times.'] },
             'Where does `2 * (w * x - y) * x` come from? The chain rule! The squared error `(w·x − y)²` gives `2(w·x − y)`, times the slope of `w·x` for w, which is `x`.',
+            'Here is the valley the training loop is rolling down. The loop does automatically what you do with the slider:',
+            { visual: 'lossPlayground', points: [[1, 2], [2, 4]], w0: 0 },
+            { trace: py`
+xs = [1, 2]
+ys = [2, 4]
+w = 0.0
+lr = 0.1
+for step in range(2):
+    slope = 0
+    for x, y in zip(xs, ys):
+        slope = slope + 2 * (w * x - y) * x
+    slope = slope / len(xs)
+    w = w - lr * slope
+print("w is now", w)
+`, title: 'Two rounds of training, watched up close.', notes: {
+              3: 'The knob starts at 0. The model knows nothing yet!',
+              5: 'One round of training per loop.',
+              6: 'Start adding up the slope from zero.',
+              8: 'For each data point: how much does this point want w to change? (The chain rule formula.)',
+              9: 'Average the slopes from all the points.',
+              10: 'Gradient descent: step w downhill. Watch it jump from 0 to 1.0, then to 1.5, heading for 2.',
+            } },
           ],
         },
         {

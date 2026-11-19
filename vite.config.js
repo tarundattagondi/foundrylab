@@ -12,6 +12,7 @@ export default defineConfig({
         manualChunks(id) {
           if (/node_modules\/(@codemirror|codemirror|@lezer|style-mod|w3c-keyname|crelt)/.test(id)) return 'codemirror'
           if (/node_modules\/(react|react-dom|scheduler)\//.test(id)) return 'react'
+          if (/src\/data\//.test(id)) return 'lessons'
         },
       },
     },

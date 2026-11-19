@@ -18,7 +18,8 @@ export default {
           blocks: [
             { big: 'Two numbers can tell you exactly where something is.' },
             { analogy: 'Imagine a pirate treasure map with a grid on it. The map says: "Walk 3 squares across, then 2 squares up. Dig here!" Those two numbers, 3 and 2, are all you need to find the gold.', emoji: '🏴‍☠️' },
-            'Mathematicians do the same thing. They draw a grid and use two numbers to point at any spot on it.',
+            'Mathematicians do the same thing. They draw a grid and use two numbers to point at any spot on it. Here is that grid. Try it!',
+            { visual: 'coordGrid', start: [3, 2] },
           ],
         },
         {
@@ -38,6 +39,8 @@ export default {
             { list: ['x is negative → go **left**.', 'y is negative → go **down**.'] },
             { table: { head: ['Point', 'Means'], rows: [['(-2, 1)', '2 to the left, 1 up'], ['(4, -3)', '4 to the right, 3 down'], ['(-1, -1)', '1 left, 1 down']] } },
             { quick: { q: 'Where is the point `(-3, 2)`?', options: ['3 right, 2 up', '3 left, 2 up', '3 left, 2 down', '2 left, 3 up'], answer: 1, explain: 'The first number is x (across). It is negative, so we go left. The second number is y = 2, so we go up.' } },
+            'Now check your answer on a real grid. Drag the treasure to the ❌:',
+            { visual: 'coordGrid', start: [2, -1], target: [-3, 2], emoji: '🏴‍☠️', title: 'Negative numbers on the map' },
           ],
         },
         {
@@ -50,6 +53,14 @@ treasure = [3, 2]
 print("Go across:", treasure[0])
 print("Go up:", treasure[1])
 `, note: 'Press Run. Then change the numbers to hide the treasure somewhere else!' },
+            'Want to see exactly what Python does, line by line? Press **Start** and then **Next**:',
+            { trace: py`
+treasure = [3, 2]
+x = treasure[0]
+y = treasure[1]
+print("Go across:", x)
+print("Go up:", y)
+`, title: 'How Python reads the treasure list', notes: { 1: 'Python makes a list with two numbers inside and puts it in a box called `treasure`.', 2: '`treasure[0]` means "the number at position 0", which is the FIRST number: 3. That is the across number.', 3: '`treasure[1]` is the number at position 1, the SECOND number: 2. That is the up number.', 4: '`print` shows the words in quotes, then whatever is inside the box `x`.' } },
           ],
         },
         {
@@ -63,6 +74,14 @@ dx, dy = 1, 2      # how far to move across and up
 new_point = [x + dx, y + dy]
 print(new_point)
 `, note: 'Try dx = -5. Where do you end up?' },
+            { trace: py`
+x, y = 3, 2
+dx, dy = 1, 2
+new_x = x + dx
+new_y = y + dy
+new_point = [new_x, new_y]
+print(new_point)
+`, title: 'Moving a point, one line at a time', notes: { 1: 'One line, two boxes: `x` gets 3 and `y` gets 2. That is where we start.', 2: 'How far to move: 1 across (`dx`) and 2 up (`dy`).', 3: 'Python looks inside the boxes: 3 + 1 = 4. The new across number is 4.', 4: 'Same for up: 2 + 2 = 4.', 5: 'Put both new numbers into a list: the new point.' } },
           ],
         },
         {
@@ -129,6 +148,7 @@ assert list(_r) == [5, 7], f"got {_r!r}"
             { big: 'A vector is an arrow. It has a direction and a length.' },
             { analogy: 'Your friend gives you directions: "From where you are, walk 3 steps east and 2 steps north." They didn\'t tell you WHERE you are, just how to move. That set of directions is a vector.', emoji: '🧭' },
             'We draw a vector as an arrow. The arrow points the way you walk, and its length shows how far.',
+            { visual: 'vectorArrow', start: [3, 2] },
           ],
         },
         {
@@ -168,11 +188,20 @@ print("Cheese amount:", pizza[0])
           blocks: [
             'To walk *back* the way you came, flip the sign of every number. The opposite of [3, 2] is [-3, -2].',
             { steps: ['Start with [3, 2].', 'Flip 3 → -3.', 'Flip 2 → -2.', 'The opposite arrow is **[-3, -2]**: same length, pointing the other way.'] },
+            { visual: 'vectorArrow', start: [3, 2], showOpposite: true },
             { tryit: py`
 v = [3, 2]
 opposite = [-x for x in v]
 print(opposite)
 `, note: 'Try a vector with a negative number in it, like [4, -1].' },
+            'Here is the same idea written as a plain loop, so you can watch every number get flipped:',
+            { trace: py`
+v = [3, 2]
+opposite = []
+for x in v:
+    opposite.append(-x)
+print(opposite)
+`, title: 'Flipping an arrow, one number at a time', notes: { 2: 'Start with an empty list. We will fill it up.', 3: 'The loop takes the numbers of `v` one at a time: first 3, then 2.', 4: '`-x` flips the sign (3 becomes -3), and `append` adds it to the end of `opposite`.', 5: 'Every number was flipped, so this is the opposite arrow.' } },
           ],
         },
         {
@@ -285,12 +314,21 @@ b = np.array([10, 20, 30])
 print(a + b)
 `, note: 'Now each pair of numbers got added: 1+10, 2+20, 3+30.' },
             { big: 'Lists + lists = glue. Arrays + arrays = add!' },
+            { visual: 'glueVsAdd', a: [1, 2, 3], b: [10, 20, 30] },
           ],
         },
         {
           title: 'Math on everything at once',
           blocks: [
             'With an array, one line of math changes **every** number. No loop needed!',
+            'Without NumPy, you would have to write a loop and visit every number yourself. Watch how much work that is:',
+            { trace: py`
+prices = [2, 5, 10]
+doubled = []
+for p in prices:
+    doubled.append(p * 2)
+print(doubled)
+`, title: 'The loop NumPy does for you', notes: { 3: 'Visit each price, one at a time.', 4: 'Double this price and add it to the end of the new list.', 5: 'With NumPy, all of this is just `prices * 2`!' } },
             { tryit: py`
 import numpy as np
 
@@ -364,9 +402,7 @@ assert total is not None and _np.array_equal(total, [11, 22, 33]), f"got {total!
           blocks: [
             { big: 'Adding two vectors means: do the first walk, then the second walk.' },
             { analogy: 'You walk [3, 1] (3 east, 1 north) to the shop. Then you walk [1, 2] to the park. Where are you compared to home? Just add the matching numbers: [3+1, 1+2] = [4, 3].', emoji: '🚶' },
-            { boxes: ['3', '1'], caption: 'a' },
-            { boxes: ['1', '2'], caption: 'b' },
-            { boxes: ['4', '3'], caption: 'a + b' },
+            { visual: 'vectorAdd', a: [3, 1], b: [1, 2] },
           ],
         },
         {
@@ -382,6 +418,15 @@ a = np.array([2, 5, -1])
 b = np.array([4, -2, 3])
 print(a + b)
 `, note: 'Check: does the computer agree with our hand answer?' },
+            'And here is the "by hand" recipe written as code, so you can see each position being added:',
+            { trace: py`
+a = [2, 5, -1]
+b = [4, -2, 3]
+total = []
+for i in range(3):
+    total.append(a[i] + b[i])
+print(total)
+`, title: 'Adding two vectors, position by position', notes: { 3: 'An empty list that will hold the answer.', 4: '`i` is the position number: first 0, then 1, then 2.', 5: 'Take the number at position `i` from BOTH lists, add them, and put the answer at the end of `total`.', 6: 'All three positions are done: [6, 3, 2].' } },
           ],
         },
         {
@@ -390,6 +435,7 @@ print(a + b)
             'Multiplying a vector by a single number is called **scaling**. The number is called a **scalar**.',
             { list: ['× 2 → the arrow becomes twice as long.', '× 0.5 → half as long.', '× -1 → same length, pointing backwards.'] },
             { steps: ['Start with [3, 1].', 'Multiply each number by 2.', '3 × 2 = 6 and 1 × 2 = 2.', 'Answer: **[6, 2]**: same direction, twice as far.'] },
+            { visual: 'vectorScale', v: [3, 1], k: 2 },
             { tryit: py`
 import numpy as np
 
@@ -406,6 +452,13 @@ print(-1 * v)
             'We can add and scale in one go. Brackets work just like in normal math: do the inside first.',
             { code: '2 * ([1, 2] + [3, 4])\n= 2 * [4, 6]\n= [8, 12]' },
             { quick: { q: 'What is `3 * [1, -2]`?', options: ['[3, -2]', '[4, 1]', '[3, -6]', '[1, -6]'], answer: 2, explain: 'Multiply every number by 3: 1×3 = 3 and -2×3 = -6.' } },
+            { trace: py`
+a = [1, 2]
+b = [3, 4]
+inside = [a[0] + b[0], a[1] + b[1]]
+answer = [2 * inside[0], 2 * inside[1]]
+print(answer)
+`, title: 'How 2 * ([1, 2] + [3, 4]) is worked out', notes: { 3: 'The brackets go first: add the matching numbers. 1 + 3 = 4 and 2 + 4 = 6.', 4: 'Now scale: multiply each number of the inside answer by 2. 4 × 2 = 8 and 6 × 2 = 12.' } },
           ],
         },
         {
@@ -482,6 +535,7 @@ assert _np.allclose(_r, [1, 0.5, 0]), f"got {_r!r}"
             { big: 'The length of a vector is how far you really end up from the start.' },
             { analogy: 'You walk 3 blocks east and 4 blocks north. But a bird flies straight from your start to your end in a diagonal line. How far did the bird fly? That straight-line distance is the vector\'s **length**.', emoji: '🐦' },
             'The bird\'s path is shorter than your 3 + 4 = 7 blocks, because it cuts the corner.',
+            { visual: 'vectorLength', v: [3, 4], goal: 5 },
           ],
         },
         {
@@ -506,6 +560,15 @@ up = 4
 length = math.sqrt(across ** 2 + up ** 2)
 print(length)
 `, note: '`**` means "to the power of", so `3 ** 2` is 3². Try across = 6 and up = 8.' },
+            { trace: py`
+import math
+
+across = 3
+up = 4
+squares = across ** 2 + up ** 2
+length = math.sqrt(squares)
+print(length)
+`, title: 'The bird\'s flight, worked out by Python', notes: { 1: 'Bring in the `math` toolbox, which has `sqrt` (square root) inside.', 5: '`across ** 2` is 3 × 3 = 9 and `up ** 2` is 4 × 4 = 16. Added together: 25.', 6: 'The square root asks "what times itself is 25?" The answer is 5.' } },
           ],
         },
         {
@@ -603,9 +666,8 @@ assert abs(_r - 10) < 1e-9, f"expected 10, got {_r!r}"
           title: 'How to calculate it',
           blocks: [
             'Multiply the matching numbers, then add up all the results.',
-            { boxes: ['1', '2'], caption: 'a' },
-            { boxes: ['3', '4'], caption: 'b' },
-            { steps: ['Multiply the first numbers: 1 × 3 = **3**.', 'Multiply the second numbers: 2 × 4 = **8**.', 'Add the results: 3 + 8 = **11**.', 'So a · b = **11**. (The dot "·" is how we write it.)'] },
+            { visual: 'dotSteps', a: [1, 2], b: [3, 4] },
+            'So a · b = **11**. (The dot "·" is how we write it.)',
             { warn: 'The answer is ONE number, not a vector. That\'s what makes the dot product special.' },
           ],
         },
@@ -615,6 +677,18 @@ assert abs(_r - 10) < 1e-9, f"expected 10, got {_r!r}"
             { table: { head: ['Dot product', 'The arrows are…', 'Wagon kids'], rows: [['big and positive', 'pointing the same way', 'pulling together 🎉'], ['zero', 'at a right angle (perpendicular)', 'not helping each other 🤷'], ['negative', 'pointing opposite ways', 'fighting! 😠']] } },
             { steps: ['[1, 0] · [0, 1] = 1×0 + 0×1 = **0**. One points right, one points up, a right angle!', '[1, 2] · [-1, -2] = -1 + -4 = **-5**. Opposite directions → negative.'] },
             { quick: { q: 'What is `[2, 3] · [4, -1]`?', options: ['5', '11', '[8, -3]', '-5'], answer: 0, explain: '2×4 = 8, and 3×(-1) = -3. Add them: 8 + (-3) = 5. Positive, so they mostly agree.' } },
+            'Here is how a computer works out that quiz answer. Watch the numbers jump into the function and the answer come back out:',
+            { trace: py`
+def dot(a, b):
+    total = 0
+    for x, y in zip(a, b):
+        total = total + x * y
+    return total
+
+answer = dot([2, 3], [4, -1])
+print(answer)
+`, title: 'How the quiz answer is worked out', notes: { 1: 'This only TEACHES Python the recipe called `dot`. Nothing is calculated yet.', 7: 'Here we USE the recipe. The two lists go into the function as `a` and `b`.', 3: '`zip` hands us one matching pair at a time: first (2, 4), then (3, -1).', 4: 'Multiply the pair and add it onto the running total.', 5: 'All pairs are done, so the function hands the total back.' } },
+            { visual: 'dotSteps', a: [2, 3], b: [4, -1] },
           ],
         },
         {
@@ -632,6 +706,16 @@ for x, y in zip(a, b):
 
 print("dot product:", total)
 `, note: 'Change the vectors. Can you make the answer 0?' },
+            { trace: py`
+a = [1, 2]
+b = [3, 4]
+
+total = 0
+for x, y in zip(a, b):
+    total = total + x * y
+
+print("dot product:", total)
+`, title: 'The dot product loop, slowly', notes: { 4: 'Start the score at 0.', 5: '`zip(a, b)` pairs up the lists: first `x` = 1 and `y` = 3, then `x` = 2 and `y` = 4.', 6: 'Multiply the pair, then add it to the total. Round 1: 0 + 3 = 3. Round 2: 3 + 8 = 11.' } },
           ],
         },
         {
@@ -735,8 +819,8 @@ assert dot_by_hand([1, 2], [-1, -2]) == -5
           blocks: [
             { big: 'A matrix is a table of numbers, arranged in rows and columns.' },
             { analogy: 'Think of a chocolate box: the chocolates sit in neat rows and columns. Or a class register: one row per student, one column per day of the week. That kind of table is a matrix.', emoji: '🍫' },
-            { table: { head: ['', 'Mon', 'Tue', 'Wed'], rows: [['Ana', '1', '0', '1'], ['Ben', '1', '1', '1']] } },
-            'This little attendance table is a matrix with 2 rows and 3 columns.',
+            { visual: 'matrixGrid', rows: [[1, 0, 1], [1, 1, 1]], name: 'register', rowNames: ['Ana', 'Ben'], colNames: ['Mon', 'Tue', 'Wed'] },
+            'This little attendance table is a matrix with 2 rows and 3 columns. (1 means "was at school", 0 means "was not".)',
           ],
         },
         {
@@ -744,7 +828,7 @@ assert dot_by_hand([1, 2], [-1, -2]) == -5
           blocks: [
             { list: ['**Rows** go across ➡️ (like rows of seats in a cinema).', '**Columns** go down ⬇️ (like the columns holding up a building).'] },
             'Here is a matrix called M:',
-            { table: { head: ['', 'col 0', 'col 1', 'col 2'], rows: [['row 0', '1', '2', '3'], ['row 1', '4', '5', '6']] } },
+            { visual: 'matrixGrid', rows: [[1, 2, 3], [4, 5, 6]], name: 'M' },
             'Row 0 is `[1, 2, 3]`. Column 2 is `[3, 6]`.',
             { tip: 'You can think of a matrix as a stack of vectors: each row is a vector!' },
           ],
@@ -785,6 +869,14 @@ print(M[0, 2])    # row 0, column 2
 print(M[1])       # the whole of row 1
 print(M[:, 0])    # the whole of column 0
 `, note: 'How would you grab the 5?' },
+            { visual: 'matrixGrid', rows: [[1, 2, 3], [4, 5, 6]], name: 'M', ask: [1, 1] },
+            { trace: py`
+M = [[1, 2, 3],
+     [4, 5, 6]]
+row = M[1]
+number = row[0]
+print(number)
+`, title: 'Grabbing one number, step by step', notes: { 1: 'A matrix is a list of rows. Row 0 is [1, 2, 3] and row 1 is [4, 5, 6].', 3: '`M[1]` grabs row 1: the whole inner list [4, 5, 6].', 4: '`[0]` then grabs the first number of that row: 4. That is the same as `M[1, 0]` in NumPy.' } },
             { quick: { q: 'In the matrix above, what is `M[1, 0]`?', options: ['2', '4', '1', '5'], answer: 1, explain: 'Row 1 is [4, 5, 6]. Column 0 of that row is 4.' } },
           ],
         },
@@ -860,9 +952,8 @@ assert middle == 5, f"got {middle!r}"
           title: 'The sweet shop, by hand',
           blocks: [
             'Amounts bought (A): rows are kids, columns are sweets (lolly, choc).',
-            { table: { head: ['', 'lolly', 'choc'], rows: [['Ana', '2', '1'], ['Ben', '0', '3']] } },
             'Prices (B): one column, one row per sweet. Lolly costs 5, choc costs 10.',
-            { table: { head: ['', 'price'], rows: [['lolly', '5'], ['choc', '10']] } },
+            { visual: 'matmulSteps', A: [[2, 1], [0, 3]], B: [[5], [10]], nameA: 'amounts', nameB: 'prices', rowNames: ['Ana', 'Ben'], midNames: ['lolly', 'choc'], colNames: ['coins'], story: 'Each kid\'s row of amounts meets the column of prices.' },
             { steps: ['Ana\'s row [2, 1] · prices [5, 10] = 2×5 + 1×10 = **20**.', 'Ben\'s row [0, 3] · prices [5, 10] = 0×5 + 3×10 = **30**.', 'The answer is a column: **[[20], [30]]**, Ana spends 20, Ben spends 30.'] },
           ],
         },
@@ -880,6 +971,17 @@ B = np.array([[5],
               [10]])       # prices
 print(A @ B)
 `, note: 'Make choc cost 20 instead of 10. What does each kid spend now?' },
+            'Here is what `@` does behind the scenes for the sweet shop, written as a loop:',
+            { trace: py`
+A = [[2, 1],
+     [0, 3]]
+prices = [5, 10]
+answer = []
+for row in A:
+    spent = row[0] * prices[0] + row[1] * prices[1]
+    answer.append(spent)
+print(answer)
+`, title: 'Row times column, by hand', notes: { 5: 'Take one kid\'s row at a time: first Ana [2, 1], then Ben [0, 3].', 6: 'A dot product: lollies × lolly price + chocs × choc price.', 7: 'Write that kid\'s total into the answer.' } },
           ],
         },
         {
@@ -889,6 +991,15 @@ print(A @ B)
             { big: '(m, n) @ (n, p) → (m, p)' },
             { analogy: 'Think of LEGO bricks: the inside numbers must match to click together, like the studs on one brick matching the holes on the next. Once they click, the two outside numbers tell you the shape of the result.', emoji: '🧱' },
             { table: { head: ['Multiply', 'Inside numbers', 'Result'], rows: [['(2, **3**) @ (**3**, 4)', '3 = 3 ✅', '(2, 4)'], ['(2, **2**) @ (**2**, 1)', '2 = 2 ✅', '(2, 1)'], ['(2, **3**) @ (**2**, 3)', '3 ≠ 2 ❌', 'error!']] } },
+            { trace: py`
+def result_shape(a, b):
+    if a[1] != b[0]:
+        return "error!"
+    return (a[0], b[1])
+
+print(result_shape((2, 3), (3, 4)))
+print(result_shape((2, 3), (2, 3)))
+`, title: 'The shape rule as a tiny function', notes: { 2: 'Compare the INSIDE numbers: the second number of the first shape and the first number of the second shape.', 3: 'They don\'t match, so the matrices can\'t be multiplied.', 4: 'They match, so the answer keeps the OUTSIDE numbers.', 6: 'Shapes (2, 3) and (3, 4): the inside 3s match.', 7: 'Shapes (2, 3) and (2, 3): inside numbers 3 and 2 are different!' } },
           ],
         },
         {
@@ -902,6 +1013,7 @@ A = np.ones((2, 3))
 B = np.ones((2, 3))
 print(A @ B)
 `, note: 'This one is SUPPOSED to break. Read the error, then change B to np.ones((3, 2)).', expectError: true },
+            { visual: 'matmulSteps', A: [[1, 1, 1], [1, 1, 1]], B: [[1, 1, 1], [1, 1, 1]] },
             { quick: { q: 'What shape is `(4, 5) @ (5, 2)`?', options: ['(4, 2)', '(5, 5)', '(4, 5)', 'error'], answer: 0, explain: 'The inside 5s match and cancel. The outside numbers 4 and 2 make the result (4, 2).' } },
           ],
         },
@@ -921,6 +1033,7 @@ C = A @ B
 print(C)
 print("shape:", C.shape)
 `, note: 'Check the top-left by hand: row [1,2,3] · column [1,0,1] = 1 + 0 + 3 = 4.' },
+            { visual: 'matmulSteps', A: [[1, 2, 3], [4, 5, 6]], B: [[1, 0], [0, 1], [1, 1]] },
           ],
         },
         {
@@ -1038,8 +1151,7 @@ assert _r == (1, 3072), f"got {_r!r}"
           blocks: [
             { big: 'Transposing a matrix turns its rows into columns.' },
             { analogy: 'Imagine a table drawn on see-through paper. Flip it over along the diagonal line from the top-left corner. What was a row is now a column!', emoji: '🔄' },
-            { table: { head: ['A', '', ''], rows: [['1', '2', '3'], ['4', '5', '6']] } },
-            { table: { head: ['A.T', ''], rows: [['1', '4'], ['2', '5'], ['3', '6']] } },
+            { visual: 'transposeFlip', M: [[1, 2, 3], [4, 5, 6]] },
             'A has shape (2, 3). Its transpose `A.T` has shape (3, 2), the numbers swap.',
           ],
         },
@@ -1055,6 +1167,15 @@ A = np.array([[1, 2, 3],
 print(A.T)
 print(A.shape, "->", A.T.shape)
 `, note: 'What do you think A.T.T gives? Try it!' },
+            { trace: py`
+A = [[1, 2, 3],
+     [4, 5, 6]]
+AT = []
+for col in range(3):
+    new_row = [A[0][col], A[1][col]]
+    AT.append(new_row)
+print(AT)
+`, title: 'Flipping by hand: columns become rows', notes: { 4: 'Go through the columns of A: column 0, then 1, then 2.', 5: 'Collect that column from top to bottom: the number from row 0, then the number from row 1.', 6: 'That column becomes a new ROW of the answer.' } },
             { tip: 'Transpose is how you fix "shapes don\'t fit" problems. If (2, 3) @ (2, 3) fails, (2, 3) @ (3, 2), using the transpose, works!' },
           ],
         },
@@ -1073,6 +1194,7 @@ A = np.array([[3, 7],
 print(I)
 print(A @ I)
 `, note: 'A @ I comes out exactly the same as A.' },
+            { visual: 'matmulSteps', A: [[3, 7], [2, 5]], B: [[1, 0], [0, 1]], nameB: 'I', story: 'Watch each answer box: it always comes out the same as the matching box of A. I changes nothing!' },
           ],
         },
         {
@@ -1107,6 +1229,14 @@ print(A * B)
 print("A @ B =")
 print(A @ B)
 `, note: 'Top-left: 1×5 = 5 for *, but 1×5 + 2×7 = 19 for @.' },
+            { trace: py`
+A = [[1, 2], [3, 4]]
+B = [[5, 6], [7, 8]]
+star = A[0][0] * B[0][0]
+at = A[0][0] * B[0][0] + A[0][1] * B[1][0]
+print("top-left with *:", star)
+print("top-left with @:", at)
+`, title: 'Why * and @ give different top-left numbers', notes: { 3: '`*` just multiplies the two boxes in the same spot: 1 × 5 = 5.', 4: '`@` uses the whole of row 0 of A and column 0 of B: 1×5 + 2×7 = 19.' } },
             { quick: { q: 'You want to multiply each box of A with the matching box of B. Which do you use?', options: ['A @ B', 'A * B', 'A.T', 'np.eye(A)'], answer: 1, explain: '`*` multiplies matching boxes. `@` does row-times-column.' } },
           ],
         },
@@ -1197,6 +1327,7 @@ assert A_inv is not None and _np.allclose(A @ A_inv, _np.eye(2)), "A @ A_inv sho
             { big: 'AI turns every word into an arrow. Words with similar meanings point in similar directions.' },
             { analogy: 'Imagine a giant room where every word is an arrow sticking out from the middle. "cat" and "kitten" point almost the same way. "cat" and "spreadsheet" point in very different directions. To compare two words, the AI just looks at the angle between their arrows!', emoji: '🐱' },
             'These word-arrows are called **embeddings**.',
+            { visual: 'embeddingMap' },
           ],
         },
         {
@@ -1204,6 +1335,8 @@ assert A_inv is not None and _np.allclose(A @ A_inv, _np.eye(2)), "A @ A_inv sho
           blocks: [
             'The dot product measures agreement, but it also grows when arrows are **longer**. That\'s a problem: a long arrow isn\'t "more meaningful", it\'s just longer.',
             { steps: ['[1, 1] · [1, 1] = 2.', '[10, 10] · [10, 10] = 200.', 'Same direction both times, but very different scores!'] },
+            { visual: 'vectorScale', v: [1, 1], k: 3 },
+            'Stretching an arrow does not change where it points. Cosine similarity ignores the length, so it gives the same score for every k above 0.',
             'We want a score that only cares about **direction**. Here comes cosine similarity!',
           ],
         },
@@ -1213,6 +1346,17 @@ assert A_inv is not None and _np.allclose(A @ A_inv, _np.eye(2)), "A @ A_inv sho
             'Take the dot product, then divide by both lengths. This "cancels out" the length.',
             { big: 'cosine similarity = (a · b) ÷ (length of a × length of b)' },
             { steps: ['a = [3, 4], b = [6, 8].', 'Dot product: 3×6 + 4×8 = 18 + 32 = **50**.', 'Length of a: √(9 + 16) = **5**. Length of b: √(36 + 64) = **10**.', 'Divide: 50 ÷ (5 × 10) = 50 ÷ 50 = **1**.', 'Score 1: b is just a longer copy of a. Same direction!'] },
+            { trace: py`
+import math
+
+a = [3, 4]
+b = [6, 8]
+dot = a[0] * b[0] + a[1] * b[1]
+len_a = math.sqrt(a[0] ** 2 + a[1] ** 2)
+len_b = math.sqrt(b[0] ** 2 + b[1] ** 2)
+score = dot / (len_a * len_b)
+print(score)
+`, title: 'The cosine recipe, step by step', notes: { 5: 'Step 1, the dot product: 3×6 + 4×8 = 50.', 6: 'Step 2, the length of a: √(9 + 16) = 5.', 7: 'Step 3, the length of b: √(36 + 64) = 10.', 8: 'Step 4, divide by both lengths: 50 ÷ (5 × 10) = 1. Same direction!' } },
           ],
         },
         {
@@ -1343,6 +1487,15 @@ A = np.ones((3, 4))
 B = np.ones((4, 1))
 print((A @ B).shape)
 `, note: 'Change the shapes and predict the answer BEFORE you press Run.' },
+            { trace: py`
+def result_shape(a, b):
+    if a[1] != b[0]:
+        return "error"
+    return (a[0], b[1])
+
+print(result_shape((3, 4), (4, 1)))
+print(result_shape((5, 2), (5, 2)))
+`, title: 'Both warm-up questions, checked by code', notes: { 2: 'Do the inside numbers differ?', 4: 'They match, so keep the outside numbers.', 6: 'First question: (3, 4) @ (4, 1).', 7: 'Second question: (5, 2) @ (5, 2). Inside numbers 2 and 5.' } },
             { quick: { q: '`(5, 2) @ (5, 2)` …', options: ['(5, 5)', '(2, 2)', 'error: inside numbers 2 and 5 differ', '(5, 2)'], answer: 2, explain: 'The inside numbers are 2 and 5. They don\'t match! Transpose one to fix it.' } },
           ],
         },
@@ -1351,6 +1504,7 @@ print((A @ B).shape)
           blocks: [
             'Chatbots compare every word with every other word using dot products. If the words are stored as rows of a matrix Q (questions) and K (keys), all the scores at once are:',
             { big: 'scores = Q @ K.T' },
+            { visual: 'matmulSteps', A: [[1, 0], [0, 1]], B: [[1, 1, 0], [0, 1, 1]], nameA: 'Q', nameB: 'K.T', story: 'Each box is one word from Q compared (dot product) with one word from K.' },
             'Why `.T`? Q has shape (n, d) and K has shape (m, d). The inside numbers d and m don\'t match... but K.T has shape (d, m). Now (n, d) @ (d, m) → (n, m): one score for every pair!',
             { tryit: py`
 import numpy as np
