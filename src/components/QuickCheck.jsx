@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Inline } from './RichText'
+import { Inline } from './Inline'
 
 /** One ungraded question inside a lesson page. Wrong answers get a gentle nudge. */
 export default function QuickCheck({ q, options, answer, explain }) {

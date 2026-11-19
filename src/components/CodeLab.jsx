@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import CodeEditor from './CodeEditor'
-import { Inline } from './RichText'
+import { Inline } from './Inline'
+import CodeTrace from './CodeTrace'
 import Spinner from './Spinner'
 import usePyStatus from './usePyStatus'
 import useDark from './useDark'
@@ -28,6 +29,7 @@ export default function CodeLab({ lab, daily = false }) {
   const [hints, setHints] = useState(0)
   const [solutionOpen, setSolutionOpen] = useState(false)
   const [passedNow, setPassedNow] = useState(false)
+  const [tracing, setTracing] = useState(null) // { code, title }
   const saveTimer = useRef()
 
   // Lazily start Pyodide the first time any code lab appears on screen.
@@ -134,6 +136,9 @@ export default function CodeLab({ lab, daily = false }) {
             >
               🔑 {solutionOpen ? 'Hide' : 'Show'} solution
             </button>
+            <button className="btn-ghost" onClick={() => setTracing({ code, title: 'Watch YOUR code run, one line at a time.' })} title="Watch your code run line by line">
+              🔍 Step through
+            </button>
             <button className="btn-ghost ml-auto" onClick={() => { onChange(lab.starter); setOutput(null); setTests(null) }} title="Reset to starter code">
               ↺ Reset
             </button>
@@ -153,7 +158,10 @@ export default function CodeLab({ lab, daily = false }) {
             <div className="animate-pop space-y-2 rounded-xl border border-[color:var(--line)] p-3">
               <p className="text-sm font-bold">Reference solution: read it, then try typing it yourself. That's how it sticks.</p>
               <pre className="overflow-x-auto rounded-lg bg-ink-950 p-3 font-mono text-[13px] text-ink-100"><code>{lab.solution}</code></pre>
-              <button className="btn-ghost" onClick={() => onChange(lab.solution)}>Copy into editor</button>
+              <div className="flex flex-wrap gap-2">
+                <button className="btn-ghost" onClick={() => setTracing({ code: lab.solution, title: 'Watch the solution work, one line at a time.' })}>🔍 Walk through the solution</button>
+                <button className="btn-ghost" onClick={() => onChange(lab.solution)}>Copy into editor</button>
+              </div>
             </div>
           )}
         </div>
@@ -188,6 +196,7 @@ export default function CodeLab({ lab, daily = false }) {
           )}
         </div>
       </div>
+      {tracing && <CodeTrace key={tracing.code} code={tracing.code} title={tracing.title} autoStart onClose={() => setTracing(null)} />}
     </div>
   )
 }

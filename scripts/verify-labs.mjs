@@ -1,12 +1,13 @@
 // Verifies curriculum content with your local python3 (+ numpy):
 //   • every code lab: the reference solution passes all hidden tests, the starter fails at least one
-//   • every { tryit } example in the learn pages runs without an error (unless it sets expectError)
+//   • every { tryit } and { trace } example in the learn pages runs without an error (unless it sets expectError)
+//   • every { visual } block names a visual that exists in src/components/visuals/
 //   • every { quick } / quiz question has a valid answer index
 //
 //   node scripts/verify-labs.mjs            # all modules
 //   node scripts/verify-labs.mjs python     # just src/data/modules/python.js
 import { spawnSync } from 'node:child_process'
-import { readFileSync, mkdtempSync } from 'node:fs'
+import { readFileSync, mkdtempSync, readdirSync } from 'node:fs'
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 
@@ -16,6 +17,15 @@ if (only) {
   modules = [(await import(`../src/data/modules/${only}.js`)).default]
 } else {
   modules = (await import('../src/data/curriculum.js')).MODULES
+}
+
+// Names exported by the visual registry files (keys of their `export default {…}` map).
+const visualDir = new URL('../src/components/visuals/', import.meta.url)
+const VISUALS = new Set()
+for (const f of readdirSync(visualDir).filter((f) => /^(linalg|calculus|probability)\.jsx$/.test(f))) {
+  const src = readFileSync(new URL(f, visualDir), 'utf8')
+  const block = src.slice(src.lastIndexOf('export default {'))
+  for (const m of block.matchAll(/^\s*([A-Za-z][\w]*)\s*[,:]/gm)) VISUALS.add(m[1])
 }
 
 const harness = readFileSync(new URL('../src/lib/harness.py', import.meta.url), 'utf8')
@@ -34,6 +44,8 @@ for (const m of modules) {
       ;(page.blocks || []).forEach((b, bi) => {
         const where = `${l.id} p${pi + 1} b${bi + 1}`
         if (b && b.tryit) tryits.push({ where, code: b.tryit, expectError: Boolean(b.expectError) })
+        if (b && b.trace) tryits.push({ where: where + ' (trace)', code: b.trace, expectError: Boolean(b.expectError) })
+        if (b && b.visual && !VISUALS.has(b.visual)) problems.push(`${where}: unknown visual "${b.visual}"`)
         if (b && b.quick && !(b.quick.answer >= 0 && b.quick.answer < b.quick.options.length)) problems.push(`${where}: quick answer out of range`)
       })
     })

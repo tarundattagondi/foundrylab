@@ -1,16 +1,11 @@
 import TryIt from './TryIt'
 import QuickCheck from './QuickCheck'
 
-// Renders the tiny markup used in curriculum text: `code`, **bold** and *italic*.
-export function Inline({ text }) {
-  const parts = String(text).split(/(`[^`]+`|\*\*[^*]+\*\*|\*[^*\s][^*]*\*)/g)
-  return parts.map((p, i) => {
-    if (p.startsWith('`') && p.endsWith('`') && p.length > 1) return <code key={i} className="inline-code">{p.slice(1, -1)}</code>
-    if (p.startsWith('**') && p.endsWith('**') && p.length > 4) return <strong key={i} className="font-extrabold">{p.slice(2, -2)}</strong>
-    if (p.length > 2 && p.startsWith('*') && p.endsWith('*')) return <em key={i}>{p.slice(1, -1)}</em>
-    return <span key={i}>{p}</span>
-  })
-}
+import { Inline } from './Inline'
+import CodeTrace from './CodeTrace'
+import Visual from './visuals'
+
+export { Inline }
 
 export function CodeBlock({ code }) {
   return (
@@ -35,6 +30,8 @@ export function Block({ b }) {
   if (b.big) return <p className="text-xl font-black leading-snug sm:text-2xl"><Inline text={b.big} /></p>
   if (b.code) return <CodeBlock code={b.code} />
   if (b.tryit) return <TryIt code={b.tryit} note={b.note} />
+  if (b.trace) return <CodeTrace code={b.trace} notes={b.notes} title={b.title} />
+  if (b.visual) return <Visual {...b} />
   if (b.quick) return <QuickCheck {...b.quick} />
   if (b.analogy)
     return (

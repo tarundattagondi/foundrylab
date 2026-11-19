@@ -2,7 +2,8 @@ import { useState } from 'react'
 import CodeEditor from './CodeEditor'
 import useDark from './useDark'
 import { runPython, warmUp, explainError } from '../lib/pyodideRunner'
-import { Inline } from './RichText'
+import { Inline } from './Inline'
+import CodeTrace from './CodeTrace'
 import Spinner from './Spinner'
 
 /** A small, ungraded code playground inside a lesson page. Change it, run it, learn. */
@@ -11,6 +12,7 @@ export default function TryIt({ code, note }) {
   const [value, setValue] = useState(code)
   const [out, setOut] = useState(null)
   const [busy, setBusy] = useState(false)
+  const [tracing, setTracing] = useState(null)
 
   async function run() {
     if (busy) return
@@ -35,11 +37,19 @@ export default function TryIt({ code, note }) {
         <button className="btn bg-sky-600 text-white hover:bg-sky-700" onClick={run} disabled={busy}>
           {busy ? <Spinner /> : '▶'} Run
         </button>
+        <button className="btn border border-violet-300 bg-violet-50 text-violet-800 hover:bg-violet-100 dark:border-violet-800 dark:bg-violet-950/40 dark:text-violet-200" onClick={() => setTracing(value)}>
+          🔍 Step through
+        </button>
         {value !== code && (
           <button className="btn-ghost" onClick={() => { setValue(code); setOut(null) }}>↺ Put it back</button>
         )}
         {busy && <span className="muted text-xs font-bold">(the first run wakes up Python, a few seconds)</span>}
       </div>
+      {tracing !== null && (
+        <div className="mt-3">
+          <CodeTrace key={tracing} code={tracing} autoStart onClose={() => setTracing(null)} />
+        </div>
+      )}
       {out && (
         <div className="mt-2 rounded-xl bg-ink-950 p-3 font-mono text-[13px] text-ink-100" aria-live="polite">
           <p className="mb-1 font-sans text-[11px] font-extrabold uppercase tracking-wider text-ink-400">The computer says:</p>

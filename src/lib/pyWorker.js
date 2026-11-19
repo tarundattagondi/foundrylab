@@ -37,6 +37,13 @@ self.onmessage = async (event) => {
       self.postMessage({ id, ok: true })
       return
     }
+    if (type === 'trace') {
+      const fn = py.globals.get('fl_trace')
+      const raw = fn(code)
+      fn.destroy()
+      self.postMessage({ id, ok: true, result: JSON.parse(raw) })
+      return
+    }
     if (type === 'run') {
       const fn = py.globals.get('fl_run')
       const raw = fn(code, JSON.stringify(tests), check)

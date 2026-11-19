@@ -78,8 +78,9 @@ export function warmUp() {
 /**
  * Run code (and optionally hidden tests).
  * Resolves to { stdout, error, tests } or { timeout: true }.
+ * With { trace: true } it resolves to the raw step-by-step trace (see fl_trace in harness.py).
  */
-export async function runPython(code, { tests = [], check = false } = {}) {
+export async function runPython(code, { tests = [], check = false, trace = false } = {}) {
   await warmUp()
   if (/^\s*(import|from)\s+numpy/m.test(code) || tests.some((t) => /numpy/.test(t.code))) {
     setStatus('loading', 'Fetching NumPy (first time only)…')
@@ -99,7 +100,7 @@ export async function runPython(code, { tests = [], check = false } = {}) {
       resolve({ timeout: true })
     }, RUN_TIMEOUT_MS)
   })
-  const run = send({ type: 'run', code, tests, check })
+  const run = send(trace ? { type: 'trace', code } : { type: 'run', code, tests, check })
   const result = await Promise.race([run, timeout])
   clearTimeout(timer)
   return result || { timeout: true }
